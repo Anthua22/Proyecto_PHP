@@ -1,0 +1,12 @@
+{
+    "name": "ensoni/futapp",
+    "authors": [
+        {
+            "name": "Anthony Ubillus",
+            "email": "anthonyemmanuel.ubillus@iesdoctorbalmis.com"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}
