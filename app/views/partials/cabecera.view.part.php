@@ -4,14 +4,14 @@
     <title>FutApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css'/>
-    <link href="../../css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="../../../css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="../../../css/style.css" rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
-    <link rel="stylesheet" href="../../css/fwslider.css" media="all">
-    <script src="../../js/jquery-ui.min.js"></script>
-    <script src="../../js/fwslider.js"></script>
+    <link rel="stylesheet" href="../../../css/fwslider.css" media="all">
+    <script src="../../../js/jquery-ui.min.js"></script>
+    <script src="../../../js/fwslider.js"></script>
     <!--end slider -->
     <script type="text/javascript">
         $(document).ready(function () {
@@ -54,17 +54,17 @@
             <div class="col-md-12">
                 <div class="header-left">
                     <div class="logo">
-                        <a href="../../views/index.php"><img src="../../images/logofutapp.png" alt=""/></a>
+                        <a href="..p"><img src="../../../images/logofutapp.png" alt=""/></a>
                     </div>
                     <div class="menu">
-                        <a class="toggleMenu" href="#"><img src="../../images/nav.png" alt=""/></a>
+                        <a class="toggleMenu" href="#"><img src="../../../images/nav.png" alt=""/></a>
                         <ul class="nav" id="nav">
-                            <li><a href="../../views/shop.php">Partidos</a></li>
-                            <li><a href="../../views/agregarEquipo.php">Agregar un Equipo</a></li>
-                            <li><a href="../../views/agregarPartido.php">Agregar un Partido</a></li>
+                            <li><a href="..">Partidos</a></li>
+                            <li><a href="../agregarEquipo.php">Agregar un Equipo</a></li>
+                            <li><a href="..artido.php">Agregar un Partido</a></li>
                             <div class="clear"></div>
                         </ul>
-                        <script type="text/javascript" src="../../js/responsive-nav.js"></script>
+                        <script type="text/javascript" src="../../../js/responsive-nav.js"></script>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -81,8 +81,8 @@
                         </div>
                     </div>
                     <!----search-scripts---->
-                    <script src="../../js/classie.js"></script>
-                    <script src="../../js/uisearch.js"></script>
+                    <script src="../../../js/classie.js"></script>
+                    <script src="../../../js/uisearch.js"></script>
                     <script>
                         new UISearch(document.getElementById('sb-search'));
                     </script>
@@ -91,11 +91,11 @@
                         <li><a class="active-icon c1" href="#"> </a>
                             <ul class="sub-icon1 list">
                                 <div class="product_control_buttons">
-                                    <a href="#"><img src="../../images/edit.png" alt=""/></a>
-                                    <a href="#"><img src="../../images/close_edit.png" alt=""/></a>
+                                    <a href="#"><img src="../../../images/edit.png" alt=""/></a>
+                                    <a href="#"><img src="../../../images/close_edit.png" alt=""/></a>
                                 </div>
                                 <div class="clear"></div>
-                                <li class="list_img"><img src="../../images/1.jpg" alt=""/></li>
+                                <li class="list_img"><img src="../../../images/1.jpg" alt=""/></li>
                                 <li class="list_desc"><h4><a href="#">velit esse molestie</a></h4><span class="actual">1 x
                           $12.00</span></li>
                                 <div class="login_buttons">

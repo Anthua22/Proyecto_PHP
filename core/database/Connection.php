@@ -6,7 +6,7 @@ namespace FUTAPP\core\database;
 use PDO;
 use PDOException;
 
-class Conection
+class Connection
 {
     public static function make(array $config)
     {

@@ -6,7 +6,7 @@
                 <div class="login-title">
                     <h4 class="title">Añadir un Equipo</h4>
                     <div id="loginbox" class="loginbox">
-                        <form action="" method="post" name="login" id="login-form">
+                        <form action="/equipos" method="post" name="login" id="login-form">
                             <fieldset class="input">
                                 <p id="login-form-username">
                                     <label for="modlgn_username">Nombre</label>
@@ -20,7 +20,7 @@
 
                                 <p id="login-form-email">
                                     <label for="modlgn_email">Email</label>
-                                    <input id="modlgn_username" type="text" name="nombre" class="inputbox" size="18"
+                                    <input id="modlgn_username" type="text" name="correo" class="inputbox" size="18"
                                            autocomplete="off">
                                 </p>
 
@@ -41,4 +41,4 @@
         </div>
     </div>
 </div>
-<?php require './partials/footer.view.part.php'?>
+<?php require './partials/footer.view.part.php' ?>

@@ -1,4 +1,4 @@
-<?php require './partials/cabecera.view.part.php'?>
+<?php require './partials/cabecera.view.part.php' ?>
      <div class="main">
       <div class="shop_top">
 		<div class="container">
@@ -42,4 +42,4 @@
 	     </div>
 	   </div>
 	  </div>
-<?php require './partials/footer.view.part.php'?>
+<?php require './partials/footer.view.part.php' ?>

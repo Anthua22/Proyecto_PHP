@@ -3,7 +3,7 @@
 namespace FUTAPP\app\BLL;
 use FUTAPP\app\helpers\UploadFile;
 
-class FutappBLL
+class ImagenFutappBLL
 {
     use UploadFile;
 
@@ -12,15 +12,15 @@ class FutappBLL
     private array $fileProperties;
 
     /**
-     * FutappBLL constructor.
+     * ImagenFutappBLL constructor.
      * @param array $allowedFileTypes
      * @param string $uploadsDirectory
      * @param array $fileProperties
      */
-    public function __construct(array $allowedFileTypes, string $uploadsDirectory, array $fileProperties)
+    public function __construct(array $fileProperties)
     {
-        $this->allowedFileTypes = $allowedFileTypes;
-        $this->uploadsDirectory = $uploadsDirectory;
+        $this->allowedFileTypes = ['image/png','image/jpeg'];
+        $this->uploadsDirectory = 'images/index/gallery';
         $this->fileProperties = $fileProperties;
     }
 
