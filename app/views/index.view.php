@@ -1,4 +1,4 @@
-<?php require './partials/cabecera.view.part.php' ?>
+<?php require __DIR__.'/partials/cabecera.view.part.php' ?>
 
 	<div class="banner">
 	<!-- start slider -->

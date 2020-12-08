@@ -20,6 +20,10 @@ class EquiposController{
         ]);
     }
 
+    public function addEquipo()
+    {
+        return require __DIR__.'/../views/agregarEquipo.php';
+    }
     public function nuevoEquipo():void{
         $equipoRepository = new EquiposRepository();
 

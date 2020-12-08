@@ -11,3 +11,5 @@ $router->post(
     EquiposController::class,
     'nuevoEquipo'
 );
+
+$router->get('addequipo',EquiposController::class,'addEquipo');

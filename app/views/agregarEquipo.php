@@ -6,7 +6,7 @@
                 <div class="login-title">
                     <h4 class="title">Añadir un Equipo</h4>
                     <div id="loginbox" class="loginbox">
-                        <form action="/equipos" method="post" name="login" id="login-form">
+                        <form action="/equiposu" method="post" name="login" id="login-form">
                             <fieldset class="input">
                                 <p id="login-form-username">
                                     <label for="modlgn_username">Nombre</label>
