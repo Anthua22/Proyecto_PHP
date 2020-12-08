@@ -6,35 +6,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72cf0feb-f5bc-40f8-a700-019a9079ffe9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/EquiposController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/equipos.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/entity/Equipo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/entity/Usuarios.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/repository/EquiposRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/Request.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/Response.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/Router.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/BLL/FutappBLL.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BLL/ImagenFutappBLL.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/App.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/bootstrap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/database/Conection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/agregarEquipo.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/agregarPartido.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/contact.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/experiance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/cabecera.view.part.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.view.part.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/shop.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/single.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/team.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/IEntity.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/IEntity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/QueryBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/QueryBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,17 +50,18 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/core" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ensoni\Desktop\ProyectosPHP\futapp\app" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ensoni\Desktop\ProyectosPHP\futapp\core" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ensoni\OneDrive - iesdoctorbalmis.com\Escritorio\Proyecto Futapp\Proyecto_PHP" />
+      <recent name="C:\Users\Ensoni\Desktop\ProyectosPHP\futapp\app" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -90,6 +74,8 @@
       <updated>1606315144663</updated>
       <workItem from="1606315150007" duration="6151000" />
       <workItem from="1606342361357" duration="6155000" />
+      <workItem from="1606998717290" duration="2453000" />
+      <workItem from="1607439339375" duration="2024000" />
     </task>
     <servers />
   </component>
@@ -124,18 +110,20 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="115" y="170" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606347372919" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1606316552461">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="686" y="194" key="FileChooserDialogImpl" timestamp="1607440077000">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606316552461" />
+    <state x="686" y="194" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607440077000" />
     <state x="144" y="138" key="NewPhpClassDialog" timestamp="1606347170011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="144" y="138" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1606347170011" />
-    <state x="220" y="339" key="NewPhpFileDialog" timestamp="1606346982304">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="1298" y="463" key="NewPhpFileDialog" timestamp="1607440488344">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="220" y="339" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1606346982304" />
+    <state x="1298" y="463" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607440488344" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606316427849">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -1,11 +1,8 @@
 <?php
 
+require_once __DIR__.'/../App.php';
 
-namespace FUTAPP\core\database;
 
-
-use FUTAPP\core\App;
-use PDO;
 
 abstract class QueryBuilder
 {

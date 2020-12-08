@@ -1,13 +1,16 @@
 <?php
+return [
+    ''=>'app/controllers/index.php',
+    'login'=>'app/controllers/login.php'
+];
 
+/*$router = App::get('router');
 
-use FUTAPP\app\controllers\EquiposController;
-use FUTAPP\core\App;
-
-$router = App::get('router');
+$router->get('', 'controllers/index.php','');
 
 $router->post(
     'equipos',
     EquiposController::class,
     'nuevoEquipo'
-);
+);*/
+
