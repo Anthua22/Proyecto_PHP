@@ -1,7 +1,8 @@
 <?php
 
-use FUTAPP\core\App;
-use FUTAPP\core\database\Connection;
+
+require_once __DIR__.'/../core/App.php';
+require_once __DIR__.'/../core/database/Connection.php';
 
 $config = require __DIR__ . '/../app/config.php';
 App::bind('config',$config);

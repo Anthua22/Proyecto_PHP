@@ -1,28 +1,14 @@
 <?php
-namespace  FUTAPP\app\controllers;
 
-use Exception;
-use FUATAPP\app\entity\Equipo;
-use FUTAPP\app\BLL\ImagenFutappBLL;
-use FUTAPP\app\repository\EquiposRepository;
-use FUTAPP\core\App;
-use FUTAPP\core\Response;
+
 
 class EquiposController{
 
-    public function inicio(){
 
-        $equipos = App::getRepository(EquiposRepository::class)->findAll();
 
-        Response::renderView('index',[
-            'equipos'=>$equipos,
-
-        ]);
-    }
-
-    public function addEquipo()
+    public function addEquipos()
     {
-        return require __DIR__.'/../views/agregarEquipo.php';
+        Response::renderView('equipos');
     }
     public function nuevoEquipo():void{
         $equipoRepository = new EquiposRepository();

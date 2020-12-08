@@ -1,10 +1,6 @@
 <?php
 
-namespace FUTAPP\core\database;
 
-
-use PDO;
-use PDOException;
 
 class Connection
 {

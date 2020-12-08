@@ -152,4 +152,4 @@
 			</div>
 		 </div>
 	    </div>
-		<?php require '../views/partials/footer.view.part.php' ?>
+		<?php require __DIR__.'/partials/footer.view.part.php' ?>

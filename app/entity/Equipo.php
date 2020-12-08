@@ -1,10 +1,7 @@
 <?php
 
 
-namespace FUATAPP\app\entity;
-
-
-use FUTAPP\core\database\IEntity;
+require_once __DIR__.'/../../core/database/IEntity.php';
 
 class Equipo implements IEntity
 {

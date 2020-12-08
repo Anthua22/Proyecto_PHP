@@ -1,9 +1,6 @@
 <?php
 
-namespace FUTAPP\core;
-
-use Exception;
-use FUTAPP\core\database\QueryBuilder;
+require_once __DIR__.'/../core/database/QueryBuilder.php';
 
 class App
 {

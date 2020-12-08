@@ -1,11 +1,8 @@
 <?php
 
 
-namespace FUTAPP\app\repository;
-
-
-use FUATAPP\app\entity\Equipo;
-use FUTAPP\core\database\QueryBuilder;
+require_once __DIR__.'/../../core/database/QueryBuilder.php';
+require_once __DIR__.'/../entity/Equipo.php';
 
 class EquiposRepository extends QueryBuilder
 {

@@ -1,6 +1,5 @@
 <?php
 
-namespace FUTAPP\core;
 
 class Response
 {

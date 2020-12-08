@@ -1,8 +1,5 @@
 <?php
-namespace FUTAPP\app\repository;
-
-use FUATAPP\app\entity\Usuarios;
-use FUTAPP\core\database\QueryBuilder;
+require_once __DIR__.'../../core/database/QueryBuilder.php';
 
 class UsuariosRepository extends QueryBuilder
 {

@@ -60,6 +60,7 @@
                         <a class="toggleMenu" href="#"><img src="../../../images/nav.png" alt=""/></a>
                         <ul class="nav" id="nav">
                             <li><a href="..">Partidos</a></li>
+                            <li><a href="equipos">Equipos</a></li>
                             <li><a href="../agregarEquipo.php">Agregar un Equipo</a></li>
                             <li><a href="..artido.php">Agregar un Partido</a></li>
                             <div class="clear"></div>

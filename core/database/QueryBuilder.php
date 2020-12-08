@@ -1,11 +1,8 @@
 <?php
 
+require_once __DIR__.'/../App.php';
+require_once 'IEntity.php';
 
-namespace FUTAPP\core\database;
-
-
-use FUTAPP\core\App;
-use PDO;
 
 abstract class QueryBuilder
 {
@@ -31,6 +28,7 @@ abstract class QueryBuilder
         $sql = "select * from $this->table;";
         $pdoStatement = $this->connection->prepare($sql);
         $pdoStatement->execute();
+
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS, $this->entityClass);
     }
 
