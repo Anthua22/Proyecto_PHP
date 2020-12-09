@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="../../../css/style.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
@@ -55,22 +56,21 @@
             <div class="col-md-12">
                 <div class="header-left">
 
-                    <div class="logo">
-                        <a href=""><img src="../../../images/logofutapp.png" alt=""/></a>
-                        <a href="" style="font-size: 40px; font-family: Georgia; color: red; margin: 10px;">FutApp</a>
-                    </div>
-                    <div class="menu">
-                        <ul class="nav" id="nav">
+                    <nav class="navbar navbar-expand-lg">
+                        <a href="/" class="navbar-brand"><img src="../../../images/logofutapp.png" alt=""/></a>
+                        <a href="/" class="navbar-brand" style="font-size: 40px; font-family: Georgia; color: red; margin: 10px;">FutApp</a>
 
-                            <li><a href="..">Partidos</a></li>
-                            <li><a href="equipos">Equipos</a></li>
-                            <li><a href="arbitros">Arbitros</a></li>
-                            <li><a href="add-equipo">Agregar Equipo</a></li>
-                            <li><a href="..artido.php">Agregar Partido</a></li>
-
-                        </ul>
                         <script type="text/javascript" src="../../../js/responsive-nav.js"></script>
-                    </div>
+                    </nav>
+                    <ul class="nav" id="nav">
+
+                        <li><a href="/">Partidos</a></li>
+                        <li><a href="equipos">Equipos</a></li>
+                        <li><a href="arbitros">Arbitros</a></li>
+                        <li><a href="add-equipo">Agregar Equipo</a></li>
+                        <li><a href="add-partido">Agregar Partido</a></li>
+
+                    </ul>
                     <div class="clear"></div>
                 </div>
                 <div class="header_right">

@@ -1065,6 +1065,13 @@ span.reducedfrom {
 	margin-right: 8%;
 	color: #888;
 }
+
+.menupersonalizado{
+	list-style: none;
+	display: inline-block;
+}
+
+
 span.actual {
 	color: #7DB122;
 	font-size: 1em;
@@ -1080,6 +1087,7 @@ ul.buttons{
 }
 .shop_btn{
 	float:right;
+	font-size: 15px;
 }
 .shop_btn a, .cart a{
 	color: #000;

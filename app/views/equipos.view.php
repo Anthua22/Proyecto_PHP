@@ -3,15 +3,16 @@
 <div class="main">
     <div class="shop_top">
 		<div class="container">
-
-                <div class="row">
+            <h3 class="m_2">Equipos de la Competición</h3>
+                <div class="card-columns mt-4 mb-4">
                     <?php
+
                     foreach ($equipos as $equipo):?>
-                    <div class="col-md-3 shop_box" style="margin-top: 20px;">
+                    <div class="card shadow" >
                         <a href="single.html">
-                            <img src="../images/equipos/<?= $equipo->getFoto()?>"  class="img-responsive" alt=""/>
-                                <div class="shop_desc">
-                                    <h2><a href="#"><?= $equipo->getNombre() ?></a></h2>
+                            <img src="../images/equipos/<?= $equipo->getFoto()?>"  class="card-img-top" alt=""/>
+                                <div class="card-body">
+                                    <h2 class="card-title"><a href="#"><?= $equipo->getNombre() ?></a></h2>
                                     <span class="actual" style="font-weight: bold;">Email:</span>
                                     <span class="actual"><?= $equipo->getCorreo()?></span><br>
                                     <span class="actual"  style="font-weight: bold;">Dirección:</span>

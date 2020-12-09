@@ -1,38 +1,38 @@
 <?php
 
-
+require_once __DIR__.'/../repository/EquiposRepository.php';
 
 class EquiposController{
 
 
 
-    public function addEquipos()
+    public function addEquipo()
     {
-        Response::renderView('equipos');
-    }
-    public function nuevoEquipo():void{
-        $equipoRepository = new EquiposRepository();
-
+        $equipoRespository = new EquiposRepository();
         try{
-            $equipoRepository->getConnection()->beginTransaction();
-            $direccion = $_POST['direccion']??'';
-            $nombre = $_POST['nombre']??'';
-            $correo = $_POST['correo']??'';
-            $imagenBLL = new ImagenFutappBLL($_FILES['imagen']);
+            $equipoRespository->getConnection()->beginTransaction();
+            $nombre = trim(htmlspecialchars($_POST['nombreEquipo']));
+            $correo = trim(htmlspecialchars($_POST['correoEquipo']));
+            $arrayfile = $_FILES['imagen'];
+            $imagenBLL = new ImagenFutappBLL($arrayfile);
+            $direccion = trim(htmlspecialchars($_POST['direccion']));
             $imagenBLL->uploadImagen();
-            $nombreImagen = $imagenBLL->getUploadedFileName();
+            $foto =$imagenBLL->getUploadedFileName();
+
             $equipo = new Equipo();
             $equipo->setNombre($nombre);
             $equipo->setCorreo($correo);
-            $equipo->setFoto($nombreImagen);
             $equipo->setDireccionCampo($direccion);
+            $equipo->setFoto($foto);
 
-            $equipoRepository->save($equipo);
-            $equipoRepository->getConnection()->commit();
+            $equipoRespository->save($equipo);
+            $equipoRespository->getConnection()->commit();
 
             App::get('router')->redirect('equipos');
-        }catch (Exception $e){
-            $equipoRepository->getConnection()->rollBack();
-        }   die('No se pudo insertar al equipo');
+        }catch (Exception $exception){
+            $equipoRespository->getConnection()->rollBack();
+            die('No se ha podido insertar el equipo');
+        }
     }
+
 }

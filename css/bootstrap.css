@@ -3452,6 +3452,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 0;
   list-style: none;
 }
+
+.menupersonalizado{
+  list-style: none;
+  display: inline-block;
+}
 .nav > li {
   position: relative;
   display: block;

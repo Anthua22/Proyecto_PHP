@@ -8,7 +8,8 @@ class Usuarios implements IEntity
     private int $id;
     private string $dni;
     private string $pass;
-    private string $nombre_completo;
+    private string $nombre;
+    private string $apellidos;
     private string $foto;
     private string $role;
     private string $email;
@@ -71,18 +72,35 @@ class Usuarios implements IEntity
     /**
      * @return string
      */
-    public function getNombreCompleto(): string
+    public function getNombre(): string
     {
-        return $this->nombre_completo;
+        return $this->nombre;
     }
 
     /**
-     * @param string $nombre_completo
+     * @param string $nombre
      */
-    public function setNombreCompleto(string $nombre_completo): void
+    public function setNombre(string $nombre): void
     {
-        $this->nombre_completo = $nombre_completo;
+        $this->nombre = $nombre;
     }
+
+    /**
+     * @return string
+     */
+    public function getApellidos(): string
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * @param string $apellidos
+     */
+    public function setApellidos(string $apellidos): void
+    {
+        $this->apellidos = $apellidos;
+    }
+
 
     /**
      * @return string
