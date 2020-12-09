@@ -20,7 +20,7 @@ body a{
 }
 .header-left{
 	float:left;
-	width: 59%;
+	width: 80%;
 }
 .logo{
 	float:left;
@@ -132,7 +132,7 @@ body a{
  }
 .header_right{
 	float:right;
-	width:6%;
+	width:100%;
 	margin-top: 16px;
 }
 .sb-search {

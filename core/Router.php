@@ -12,7 +12,9 @@ class Router
 
     public function post(string $uri, string $controller, string $action)
     {
-        $this->routes['POST'][$uri] = $controller . '@' . $action;
+        $this->routes['POST'][$uri] = [
+            'controller' => $controller . '@' . $action
+        ];
     }
 
     public function get(
@@ -37,7 +39,7 @@ class Router
             $urlRule = $this->prepareRoute($route);
             if (preg_match('/^' . $urlRule . '\/*$/s', $uri, $matches)) {
                 $controller = $data['controller'];
-                $role = $data['role'];
+                //$role = $data['role'];
 
 
                     $parameters = $this->getParametersRoute($route, $matches);

@@ -68,7 +68,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li><a href="equipos.view.php">Shop</a></li>
                             <li><a href="team.php">Team</a></li>
                             <li><a href="equipos.view.php">Events</a></li>
-                            <li><a href="experiance.php">Experiance</a></li>
+                            <li><a href="arbitros.view.php">Experiance</a></li>
                             <li><a href="equipos.view.php">Company</a></li>
                             <li><a href="contact.php">Contact</a></li>
                             <div class="clear"></div>

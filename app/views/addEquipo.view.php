@@ -1,4 +1,4 @@
-<?php require './partials/cabecera.view.part.php' ?>
+<?php require __DIR__.'/partials/cabecera.view.part.php' ?>
 <div class="main">
     <div class="shop_top">
         <div class="container">
@@ -6,21 +6,21 @@
                 <div class="login-title">
                     <h4 class="title">Añadir un Equipo</h4>
                     <div id="loginbox" class="loginbox">
-                        <form action="/equiposu" method="post" name="login" id="login-form">
+                        <form action="/add-equipo" method="post" enctype="multipart/form-data">
                             <fieldset class="input">
                                 <p id="login-form-username">
                                     <label for="modlgn_username">Nombre</label>
-                                    <input id="modlgn_username" type="text" name="nombre" class="inputbox" size="18"
+                                    <input id="modlgn_username" type="text" name="nombreEquipo" class="inputbox" size="18"
                                            autocomplete="off">
                                 </p>
                                 <p id="login-form-foto">
                                     <label for="modlgn_foto">Foto</label>
-                                    <input id="modlgn_foto" type="file" name="foto">
+                                    <input id="modlgn_foto" type="file" name="imagen">
                                 </p>
 
                                 <p id="login-form-email">
                                     <label for="modlgn_email">Email</label>
-                                    <input id="modlgn_username" type="text" name="correo" class="inputbox" size="18"
+                                    <input id="modlgn_username" type="text" name="correoEquipo" class="inputbox" size="18"
                                            autocomplete="off">
                                 </p>
 
@@ -30,7 +30,7 @@
                                            autocomplete="off">
                                 </p>
 
-                                <input type="submit" name="Submit" class="button" value="Añadir">
+                                <input type="submit" class="button" value="Añadir">
                                 <div class="clear"></div>
                             </fieldset>
                         </form>
@@ -41,4 +41,4 @@
         </div>
     </div>
 </div>
-<?php require './partials/footer.view.part.php' ?>
+<?php require __DIR__.'/partials/footer.view.part.php' ?>

@@ -1,7 +1,6 @@
 <?php
+require_once __DIR__.'/../helpers/UploadFile.php';
 
-namespace FUTAPP\app\BLL;
-use FUTAPP\app\helpers\UploadFile;
 
 class ImagenFutappBLL
 {
@@ -20,7 +19,7 @@ class ImagenFutappBLL
     public function __construct(array $fileProperties)
     {
         $this->allowedFileTypes = ['image/png','image/jpeg'];
-        $this->uploadsDirectory = 'images/index/gallery';
+        $this->uploadsDirectory = 'images/equipos';
         $this->fileProperties = $fileProperties;
     }
 

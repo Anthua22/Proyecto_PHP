@@ -10,9 +10,26 @@ class Usuarios implements IEntity
     private string $pass;
     private string $nombre_completo;
     private string $foto;
+    private string $role;
     private string $email;
     private $fecha_nacimiento;
     private string $telefono;
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
+    }
 
     public function getId(): int
     {

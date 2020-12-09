@@ -1,2 +1,2 @@
 <?php
-require __DIR__ . '/../views/agregarEquipo.php';
+require __DIR__ . '/../views/addEquipo.view.php';

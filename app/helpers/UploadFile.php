@@ -1,6 +1,5 @@
 <?php
 
-namespace FUTAPP\app\helpers;
 trait UploadFile
 {
     private string $error;
@@ -70,7 +69,7 @@ trait UploadFile
 
     private function getPathUploadedFile() : string
     {
-        return __DIR__ . '/../' . $this->uploadsDirectory;
+        return __DIR__ . '\..\..\/' . $this->uploadsDirectory;
     }
 
     private function moveUploadFile(array $fileProperties)
@@ -81,7 +80,7 @@ trait UploadFile
         if (move_uploaded_file(
                 $fileProperties['tmp_name'],
                 $pathUploadedFile) === false)
-            $this->error = "No se ha podido movel el fichero subido";
+            $this->error = "No se ha podido mover el fichero subido";
     }
 
     public function uploadFile(

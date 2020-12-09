@@ -51,19 +51,23 @@
 <div class="header">
     <div class="container">
         <div class="row">
+
             <div class="col-md-12">
                 <div class="header-left">
+
                     <div class="logo">
-                        <a href="..p"><img src="../../../images/logofutapp.png" alt=""/></a>
+                        <a href=""><img src="../../../images/logofutapp.png" alt=""/></a>
+                        <a href="" style="font-size: 40px; font-family: Georgia; color: red; margin: 10px;">FutApp</a>
                     </div>
                     <div class="menu">
-                        <a class="toggleMenu" href="#"><img src="../../../images/nav.png" alt=""/></a>
                         <ul class="nav" id="nav">
+
                             <li><a href="..">Partidos</a></li>
                             <li><a href="equipos">Equipos</a></li>
-                            <li><a href="../agregarEquipo.php">Agregar un Equipo</a></li>
-                            <li><a href="..artido.php">Agregar un Partido</a></li>
-                            <div class="clear"></div>
+                            <li><a href="arbitros">Arbitros</a></li>
+                            <li><a href="add-equipo">Agregar Equipo</a></li>
+                            <li><a href="..artido.php">Agregar Partido</a></li>
+
                         </ul>
                         <script type="text/javascript" src="../../../js/responsive-nav.js"></script>
                     </div>
@@ -93,7 +97,7 @@
                             <ul class="sub-icon1 list">
                                 <div class="product_control_buttons">
                                     <a href="#"><img src="../../../images/edit.png" alt=""/></a>
-                                    <a href="#"><img src="../../../images/close_edit.png" alt=""/></a>
+                                        <a href="#"><img src="../../../images/close_edit.png" alt=""/></a>
                                 </div>
                                 <div class="clear"></div>
                                 <li class="list_img"><img src="../../../images/1.jpg" alt=""/></li>

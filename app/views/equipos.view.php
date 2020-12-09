@@ -9,7 +9,7 @@
                     foreach ($equipos as $equipo):?>
                     <div class="col-md-3 shop_box" style="margin-top: 20px;">
                         <a href="single.html">
-                            <img src="../images/<?= $equipo->getFoto()?>"  class="img-responsive" alt=""/>
+                            <img src="../images/equipos/<?= $equipo->getFoto()?>"  class="img-responsive" alt=""/>
                                 <div class="shop_desc">
                                     <h2><a href="#"><?= $equipo->getNombre() ?></a></h2>
                                     <span class="actual" style="font-weight: bold;">Email:</span>

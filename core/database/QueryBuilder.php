@@ -32,6 +32,22 @@ abstract class QueryBuilder
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS, $this->entityClass);
     }
 
+    /**
+     * @return string
+     */
+    public function getEntityClass(): string
+    {
+        return $this->entityClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTable(): string
+    {
+        return $this->table;
+    }
+
     public function find(int $id) : ?IEntity
     {
         $sql = "select * from $this->table where id=$id;";
