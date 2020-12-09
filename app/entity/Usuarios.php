@@ -171,13 +171,14 @@ class Usuarios implements IEntity
     public function toArray(): array
     {
         return [
-            'nombre_completo'=>$this->nombre_completo,
-            'dni'=>$this->dni,
-            'foto'=>$this->foto,
-            'fecha_nacimiento'=>$this->fecha_nacimiento,
-            'email'=>$this->email,
-            'pass'=>$this->pass,
-            'telefono'=>$this->telefono
+            'nombre'=>$this->getNombre(),
+            'apellidos'=>$this->getApellidos(),
+            'dni'=>$this->getDni(),
+            'foto'=>$this->getFoto(),
+            'fecha_nacimiento'=>$this->getFechanacimiento(),
+            'email'=>$this->getEmail(),
+            'pass'=>$this->getEmail(),
+            'telefono'=>$this->getTelefono()
         ];
     }
 }
