@@ -10,21 +10,7 @@ class Partido implements IEntity
     private int $idEquipoLocal;
     private int $idEquipoVisitante;
 
-    /**
-     * @return int
-     */
-    public function getIdPartido(): int
-    {
-        return $this->idPartido;
-    }
 
-    /**
-     * @param int $idPartido
-     */
-    public function setIdPartido(int $idPartido): void
-    {
-        $this->idPartido = $idPartido;
-    }
 
     /**
      * @return string

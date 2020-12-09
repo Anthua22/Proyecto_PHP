@@ -67,8 +67,9 @@
                         <li><a href="/">Partidos</a></li>
                         <li><a href="equipos">Equipos</a></li>
                         <li><a href="arbitros">Arbitros</a></li>
-                        <li><a href="add-equipo">Agregar Equipo</a></li>
-                        <li><a href="add-partido">Agregar Partido</a></li>
+                        <li><a href="add-partido">Mis Partidos</a></li>
+                        <li><a href="add-equipo">Añadir Equipo</a></li>
+                        <li><a href="add-partido">Asignar Partido</a></li>
 
                     </ul>
                     <div class="clear"></div>

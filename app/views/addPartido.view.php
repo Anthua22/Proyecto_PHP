@@ -22,7 +22,7 @@
                                     </p>
                                     <p id="login-form-password">
                                         <label for="modlgn_username">Equipo Visitante</label>
-                                        <select name="equiposlocales" class="form-control">
+                                        <select name="equiposvisitantes" class="form-control">
                                             <option value="-1">Seleccionar Equipo Visitante</option>
                                             <?php foreach ($equipos as $equipo): ?>
                                                 <option value="<?= $equipo->getId() ?>">
@@ -34,7 +34,7 @@
                                     </p>
                                     <p id="login-form-password">
                                         <label for="modlgn_username">Arbitro</label>
-                                        <select name="equiposlocales" class="form-control">
+                                        <select name="arbitros" class="form-control">
                                             <option value="-1">Seleccionar Arbitro</option>
                                             <?php foreach ($arbitros as $arbitro): ?>
                                                 <option value="<?= $arbitro->getId() ?>">
@@ -52,7 +52,7 @@
                                     <p id="login-form-fecha">
                                         <label for="modlgn_fecha">Fecha del encuentro</label>
                                         <input id="modlgn_fecha" type="date" name="fecha" size="18"
-                                               autocomplete="off">
+                                               autocomplete="off" required>
                                     </p>
                                     <p id="login-form-hora">
                                         <label for="modlgn_hora">Hora del encuentro</label>
