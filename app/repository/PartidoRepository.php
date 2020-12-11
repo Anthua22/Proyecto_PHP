@@ -9,4 +9,28 @@ class PartidoRepository extends QueryBuilder
     {
         parent::__construct('partidos',Partido::class);
     }
+
+    public function getPartidosUnEquipo(int $id):array
+    {
+        $sql = 'select * from partidos where equipoLocal = '.$id.' or equipoVisitante = '.$id;
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
+    }
+
+    public function getEquipoLocal(Partido $partido):?Equipo{
+        $equipoRepository = new EquiposRepository();
+        return $equipoRepository->find($partido->getEquipoLocal());
+    }
+
+    public function getEquipoVisitante(Partido $partido):?Equipo{
+        $equipoRepository = new EquiposRepository();
+        return $equipoRepository->find($partido->getEquipoVisitante());
+    }
+
+    public function getArbitro(Partido $partido):?Usuarios{
+        $usuariosRepository = new UsuariosRepository();
+        return $usuariosRepository->find($partido->getArbitro());
+    }
 }

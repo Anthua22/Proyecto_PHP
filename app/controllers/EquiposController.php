@@ -1,10 +1,24 @@
 <?php
 
 require_once __DIR__.'/../repository/EquiposRepository.php';
+require_once __DIR__.'/../../core/Response.php';
 
 class EquiposController{
 
+    public function showEquipo(int  $id)
+    {
+        $equipoRespository = new EquiposRepository();
+        $partidoRespository = new PartidoRepository();
 
+
+        $equipo = $equipoRespository->find($id);
+        $partidos = $partidoRespository->getPartidosUnEquipo($id);
+        Response::renderView('show-equipo', [
+            'equipo'=>$equipo,
+            'partidos'=>$partidos
+        ]);
+
+    }
 
     public function addEquipo()
     {

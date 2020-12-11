@@ -9,6 +9,6 @@ $router->get('equipos',FutAppController::class,'showEquipos');
 $router->get('arbitros',FutAppController::class,'showArbitros');
 $router->get('add-equipo',FutAppController::class,'formAddEquipo');
 $router->get('add-partido',FutAppController::class,'addPartidoForm');
-
+$router->get('equipos/:id',EquiposController::class,'showEquipo');
 $router->post('add-partido',FutAppController::class,'addPartido');
 $router->post('add-equipo',EquiposController::class,'addEquipo');

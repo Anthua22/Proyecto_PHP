@@ -5,7 +5,7 @@ require_once __DIR__.'/../../core/database/IEntity.php';
 
 class Equipo implements IEntity
 {
-    private int $idEquipo;
+    private int $id;
     private string $nombre;
     private string $foto;
     private string $correo;
@@ -13,7 +13,7 @@ class Equipo implements IEntity
 
     public function getId(): int
     {
-        return $this->idEquipo;
+        return $this->id;
     }
 
     /**

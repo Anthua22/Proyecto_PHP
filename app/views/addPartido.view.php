@@ -10,7 +10,7 @@
                                 <fieldset class="input">
                                     <p id="login-form-username">
                                         <label for="modlgn_username">Equipo Local</label>
-                                        <select name="equiposlocales" class="form-control">
+                                        <select name="equiposlocales" class="form-control" required>
                                             <option value="-1">Seleccionar Equipo Local</option>
                                             <?php foreach ($equipos as $equipo): ?>
                                                 <option value="<?= $equipo->getId() ?>">
@@ -22,7 +22,7 @@
                                     </p>
                                     <p id="login-form-password">
                                         <label for="modlgn_username">Equipo Visitante</label>
-                                        <select name="equiposvisitantes" class="form-control">
+                                        <select name="equiposvisitantes" class="form-control" required>
                                             <option value="-1">Seleccionar Equipo Visitante</option>
                                             <?php foreach ($equipos as $equipo): ?>
                                                 <option value="<?= $equipo->getId() ?>">
@@ -34,7 +34,7 @@
                                     </p>
                                     <p id="login-form-password">
                                         <label for="modlgn_username">Arbitro</label>
-                                        <select name="arbitros" class="form-control">
+                                        <select name="arbitros" class="form-control" required>
                                             <option value="-1">Seleccionar Arbitro</option>
                                             <?php foreach ($arbitros as $arbitro): ?>
                                                 <option value="<?= $arbitro->getId() ?>">
@@ -45,7 +45,7 @@
                                     </p>
                                     <p id="login-form-direccion">
                                         <label for="modlgn_direccion">Direccion del encuentro</label>
-                                        <input id="modlgn_direccion" type="text" name="direccion"
+                                        <input id="modlgn_direccion" type="text" name="direccion" required
                                                size="18" class="form-control"
                                                autocomplete="off">
                                     </p>
@@ -58,10 +58,10 @@
                                         <label for="modlgn_hora">Hora del encuentro</label>
                                     <div>
                                         <input id="modlgn_hora" type="number" name="hora" placeholder="00" size="18"
-                                               autocomplete="off">
+                                               autocomplete="off" required>
                                         <span>:</span>
                                         <input id="modlgn_minuto" type="number" placeholder="00" name="minuto" size="18"
-                                               autocomplete="off">
+                                               autocomplete="off" required>
                                     </div>
 
                                     </p>
@@ -78,4 +78,8 @@
             </div>
         </div>
     </div>
+    <script src="/js/mine/addEquipo.js"></script>
+
+
 <?php require __DIR__ . '/partials/footer.view.part.php';
+

@@ -3,13 +3,67 @@ require_once __DIR__.'/../../core/database/IEntity.php';
 
 class Partido implements IEntity
 {
-    private int $idPartido;
+    private int $id;
     private string $direccion_encuentro;
     private $fecha_encuentro;
-    private int $idUsuario;
-    private int $idEquipoLocal;
-    private int $idEquipoVisitante;
+    private int $arbitro;
+    private int $equipoLocal;
+    private int $equipoVisitante;
+    private string $resultado;
 
+
+
+    /**
+     * @return string
+     */
+    public function getFecha(): string
+    {
+        $fecha = explode(' ',$this->getFechaEncuentro());
+        return $fecha[0];
+    }
+
+    /**
+     * @return string
+     */
+    public function getHoraCompleta(): string
+    {
+        $fecha = explode(' ',$this->getFechaEncuentro());
+        return $fecha[1];
+    }
+
+    /**
+     * @return string
+     */
+    public function getHora(): string
+    {
+        return $this->hora;
+    }
+    private string $hora;
+
+    /**
+     * Partido constructor.
+     */
+    public function __construct()
+    {
+        $this->setResultado('0-0');
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getResultado(): string
+    {
+        return $this->resultado;
+    }
+
+    /**
+     * @param string $resultado
+     */
+    public function setResultado(string $resultado): void
+    {
+        $this->resultado = $resultado;
+    }
 
 
     /**
@@ -47,56 +101,56 @@ class Partido implements IEntity
     /**
      * @return int
      */
-    public function getIdUsuario(): int
+    public function getArbitro(): int
     {
-        return $this->idUsuario;
+        return $this->arbitro;
     }
 
     /**
-     * @param int $idUsuario
+     * @param int $arbitro
      */
-    public function setIdUsuario(int $idUsuario): void
+    public function setArbitro(int $arbitro): void
     {
-        $this->idUsuario = $idUsuario;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdEquipoLocal(): int
-    {
-        return $this->idEquipoLocal;
-    }
-
-    /**
-     * @param int $idEquipoLocal
-     */
-    public function setIdEquipoLocal(int $idEquipoLocal): void
-    {
-        $this->idEquipoLocal = $idEquipoLocal;
+        $this->arbitro = $arbitro;
     }
 
     /**
      * @return int
      */
-    public function getIdEquipoVisitante(): int
+    public function getEquipoLocal(): int
     {
-        return $this->idEquipoVisitante;
+        return $this->equipoLocal;
     }
 
     /**
-     * @param int $idEquipoVisitante
+     * @param int $equipoLocal
      */
-    public function setIdEquipoVisitante(int $idEquipoVisitante): void
+    public function setEquipoLocal(int $equipoLocal): void
     {
-        $this->idEquipoVisitante = $idEquipoVisitante;
+        $this->equipoLocal = $equipoLocal;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEquipoVisitante(): int
+    {
+        return $this->equipoVisitante;
+    }
+
+    /**
+     * @param int $equipoVisitante
+     */
+    public function setEquipoVisitante(int $equipoVisitante): void
+    {
+        $this->equipoVisitante = $equipoVisitante;
     }
 
 
 
     public function getId(): int
     {
-        return $this->idPartido;
+        return $this->id;
     }
 
     public function toArray(): array
@@ -104,9 +158,10 @@ class Partido implements IEntity
         return [
             'direccion_encuentro'=>$this->getDireccionEncuentro(),
             'fecha_encuentro'=>$this->getFechaEncuentro(),
-            'idUsuario'=>$this->getIdUsuario(),
-            'idEquipoLocal'=>$this->getIdEquipoLocal(),
-            'idEquipoVisitante'=>$this->getIdEquipoVisitante()
+            'arbitro'=>$this->getArbitro(),
+            'equipoLocal'=>$this->getEquipoLocal(),
+            'equipoVisitante'=>$this->getEquipoVisitante(),
+            'resultado'=>$this->getResultado()
         ];
     }
 }

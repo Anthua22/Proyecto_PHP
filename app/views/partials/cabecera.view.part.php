@@ -14,37 +14,6 @@
     <script src="../../../js/jquery-ui.min.js"></script>
     <script src="../../../js/fwslider.js"></script>
     <!--end slider -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".dropdown img.flag").addClass("flagvisibility");
-
-            $(".dropdown dt a").click(function () {
-                $(".dropdown dd ul").toggle();
-            });
-
-            $(".dropdown dd ul li a").click(function () {
-                var text = $(this).html();
-                $(".dropdown dt a span").html(text);
-                $(".dropdown dd ul").hide();
-                $("#result").html("Selected value is: " + getSelectedValue("sample"));
-            });
-
-            function getSelectedValue(id) {
-                return $("#" + id).find("dt a span.value").html();
-            }
-
-            $(document).bind('click', function (e) {
-                var $clicked = $(e.target);
-                if (!$clicked.parents().hasClass("dropdown"))
-                    $(".dropdown dd ul").hide();
-            });
-
-
-            $("#flagSwitcher").click(function () {
-                $(".dropdown img.flag").toggleClass("flagvisibility");
-            });
-        });
-    </script>
 
 
 </head>
@@ -65,11 +34,11 @@
                     <ul class="nav" id="nav">
 
                         <li><a href="/">Partidos</a></li>
-                        <li><a href="equipos">Equipos</a></li>
-                        <li><a href="arbitros">Arbitros</a></li>
-                        <li><a href="add-partido">Mis Partidos</a></li>
-                        <li><a href="add-equipo">Añadir Equipo</a></li>
-                        <li><a href="add-partido">Asignar Partido</a></li>
+                        <li><a href="/equipos">Equipos</a></li>
+                        <li><a href="/arbitros">Arbitros</a></li>
+                        <li><a href="/add-partido">Mis Partidos</a></li>
+                        <li><a href="/add-equipo">Añadir Equipo</a></li>
+                        <li><a href="/add-partido">Asignar Partido</a></li>
 
                     </ul>
                     <div class="clear"></div>

@@ -3,6 +3,12 @@ h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
+
+.equipo{
+	height: 50px;
+	width: 100px;
+}
+
 html, body{
 	font-family: 'Open Sans', sans-serif;
 	background:#fff;
@@ -1200,8 +1206,8 @@ p.m_7{
 	margin-bottom:5%;
 }
 p.m_8{
-	color:#333;
-	font-size:0.85em;
+	font-weight: bold;
+	font-size:10px;
 	line-height:1.8em;
 	margin-bottom:5%;
 }

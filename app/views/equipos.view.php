@@ -9,8 +9,8 @@
 
                     foreach ($equipos as $equipo):?>
                     <div class="card shadow" >
-                        <a href="single.html">
-                            <img src="../images/equipos/<?= $equipo->getFoto()?>"  class="card-img-top" alt=""/>
+                        <a href="equipos/<?=$equipo->getId()?>">
+                            <img src="/../images/equipos/<?= $equipo->getFoto()?>"  class="card-img-top" alt=""/>
                                 <div class="card-body">
                                     <h2 class="card-title"><a href="#"><?= $equipo->getNombre() ?></a></h2>
                                     <span class="actual" style="font-weight: bold;">Email:</span>
