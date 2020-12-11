@@ -16,7 +16,7 @@
                         <p style="font-size: 20px"><?= $equipo->getDireccionCampo() ?></p>
                         <p style="font-weight: bold; font-size: 30px">Email:</p>
                         <p style="font-size: 20px"><?= $equipo->getCorreo() ?></p>
-                        <a href="/"><button class="btn btn-primary">Editar Datos</button></a>
+                        <a href="/equipos/<?= $equipo->getId()?>/update"><button class="btn btn-primary">Editar Datos</button></a>
                     </div>
                 </div>
                 <hr/>

@@ -58,7 +58,7 @@ a
                     <div class="card-body row">
 
                         <div class="col">
-                            <a href="">
+                            <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>">
                                 <img style="height: 150px; width: 120px;"
                                      src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getFoto() ?>"
                                      alt=""/>
@@ -69,7 +69,7 @@ a
 
                         </div>
                         <div class="col">
-                            <a href="">
+                            <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getid() ?>">
                                 <img style="height: 150px; width: 120px;" class="equipo"
                                      src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getFoto() ?>"
                                      alt=""/>
