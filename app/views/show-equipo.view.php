@@ -16,7 +16,9 @@
                         <p style="font-size: 20px"><?= $equipo->getDireccionCampo() ?></p>
                         <p style="font-weight: bold; font-size: 30px">Email:</p>
                         <p style="font-size: 20px"><?= $equipo->getCorreo() ?></p>
-                        <a href="/equipos/<?= $equipo->getId()?>/update"><button class="btn btn-primary">Editar Datos</button></a>
+                        <a href="/equipos/<?= $equipo->getId() ?>/update">
+                            <button class="btn btn-primary">Editar Datos</button>
+                        </a>
                     </div>
                 </div>
                 <hr/>
@@ -27,6 +29,10 @@
 
                                        as $partido): ?>
                             <div class="card shadow">
+                                <h4 class="card-title col" style="margin:10px; "><a
+                                            href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
+                                    VS <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getId()?>"> <?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?></a>
+                                </h4>
 
                                 <div class="card-body row">
 
@@ -37,7 +43,6 @@
                                                  alt=""/>
 
                                         </a>
-                                        <h4 class="card-title"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?> </h4>
 
 
                                     </div>
@@ -47,7 +52,7 @@
                                                  src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getFoto() ?>"
                                                  alt=""/>
                                         </a>
-                                        <h4 class="card-title"><?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?> </h4>
+
 
                                     </div>
 

@@ -71,12 +71,10 @@ class EquiposController
         $nombre = $_POST['nombre'];
         $direccion = $_POST['direccion'];
         $correo = $_POST['correo'];
-        $imagen =$_FILES['foto']??'null';
-
         $equipo = new Equipo();
 
-        if($imagen!== 'null'){
-            $imagenBLL = new ImagenFutappBLL($imagen);
+        if(file_exists($_FILES['foto'])){
+            $imagenBLL = new ImagenFutappBLL($_FILES['foto']);
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $equipo->setFoto($foto);

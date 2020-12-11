@@ -4,7 +4,7 @@
         <div class="container">
             <div>
                 <div class="login-title">
-                    <h4 class="title">Añadir un Equipo</h4>
+                    <h3 class="m_2 title">Asignar Partido</h3>  
                     <div id="loginbox" class="loginbox">
                         <form action="/add-equipo" method="post" enctype="multipart/form-data">
                             <fieldset class="input">

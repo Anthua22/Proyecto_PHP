@@ -54,7 +54,10 @@ a
 
                 as $partido): ?>
                 <div class="card shadow">
-
+                    <h4 class="card-title col" style="margin:10px; "><a
+                                href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
+                        VS <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getId()?>"> <?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?></a>
+                    </h4>
                     <div class="card-body row">
 
                         <div class="col">
@@ -64,8 +67,6 @@ a
                                      alt=""/>
 
                             </a>
-                            <h4 class="card-title"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?> </h4>
-
 
                         </div>
                         <div class="col">
@@ -74,7 +75,6 @@ a
                                      src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getFoto() ?>"
                                      alt=""/>
                             </a>
-                            <h4 class="card-title"><?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?> </h4>
 
                         </div>
 
