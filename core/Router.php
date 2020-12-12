@@ -1,12 +1,13 @@
 <?php
 
-
+require_once __DIR__.'/../core/Security.php';
 class Router
 {
 
     private $routes = [
         'GET' => [],
-        'POST' => []
+        'POST' => [],
+        'DELETE'=>[]
     ];
 
 
@@ -26,6 +27,13 @@ class Router
         ];
     }
 
+    public function delete(string $uri, string $controller, string $action) {
+        $this->routes['DELETE'][$uri] = [
+            'controller' => $controller . '@' . $action
+        ];
+    }
+
+
     public static function load(string $file)
     {
         $route = new static;
@@ -39,13 +47,21 @@ class Router
             $urlRule = $this->prepareRoute($route);
             if (preg_match('/^' . $urlRule . '\/*$/s', $uri, $matches)) {
                 $controller = $data['controller'];
-                //$role = $data['role'];
+                $role = $data['role'];
 
-
+                if(Security::isUserGranted($role) == true){
                     $parameters = $this->getParametersRoute($route, $matches);
                     list($controller, $action) = explode('@', $controller);
 
                     return $this->callAction($controller, $action, $parameters);
+
+                }else{
+                    if (!is_null(App::get('user')))
+                        return $this->callAction(UsuariosController::class,'unanthorized');
+                    else{
+                        $this->redirect('login');
+                    }
+                }
 
             }
         }
@@ -90,4 +106,6 @@ class Router
         header('location:/' . $path);
         exit;
     }
+
+
 }

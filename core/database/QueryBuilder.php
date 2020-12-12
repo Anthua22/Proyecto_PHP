@@ -4,7 +4,7 @@ require_once __DIR__.'/../App.php';
 require_once 'IEntity.php';
 
 
-abstract class QueryBuilder
+abstract class  QueryBuilder
 {
     private PDO $connection;
     private string $table;
@@ -22,6 +22,41 @@ abstract class QueryBuilder
         $this->table = $table;
         $this->entityClass = $entityClass;
     }
+
+    public function findOneBy(array $criterios) : ?IEntity
+    {
+        $entities = $this->findBy($criterios);
+        if (count($entities) > 1)
+            throw new \Exception('El método findOneBy está obteniendo más de un elemento como resultado');
+
+        if (count($entities) === 1)
+            return $entities[0];
+
+        return null;
+    }
+
+    public function findBy(array $criterios) : array
+    {
+        $strCriterios = implode(' AND ',
+            array_map(
+                function($criterio) {
+                    return $criterio . ' = :' . $criterio;
+                },
+                array_keys($criterios)
+            )
+        );
+
+        $sql = sprintf("select * from %s where %s;",
+            $this->table,
+            $strCriterios
+        );
+        $pdoStatement = $this->connection->prepare($sql);
+        $pdoStatement->execute($criterios);
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, $this->entityClass);
+    }
+
+
+
 
     public function findAll() : array
     {

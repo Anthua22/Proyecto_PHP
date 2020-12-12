@@ -1,5 +1,4 @@
 <?php require __DIR__ . '/partials/cabecera.view.part.php' ?>
-a
     <div class="main">
         <div class="content-top">
             <h2>Próximos partidos</h2>
@@ -81,7 +80,7 @@ a
 
 
                     </div>
-                    <div class="card-footer">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col">Arbitro:</div>
                             <div class="col"><?= App::getRepository(PartidoRepository::class)->getArbitro($partido)->getNombre().' '.App::getRepository(PartidoRepository::class)->getArbitro($partido)->getApellidos()?></div>
@@ -104,7 +103,10 @@ a
                             <div class="col"><?= $partido->getResultado()?></div>
                         </div>
                     </div>
+                    <div class="card-body text-center">
+                        <a class="btn btn-danger" href="/<?= $partido->getId() ?>/delete">Borrar</a>
 
+                    </div>
                 </div>
 
                 <?php endforeach; ?>
@@ -112,4 +114,6 @@ a
 
         </div>
     </div>
+
+<script src="/js/mine/partidos.js"></script>
 <?php require __DIR__ . '/partials/footer.view.part.php' ?>

@@ -35,7 +35,12 @@ class FutAppController
             'equipos'=>$equipos
         ]);
     }
+    public function registerForm(){
 
+        Response::renderView('register',[
+
+        ]);
+    }
     public function showArbitros()
     {
         $arbitrosRepository = new UsuariosRepository();
@@ -57,7 +62,21 @@ class FutAppController
         ]);
     }
 
+    private function deletePartido(int $id){
+        try{
+            $partidoRespository = new PartidoRepository();
+            $partidoRespository->getConnection()->beginTransaction();
 
+            $partido = $partidoRespository->find($id);
+
+            $partidoRespository->delete($partido);
+
+            $partidoRespository->getConnection()->commit();
+        }catch (Exception $exception){
+            $partidoRespository->getConnection()->rollBack();
+            die('No se ha podido eliminar el partido');
+        }
+    }
 
     public function addPartido(){
         $partidoRepository = new PartidoRepository();
@@ -90,4 +109,16 @@ class FutAppController
             die('No se ha podido asignar el partido');
         }
     }
+
+    public function deleteJson(int $id){
+        $this->deletePartido($id);
+
+        header('Content-Type: application/json');
+
+        echo json_decode([
+            'error'=>false,
+            'mensaje'=>"El partido con id $id se ha eliminado correctamente"
+        ]);
+    }
+
 }

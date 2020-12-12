@@ -7,7 +7,7 @@ class Usuarios implements IEntity
 
     private int $id;
     private string $dni;
-    private string $pass;
+    private string $password;
     private string $nombre;
     private string $apellidos;
     private string $foto;
@@ -56,18 +56,19 @@ class Usuarios implements IEntity
     /**
      * @return string
      */
-    public function getPass(): string
+    public function getPassword(): string
     {
-        return $this->pass;
+        return $this->password;
     }
 
     /**
-     * @param string $pass
+     * @param string $password
      */
-    public function setPass(string $pass): void
+    public function setPassword(string $password): void
     {
-        $this->pass = $pass;
+        $this->password = $password;
     }
+
 
     /**
      * @return string
@@ -177,7 +178,7 @@ class Usuarios implements IEntity
             'foto'=>$this->getFoto(),
             'fecha_nacimiento'=>$this->getFechanacimiento(),
             'email'=>$this->getEmail(),
-            'pass'=>$this->getEmail(),
+            'password'=>$this->getPassword(),
             'telefono'=>$this->getTelefono()
         ];
     }
