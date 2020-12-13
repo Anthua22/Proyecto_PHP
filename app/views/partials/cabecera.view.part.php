@@ -32,13 +32,13 @@
             <li><a href="/">Partidos</a></li>
             <li><a href="/equipos">Equipos</a></li>
             <li><a href="/arbitros">Arbitros</a></li>
-            <?php if(!is_null($usuario)):?>
+            <?php if(!is_null($usuario) && $usuario->getRole()==='arbitro'):?>
             <li><a href="/mis-partidos">Mis Partidos</a></li>
-
+            <?php endif;?>
             <?php if($usuario->getRole()==='admin'):?>
             <li><a href="/add-equipo">Añadir Equipo</a></li>
             <li><a href="/add-partido">Asignar Partido</a></li>
-            <?php endif;?>
+
             <?php endif;?>
         </ul>
 
@@ -50,7 +50,7 @@
             </ul>
         <?php else :?>
             <ul class="nav">
-                <li><a href="/mi-perfil"> <img src="/images/users/<?=$usuario->getFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout">Cerrar Sesión</a></li>
+                <li><a href="/mi-perfil"> <img src="/images/users/<?=$usuario->getFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span style="color: white"><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout" style="color: white">Cerrar Sesión</a></li>
             </ul>
 
 

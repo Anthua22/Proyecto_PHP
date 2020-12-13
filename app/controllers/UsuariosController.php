@@ -58,53 +58,55 @@ class UsuariosController
 
     public function register()
     {
+        $usuario = App::get('user');
+        if(is_null($usuario)){
+            $usuariosRepository = new UsuariosRepository();
 
-        $usuariosRepository = new UsuariosRepository();
+            try{
+                $usuariosRepository->getConnection()->beginTransaction();
+                $nombre = $_POST['nombre'];
+                $apellidos = $_POST['apellidos'];
+                $email = $_POST['correo'];
+                $pass = $_POST['password'];
+                $telefono = $_POST['telefono'];
+                $fecha_nacimiento = $_POST['fechanacimiento'];
+                $passconform = $_POST['passwordconfirm'];
 
-        try{
-            $usuariosRepository->getConnection()->beginTransaction();
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $email = $_POST['correo'];
-            $pass = $_POST['password'];
-            $telefono = $_POST['telefono'];
-            $fecha_nacimiento = $_POST['fechanacimiento'];
-            $passconform = $_POST['passwordconfirm'];
+                if($pass === $passconform){
+                    $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/users');
+                    $imagenBLL->uploadImagen();
+                    $foto = $imagenBLL->getUploadedFileName();
+                    $passEncript = Security::encrypt($pass);
+                    $newArbitro = new Usuarios();
+                    $newArbitro->setFoto($foto);
+                    $newArbitro->setNombre($nombre);
+                    $newArbitro->setApellidos($apellidos);
+                    $newArbitro->setRole('admin');
+                    $newArbitro->setPassword($passEncript);
+                    $newArbitro->setEmail($email);
+                    $newArbitro->setTelefono($telefono);
+                    $newArbitro->setFechanacimiento($fecha_nacimiento);
+                    $usuariosRepository->save($newArbitro);
+                    $usuariosRepository->getConnection()->commit();
 
-            if($pass === $passconform){
-                $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/users');
-                $imagenBLL->uploadImagen();
-                $foto = $imagenBLL->getUploadedFileName();
-                $passEncript = Security::encrypt($pass);
-                $newArbitro = new Usuarios();
-                $newArbitro->setFoto($foto);
-                $newArbitro->setNombre($nombre);
-                $newArbitro->setApellidos($apellidos);
-                $newArbitro->setRole('arbitro');
-                $newArbitro->setPassword($passEncript);
-                $newArbitro->setEmail($email);
-                $newArbitro->setTelefono($telefono);
-                $newArbitro->setFechanacimiento($fecha_nacimiento);
-                $usuariosRepository->save($newArbitro);
-                $usuariosRepository->getConnection()->commit();
+                    $usuarioNuevo = App::getRepository(UsuariosRepository::class)->findOneBy([
+                        'email'=>$newArbitro->getEmail()
+                    ]);
 
-                $usuarioNuevo = App::getRepository(UsuariosRepository::class)->findOneBy([
-                    'email'=>$newArbitro->getEmail()
-                ]);
+                    $_SESSION['usuario'] = $usuarioNuevo->getId();
 
-                $_SESSION['usuario'] = $usuarioNuevo->getId();
-
-                App::get('router')->redirect('mis-partidos');
-            }else{
-                FlashMessage::set('error-register',"Las contraseñas intruducidas no coinciden");
-                App::get('router')->redirect('register');
+                    App::get('router')->redirect('mis-partidos');
+                }else{
+                    FlashMessage::set('error-register',"Las contraseñas intruducidas no coinciden");
+                    App::get('router')->redirect('register');
+                }
+            }catch (Exception $exception){
+                $usuariosRepository->getConnection()->rollBack();
             }
-        }catch (Exception $exception){
-            $usuariosRepository->getConnection()->rollBack();
         }
-
-
-
+        else{
+            App::get('router')->redirect('');
+        }
 
     }
 }
