@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__.'/../../core/App.php';
+require_once __DIR__.'/../../core/Security.php';
 require_once __DIR__.'/../repository/UsuariosRepository.php';
+
 
 class UsuariosController
 {
@@ -19,7 +21,7 @@ class UsuariosController
             'email' => $username
         ]);
 
-        if (Security:: checkPassword (
+        if (Security::checkPassword (
                 $password,
                 $usuario->getPassword()
             ) === true)
@@ -40,6 +42,47 @@ class UsuariosController
 
     public function register()
     {
+
+        $usuariosRepository = new UsuariosRepository();
+
+        try{
+            $usuariosRepository->getConnection()->beginTransaction();
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $email = $_POST['correo'];
+            $pass = $_POST['password'];
+            $telefono = $_POST['telefono'];
+            $fecha_nacimiento = $_POST['fechanacimiento'];
+            $passconform = $_POST['passwordconfirm'];
+
+            if($pass === $passconform){
+                $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/users');
+                $imagenBLL->uploadImagen();
+                $foto = $imagenBLL->getUploadedFileName();
+                $passEncript = Security::encrypt($pass);
+                $newArbitro = new Usuarios();
+                $newArbitro->setFoto($foto);
+                $newArbitro->setNombre($nombre);
+                $newArbitro->setApellidos($apellidos);
+                $newArbitro->setRole('arbitro');
+                $newArbitro->setPassword($passEncript);
+                $newArbitro->setEmail($email);
+                $newArbitro->setTelefono($telefono);
+                $newArbitro->setFechanacimiento($fecha_nacimiento);
+                $usuariosRepository->save($newArbitro);
+                $usuariosRepository->getConnection()->commit();
+
+                App::get('router')->redirect('mis-partidos');
+            }else{
+                FlashMessage::set('error-register',"Las contraseñas intruducidas no coinciden");
+                App::get('router')->redirect('register');
+            }
+        }catch (Exception $exception){
+            $usuariosRepository->getConnection()->rollBack();
+        }
+
+
+
 
     }
 }

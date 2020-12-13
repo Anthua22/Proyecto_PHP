@@ -21,20 +21,23 @@
 <div class="header">
 
     <nav class="navbar justify-content-between">
-        <a href="/" class="navbar-brand"><img src="../../../images/logofutapp.png" alt=""/></a>
-        <a href="/" class="navbar-brand" style="font-size: 40px; font-family: Georgia; color: red; margin: 10px;">FutApp</a>
+        <div>
+            <a href="/" class="navbar-brand"><img src="../../../images/logofutapp.png" alt=""/></a>
+            <a href="/" class="navbar-brand" style="font-size: 40px; font-family: Georgia; color: red;">FutApp</a>
+        </div>
+
         <ul class="nav" id="nav">
 
             <li><a href="/">Partidos</a></li>
             <li><a href="/equipos">Equipos</a></li>
             <li><a href="/arbitros">Arbitros</a></li>
-            <li><a href="/add-partido">Mis Partidos</a></li>
+            <li><a href="/mis-partidos">Mis Partidos</a></li>
             <li><a href="/add-equipo">Añadir Equipo</a></li>
             <li><a href="/add-partido">Asignar Partido</a></li>
 
         </ul>
         <ul class="nav">
-            <li><a href="/login">Entrar</a>/<a href="/register">Registrarse</a></li>
+            <li><a href="/login">Entrar</a><a href="/register">Registrarse</a></li>
 
         </ul>
     </nav>

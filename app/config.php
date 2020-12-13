@@ -11,5 +11,12 @@ return [
             PDO:: ATTR_ERRMODE => PDO:: ERRMODE_EXCEPTION,
             PDO:: ATTR_PERSISTENT => true
         ]
+    ],
+    'security'=>[
+        'roles'=>[
+            'ROLE_ADMIN'=>3,
+            'ROLE_USER'=>2,
+            'ROLE_ANONIMO'=>1
+        ]
     ]
 ];

@@ -11,10 +11,11 @@ class Router
     ];
 
 
-    public function post(string $uri, string $controller, string $action)
+    public function post(string $uri, string $controller, string $action,string $role='ROLE_ANONIMO')
     {
         $this->routes['POST'][$uri] = [
-            'controller' => $controller . '@' . $action
+            'controller' => $controller . '@' . $action,
+            'role'=>$role
         ];
     }
 

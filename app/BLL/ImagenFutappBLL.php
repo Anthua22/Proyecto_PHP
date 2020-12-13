@@ -16,10 +16,10 @@ class ImagenFutappBLL
      * @param string $uploadsDirectory
      * @param array $fileProperties
      */
-    public function __construct(array $fileProperties)
+    public function __construct(array $fileProperties,string $directory)
     {
         $this->allowedFileTypes = ['image/png','image/jpeg'];
-        $this->uploadsDirectory = 'images/equipos';
+        $this->uploadsDirectory = $directory;
         $this->fileProperties = $fileProperties;
     }
 

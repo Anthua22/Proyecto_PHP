@@ -6,7 +6,6 @@ class Usuarios implements IEntity
 {
 
     private int $id;
-    private string $dni;
     private string $password;
     private string $nombre;
     private string $apellidos;
@@ -37,21 +36,7 @@ class Usuarios implements IEntity
        return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getDni(): string
-    {
-        return $this->dni;
-    }
 
-    /**
-     * @param string $dni
-     */
-    public function setDni(string $dni): void
-    {
-        $this->dni = $dni;
-    }
 
     /**
      * @return string
@@ -174,10 +159,10 @@ class Usuarios implements IEntity
         return [
             'nombre'=>$this->getNombre(),
             'apellidos'=>$this->getApellidos(),
-            'dni'=>$this->getDni(),
             'foto'=>$this->getFoto(),
             'fecha_nacimiento'=>$this->getFechanacimiento(),
             'email'=>$this->getEmail(),
+            'role'=>$this->getRole(),
             'password'=>$this->getPassword(),
             'telefono'=>$this->getTelefono()
         ];

@@ -42,7 +42,7 @@ class EquiposController
             $nombre = trim(htmlspecialchars($_POST['nombreEquipo']));
             $correo = trim(htmlspecialchars($_POST['correoEquipo']));
             $arrayfile = $_FILES['imagen'];
-            $imagenBLL = new ImagenFutappBLL($arrayfile);
+            $imagenBLL = new ImagenFutappBLL($arrayfile,'images/equipos');
             $direccion = trim(htmlspecialchars($_POST['direccion']));
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
@@ -74,7 +74,7 @@ class EquiposController
         $equipo = new Equipo();
 
         if(file_exists($_FILES['foto'])){
-            $imagenBLL = new ImagenFutappBLL($_FILES['foto']);
+            $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/equipos');
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $equipo->setFoto($foto);
