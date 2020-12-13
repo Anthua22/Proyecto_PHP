@@ -3,13 +3,29 @@
 require_once __DIR__.'/../../core/App.php';
 require_once __DIR__.'/../../core/Security.php';
 require_once __DIR__.'/../repository/UsuariosRepository.php';
-
+require_once __DIR__.'/../helpers/FlashMessage.php';
 
 class UsuariosController
 {
     public function login()
     {
-        Response::renderView('login', []);
+        $usuario = App::get('user');
+        if(is_null($usuario)){
+            $errorLogin = FlashMessage::get('error_login');
+            Response::renderView('login', ['error_login'=>$errorLogin]);
+        }else{
+            App::get('router')->redirect('/');
+        }
+
+    }
+
+    public function logout()
+    {
+        $_SESSION['usuario'] = null;
+        unset($_SESSION['usuario']);
+
+        App::get('router')->redirect('login');
+
     }
 
     public function checkLogin()
@@ -27,10 +43,10 @@ class UsuariosController
             ) === true)
         {
             $_SESSION['usuario'] = $usuario->getId();
-            App::get('router')->redirect('/');
+            App::get('router')->redirect('');
         }
 
-        FlashMessage::set('error-login', "El usuario y/o password introducidos no son correctos");
+        FlashMessage::set('error_login', "El usuario y/o password introducidos no son correctos");
 
         App::get('router')->redirect('login');
     }
@@ -71,6 +87,12 @@ class UsuariosController
                 $newArbitro->setFechanacimiento($fecha_nacimiento);
                 $usuariosRepository->save($newArbitro);
                 $usuariosRepository->getConnection()->commit();
+
+                $usuarioNuevo = App::getRepository(UsuariosRepository::class)->findOneBy([
+                    'email'=>$newArbitro->getEmail()
+                ]);
+
+                $_SESSION['usuario'] = $usuarioNuevo->getId();
 
                 App::get('router')->redirect('mis-partidos');
             }else{
