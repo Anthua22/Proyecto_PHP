@@ -1,5 +1,6 @@
 {
     "name": "ensoni/futapp",
+    "description": "proyect futapp",
     "authors": [
         {
             "name": "Anthony Ubillus",
@@ -7,6 +8,12 @@
         }
     ],
     "require": {
-      "ext-pdo": "*"
+        "phpmailer/phpmailer": "^6.2",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "FUTAPP\\": ""
+        }
     }
 }

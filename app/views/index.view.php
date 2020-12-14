@@ -1,4 +1,7 @@
-<?php require __DIR__ . '/partials/cabecera.view.part.php' ?>
+<?php use FUTAPP\app\repository\PartidoRepository;
+use FUTAPP\core\App;
+
+require __DIR__ . '/partials/cabecera.view.part.php' ?>
     <div class="main">
         <div class="content-top">
             <h2>Próximos partidos</h2>

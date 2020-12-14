@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__.'/../../core/database/IEntity.php';
+namespace FUTAPP\app\entity;
+
+use FUTAPP\core\database\IEntity;
 
 class Partido implements IEntity
 {

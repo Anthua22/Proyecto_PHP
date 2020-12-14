@@ -1,9 +1,11 @@
 <?php
+namespace FUTAPP\app\controllers;
 
-require_once __DIR__ . '/../repository/EquiposRepository.php';
-require_once __DIR__ . '/../../core/Response.php';
-require_once __DIR__.'/../../core/App.php';
-require_once __DIR__.'/../BLL/ImagenFutappBLL.php';
+use FUTAPP\app\BLL\ImagenFutappBLL;
+use FUTAPP\app\entity\Equipo;
+use FUTAPP\app\repository\EquiposRepository;
+use FUTAPP\core\App;
+use FUTAPP\core\Response;
 
 class EquiposController
 {

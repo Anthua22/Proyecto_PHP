@@ -1,5 +1,5 @@
 <?php
-
+namespace FUTAPP\app\helpers;
 
 class FlashMessage
 {

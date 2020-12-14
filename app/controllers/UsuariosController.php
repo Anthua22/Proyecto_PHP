@@ -1,9 +1,16 @@
 <?php
 
-require_once __DIR__.'/../../core/App.php';
-require_once __DIR__.'/../../core/Security.php';
-require_once __DIR__.'/../repository/UsuariosRepository.php';
-require_once __DIR__.'/../helpers/FlashMessage.php';
+namespace FUTAPP\app\controllers;
+
+use Exception;
+use FUTAPP\app\BLL\ImagenFutappBLL;
+use FUTAPP\app\entity\Usuarios;
+use FUTAPP\app\helpers\FlashMessage;
+use FUTAPP\app\repository\UsuariosRepository;
+use FUTAPP\CORE\App;
+use FUTAPP\core\Response;
+use FUTAPP\CORE\Security;
+
 
 class UsuariosController
 {
@@ -51,7 +58,7 @@ class UsuariosController
         App::get('router')->redirect('login');
     }
 
-    public function unauthorized(){
+    public function unanthorized(){
         header('HTTP/1.1 403 Forbiden',true,403);
         Response::renderView('403');
     }
@@ -81,7 +88,7 @@ class UsuariosController
                     $newArbitro->setFoto($foto);
                     $newArbitro->setNombre($nombre);
                     $newArbitro->setApellidos($apellidos);
-                    $newArbitro->setRole('admin');
+                    $newArbitro->setRole('arbitro');
                     $newArbitro->setPassword($passEncript);
                     $newArbitro->setEmail($email);
                     $newArbitro->setTelefono($telefono);

@@ -1,7 +1,8 @@
 <?php
+namespace FUTAPP\core\database;
 
-require_once __DIR__.'/../App.php';
-require_once 'IEntity.php';
+use FUTAPP\core\App;
+use PDO;
 
 
 abstract class  QueryBuilder

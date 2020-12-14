@@ -1,6 +1,6 @@
 <?php
 
-
+namespace FUTAPP\CORE;
 class Security
 {
     public static function isUserGranted(string $role) : bool

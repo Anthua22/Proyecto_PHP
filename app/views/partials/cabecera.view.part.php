@@ -35,7 +35,7 @@
             <?php if(!is_null($usuario) && $usuario->getRole()==='arbitro'):?>
             <li><a href="/mis-partidos">Mis Partidos</a></li>
             <?php endif;?>
-            <?php if($usuario->getRole()==='admin'):?>
+            <?php if(!is_null($usuario)&&$usuario->getRole()==='admin'):?>
             <li><a href="/add-equipo">Añadir Equipo</a></li>
             <li><a href="/add-partido">Asignar Partido</a></li>
 

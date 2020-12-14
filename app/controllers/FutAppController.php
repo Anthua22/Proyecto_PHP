@@ -1,12 +1,14 @@
 <?php
-require_once __DIR__ . '/../repository/EquiposRepository.php';
-require_once __DIR__ . '/../repository/UsuariosRepository.php';
-require_once __DIR__ . '/../repository/PartidoRepository.php';
-require_once __DIR__ . '/../../core/Response.php';
-require_once __DIR__ . '/../BLL/ImagenFutappBLL.php';
-require_once __DIR__ . '/../../core/App.php';
-require_once __DIR__ . '/../../app/entity/Partido.php';
-require_once __DIR__.'/../helpers/FlashMessage.php';
+namespace FUTAPP\app\controllers;
+
+use FUTAPP\app\entity\Partido;
+use FUTAPP\app\helpers\FlashMessage;
+use FUTAPP\app\repository\EquiposRepository;
+use FUTAPP\app\repository\PartidoRepository;
+use FUTAPP\app\repository\UsuariosRepository;
+use FUTAPP\core\App;
+use FUTAPP\core\Response;
+
 
 class FutAppController
 {
@@ -136,6 +138,9 @@ class FutAppController
 
                 $partidoRepository->save($partido);
                 $partidoRepository->getConnection()->commit();
+
+                $mailer = new Emails('ubillus102@gmail.com');
+                $mailer->send();
 
             }
 

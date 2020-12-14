@@ -1,5 +1,5 @@
 <?php
-
+namespace FUTAPP\app\helpers;
 trait UploadFile
 {
     private string $error;

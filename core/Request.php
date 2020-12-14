@@ -1,6 +1,6 @@
 <?php
 
-
+namespace FUTAPP\core;
 
 class Request
 {

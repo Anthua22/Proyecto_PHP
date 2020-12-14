@@ -1,10 +1,11 @@
 <?php
 
-require __DIR__ . '/core/bootstrap.php';
-require_once __DIR__.'/core/Router.php';
-require_once __DIR__.'/core/App.php';
-require_once __DIR__.'/core/Request.php';
-require_once __DIR__.'/app/controllers/UsuariosController.php';
+use FUTAPP\APP\REPOSITORY\UsuariosRepository;
+use FUTAPP\CORE\App;
+use FUTAPP\core\Request;
+use FUTAPP\core\Router;
+
+require __DIR__.'/core/bootstrap.php';
 
 
 if(isset($_SESSION['usuario'])){

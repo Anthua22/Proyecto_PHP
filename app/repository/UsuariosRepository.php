@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__.'/../../core/database/QueryBuilder.php';
-require_once __DIR__.'/../entity/Usuarios.php';
+namespace FUTAPP\app\repository;
+use FUTAPP\app\entity\Usuarios;
+use FUTAPP\core\database\QueryBuilder;
+use PDO;
+
 class UsuariosRepository extends QueryBuilder
 {
 

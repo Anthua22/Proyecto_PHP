@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__.'/../core/Security.php';
+namespace FUTAPP\core;
+use Exception;
+use FUTAPP\app\controllers\UsuariosController;
+
 class Router
 {
 

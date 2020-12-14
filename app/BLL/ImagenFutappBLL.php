@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__.'/../helpers/UploadFile.php';
+namespace FUTAPP\app\BLL;
 
+
+
+use FUTAPP\app\helpers\UploadFile;
 
 class ImagenFutappBLL
 {

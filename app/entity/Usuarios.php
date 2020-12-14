@@ -1,6 +1,8 @@
 <?php
+namespace FUTAPP\app\entity;
 
-require_once __DIR__.'/../../core/database/IEntity.php';
+
+use FUTAPP\core\database\IEntity;
 
 class Usuarios implements IEntity
 {
