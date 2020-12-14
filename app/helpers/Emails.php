@@ -1,12 +1,16 @@
 <?php
 
+namespace FUTAPP\app\helpers;
 
+use Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class Emails
 {
     private string $to;
 
-    private PHPMailer\PHPMailer\PHPMailer $server;
+    private  $server;
 
     /**
      * Emails constructor.
@@ -16,7 +20,7 @@ class Emails
     public function __construct(string $to)
     {
         $this->to = $to;
-        $this->server = new PHPMailer\PHPMailer\PHPMailer(true);
+        $this->server = new PHPMailer(true);
     }
     public function send()
     {
@@ -25,17 +29,17 @@ class Emails
 
         try {
             //Server settings
-            $this->server->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+            $this->server->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $this->server->isSMTP();                                            // Send using SMTP
-            $this->server->Host       = 'smtp@gmail.com';                    // Set the SMTP server to send through
+            $this->server->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
             $this->server->SMTPAuth   = true;                                   // Enable SMTP authentication
             $this->server->Username   ='anthonyemmanuel.ubillus@iesdoctorbalmis.com' ;                     // SMTP username
             $this->server->Password   = 'tonyecu1499';                               // SMTP password
-            $this->server->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $this->server->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $this->server->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
             //Recipients
-            $this->server->setFrom('notificaciones@futapp.com', 'Admin');
+            $this->server->setFrom('ubillus102@gmail.com', 'Antonio');
             $this->server->addAddress($this->to);     // Add a recipient
          //   $this->server->addAddress('ellen@example.com');               // Name is optional
 

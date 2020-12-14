@@ -1,7 +1,9 @@
 <?php
 namespace FUTAPP\app\controllers;
 
+use Exception;
 use FUTAPP\app\entity\Partido;
+use FUTAPP\app\helpers\Emails;
 use FUTAPP\app\helpers\FlashMessage;
 use FUTAPP\app\repository\EquiposRepository;
 use FUTAPP\app\repository\PartidoRepository;

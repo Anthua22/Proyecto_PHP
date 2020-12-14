@@ -8,8 +8,9 @@
         }
     ],
     "require": {
-        "phpmailer/phpmailer": "^6.2",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "swiftmailer/swiftmailer": "^6.0",
+        "phpmailer/phpmailer": "^6.2"
     },
     "autoload": {
         "psr-4": {
