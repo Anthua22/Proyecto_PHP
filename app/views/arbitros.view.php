@@ -1,24 +1,24 @@
-<?php require __DIR__.'/partials/cabecera.view.part.php' ?>
-     <div class="main">
-      <div class="shop_top">
-		<div class="container">
+<div class="main">
+    <div class="shop_top">
+        <div class="container">
             <h3 class="m_2">Arbitros de la Competición</h3>
-			<div class="card-colums mt-4 mb-4">
+            <div class="card-colums mt-4 mb-4">
 
-                <?php foreach ($arbitros as $arbitro):?>
-                <div class="col-md-4 team1" style="margin-top: 20px;">
-                    <div class="img_section magnifier2">
-                        <a class="fancybox" href="../../images/e1.jpg" data-fancybox-group="gallery" title="<?= $arbitro->getNombre().' '.$arbitro->getApellidos()?>"><img src="../../images/e1.jpg" class="img-responsive" alt=""><span> </span>
-                            <div class="img_section_txt">
-                                 <?= $arbitro->getNombre().' '.$arbitro->getApellidos()?>
-                            </div>
-                        </a></div>
-                </div>
+                <?php foreach ($arbitros as $arbitro): ?>
+                    <div class="col-md-4 team1" style="margin-top: 20px;">
+                        <div class="img_section magnifier2">
+                            <a class="fancybox" href="../../images/e1.jpg" data-fancybox-group="gallery"
+                               title="<?= $arbitro->getNombre() . ' ' . $arbitro->getApellidos() ?>"><img
+                                        src="../../images/e1.jpg" class="img-responsive" alt=""><span> </span>
+                                <div class="img_section_txt">
+                                    <?= $arbitro->getNombre() . ' ' . $arbitro->getApellidos() ?>
+                                </div>
+                            </a></div>
+                    </div>
 
-				<?php endforeach; ?>
-		    </div>
+                <?php endforeach; ?>
+            </div>
 
-		 </div>
-	   </div>
-	  </div>
-<?php require __DIR__.'/partials/footer.view.part.php' ?>
+        </div>
+    </div>
+</div>

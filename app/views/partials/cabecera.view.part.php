@@ -4,16 +4,17 @@
     <title>FutApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <link href="../../../css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="../../../css/style.css" rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
     <link rel="stylesheet" href="../../../css/fwslider.css" media="all">
-    <script src="../../../js/jquery-ui.min.js"></script>
-    <script src="../../../js/fwslider.js"></script>
+    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <!--end slider -->
 
 

@@ -1,9 +1,11 @@
 <?php
 namespace FUTAPP\app\controllers;
 
+use Exception;
 use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Equipo;
 use FUTAPP\app\repository\EquiposRepository;
+use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\core\App;
 use FUTAPP\core\Response;
 

@@ -10,7 +10,8 @@
     "require": {
         "ext-pdo": "*",
         "swiftmailer/swiftmailer": "^6.0",
-        "phpmailer/phpmailer": "^6.2"
+        "phpmailer/phpmailer": "^6.2",
+      "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {

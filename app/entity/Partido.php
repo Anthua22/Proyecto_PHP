@@ -47,7 +47,6 @@ class Partido implements IEntity
      */
     public function __construct()
     {
-        $this->setResultado('0-0');
     }
 
 

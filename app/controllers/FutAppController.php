@@ -1,10 +1,12 @@
 <?php
+
 namespace FUTAPP\app\controllers;
 
 use Exception;
 use FUTAPP\app\entity\Partido;
 use FUTAPP\app\helpers\Emails;
 use FUTAPP\app\helpers\FlashMessage;
+use FUTAPP\app\helpers\GenerateCaptcha;
 use FUTAPP\app\repository\EquiposRepository;
 use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\app\repository\UsuariosRepository;
@@ -45,6 +47,10 @@ class FutAppController
 
     public function registerForm()
     {
+        $imagen = new GenerateCaptcha();
+        $imagen->generateColors();
+        $imagen->generateTextColor();
+        $imagen->setText();
 
         Response::renderView('register', [
 
@@ -68,7 +74,7 @@ class FutAppController
         $minutos = FlashMessage::get('minutos');
         $fecha = FlashMessage::get('fecha');
         $arbitro = FlashMessage::get('arbitro');
-        $equipolocal =FlashMessage::get('equipolocalSeleccionado');
+        $equipolocal = FlashMessage::get('equipolocalSeleccionado');
         $direccion = FlashMessage::get('direccion');
 
 
@@ -79,13 +85,13 @@ class FutAppController
         Response::renderView('addPartido', [
             'arbitros' => $arbitros,
             'equipos' => $equipos,
-            'error_addPartido'=>$errorAddPartido,
-            'hora'=>$hora,
-            'fecha'=>$fecha,
-            'minutos'=>$minutos,
-            'equipolocalSeleccionado'=>$equipolocal,
-            'arbitroSeleccionado'=>$arbitro,
-            'direccion'=>$direccion
+            'error_addPartido' => $errorAddPartido,
+            'hora' => $hora,
+            'fecha' => $fecha,
+            'minutos' => $minutos,
+            'equipolocalSeleccionado' => $equipolocal,
+            'arbitroSeleccionado' => $arbitro,
+            'direccion' => $direccion
         ]);
     }
 
@@ -119,17 +125,17 @@ class FutAppController
             $hora = $_POST['hora'];
             $minutos = $_POST['minuto'];
 
-            if($equipoLocal === $equipoVisitante){
+            if ($equipoLocal === $equipoVisitante) {
                 $error_addPartido = 'El equipo local no puede ser el mismo que el equipo visitante!!';
-                FlashMessage::set('error_addPartido',$error_addPartido);
-                FlashMessage::set('fecha',$fecha);
-                FlashMessage::set('hora',$hora);
-                FlashMessage::set('minutos',$minutos);
-                FlashMessage::set('arbitro',$arbitro);
-                FlashMessage::set('direccion',$direccion);
-                FlashMessage::set('equipolocalSeleccionado',$equipoLocal);
+                FlashMessage::set('error_addPartido', $error_addPartido);
+                FlashMessage::set('fecha', $fecha);
+                FlashMessage::set('hora', $hora);
+                FlashMessage::set('minutos', $minutos);
+                FlashMessage::set('arbitro', $arbitro);
+                FlashMessage::set('direccion', $direccion);
+                FlashMessage::set('equipolocalSeleccionado', $equipoLocal);
                 App::get('router')->redirect('add-partido');
-            }else{
+            } else {
                 $partido = new Partido();
                 $partido->setDireccionEncuentro($direccion);
                 $partido->setEquipoLocal($equipoLocal);
@@ -137,12 +143,16 @@ class FutAppController
                 $fecha_completo = $fecha . ' ' . $hora . ':' . $minutos . ':00';
                 $partido->setFechaEncuentro($fecha_completo);
                 $partido->setArbitro($arbitro);
-
+                $partido->setResultado('-');
                 $partidoRepository->save($partido);
                 $partidoRepository->getConnection()->commit();
 
-                $mailer = new Emails('ubillus102@gmail.com');
+
+                $usuario_ = App::get('user');
+                $mailer = new Emails($partido, $usuario_->getNombre() . ' ' . $usuario_->getApellidos());
                 $mailer->send();
+
+
 
             }
 

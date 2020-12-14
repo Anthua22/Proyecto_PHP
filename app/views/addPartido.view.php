@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/partials/cabecera.view.part.php'; ?>
+
     <div class="main">
         <div class="shop_top">
             <div class="container">
@@ -93,5 +93,4 @@
     <script src="/js/mine/addEquipo.js"></script>
 
 
-<?php require __DIR__ . '/partials/footer.view.part.php';
 

@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/partials/cabecera.view.part.php'; ?>
+
     <div class="main">
         <div class="shop_top">
             <div class="container">
@@ -40,4 +40,3 @@
             </div>
         </div>
     </div>
-<?php require __DIR__ . '/partials/footer.view.part.php';
