@@ -27,6 +27,22 @@ class EquiposController
 
     }
 
+    public function deleteJson(string $id)
+    {
+
+        $partid = App::getRepository(PartidoRepository::class)->find($id);
+        $local = App::getRepository(PartidoRepository::class)->getEquipoLocal($partid)->getNombre();
+        $visitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($partid)->getNombre();
+
+        $this->deletePartido($id);
+        header('Content-Type: application/json');
+
+        echo json_encode([
+            'error' => false,
+            'mensaje' => "El partido $local vs $visitante   se ha eliminado correctamente"
+        ]);
+    }
+
     public function showFormUpdate(int $id)
     {
         $equipoRespository = new EquiposRepository();

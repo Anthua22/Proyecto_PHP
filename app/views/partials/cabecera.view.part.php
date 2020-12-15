@@ -8,13 +8,15 @@
     <link href="../../../public/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="../../../public/css/style.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
     <link rel="stylesheet" href="../../../public/css/fwslider.css" media="all">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.css"/>
     <!--end slider -->
 
 

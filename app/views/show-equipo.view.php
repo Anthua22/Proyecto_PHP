@@ -17,10 +17,16 @@
                     <p style="font-size: 20px"><?= $equipo->getCorreo() ?></p>
                     <?php if (!is_null($usuario) && $usuario->getRole() === 'admin'): ?>
 
-                        <a href="/equipos/<?= $equipo->getId() ?>/update">
-                            <button class="btn btn-primary">Editar Datos</button>
+                        <a href="/equipos/<?= $equipo->getId() ?>/update" class="btn btn-info btn-lg">
+                           <span class="glyphicon glyphicon-edit" ></span>
                         </a>
+                        <a href="/equipos/<?= $equipo->getId() ?>/delete" class="btn btn-danger btn-lg">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+
+                        <script src="/public/js/deleteEquipo.js"></script>
                     <?php endif; ?>
+
                 </div>
             </div>
             <hr/>

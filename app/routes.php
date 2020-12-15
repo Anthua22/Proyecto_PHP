@@ -34,3 +34,5 @@ $router->post('add-equipo',EquiposController::class,'addEquipo');
 
 
 $router->delete('partidos/:id',FutAppController::class,'deleteJson','arbitro');
+
+$router->delete('equipos/:id',EquiposController::class,'deleteJson','admin');

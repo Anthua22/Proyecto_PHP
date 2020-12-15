@@ -10,12 +10,16 @@ document.addEventListener('DOMContentLoaded', e => {
                 .then(respuesta =>  respuesta.json())
                 .then(resp => {
                     e.target.parentElement.parentElement.parentElement.remove();
-                    swal({
+                    Swal.fire({
                         title: "Eliminado",
                         text: resp.mensaje,
-                        type: "success",
+                        icon: "success",
                     });
-                }).catch(y=>console.log(y));
+                }).catch(y=>Swal.fire({
+                title: "Error",
+                text: y,
+                icon: "error"
+            }));
         })
     });
 });

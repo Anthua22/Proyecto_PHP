@@ -177,7 +177,6 @@ class FutAppController
         $partid = App::getRepository(PartidoRepository::class)->find($id);
         $local = App::getRepository(PartidoRepository::class)->getEquipoLocal($partid)->getNombre();
         $visitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($partid)->getNombre();
-
         $this->deletePartido($id);
         header('Content-Type: application/json');
 
