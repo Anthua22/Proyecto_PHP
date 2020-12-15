@@ -6,6 +6,7 @@ use Exception;
 use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Usuarios;
 use FUTAPP\app\helpers\FlashMessage;
+use FUTAPP\app\helpers\GenerateCaptcha;
 use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\app\repository\UsuariosRepository;
 use FUTAPP\CORE\App;
@@ -18,27 +19,33 @@ class UsuariosController
     public function login()
     {
         $usuario = App::get('user');
-        if(is_null($usuario)){
+        if (is_null($usuario)) {
             $errorLogin = FlashMessage::get('error_login');
-            Response::renderView('login', ['error_login'=>$errorLogin]);
-        }else{
+            Response::renderView('login', ['error_login' => $errorLogin]);
+        } else {
             App::get('router')->redirect('');
         }
 
     }
 
-    public function showPartidos(){
+    public function showBandejaMensajes(){
+        Response::renderView('mensajes');
+    }
+
+    public function showPartidos()
+    {
 
         $usuario = App::get('user');
         $partidosRepository = new PartidoRepository();
 
         $partidos = $partidosRepository->getPartidosArbitro($usuario->getId());
 
-        Response::renderView('mis-partidos',[
-            'partidos'=>$partidos
+        Response::renderView('mis-partidos', [
+            'partidos' => $partidos
         ]);
 
     }
+
     public function logout()
     {
         $_SESSION['usuario'] = null;
@@ -53,36 +60,47 @@ class UsuariosController
         $username = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $usuario = App::getRepository(UsuariosRepository::class)->findOneBy([
-            'email' => $username
-        ]);
+        if($username!== ''){
+            $usuario = App::getRepository(UsuariosRepository::class)->findOneBy([
+                'email' => $username
+            ]);
 
-        if (Security::checkPassword (
-                $password,
-                $usuario->getPassword()
-            ) === true)
-        {
-            $_SESSION['usuario'] = $usuario->getId();
-            App::get('router')->redirect('');
+            if (Security::checkPassword(
+                    $password,
+                    $usuario->getPassword()
+                ) === true) {
+                $_SESSION['usuario'] = $usuario->getId();
+                App::get('router')->redirect('');
+            }
+
         }
+
 
         FlashMessage::set('error_login', "El usuario y/o password introducidos no son correctos");
 
         App::get('router')->redirect('login');
     }
 
-    public function unanthorized(){
-        header('HTTP/1.1 403 Forbiden',true,403);
+    public function unanthorized()
+    {
+        header('HTTP/1.1 403 Forbiden', true, 403);
         Response::renderView('403');
+    }
+
+    public function generateCapcha()
+    {
+        $imagen = new GenerateCaptcha();
+        $imagen->generateColors();
+        $imagen->generateTextColor();
+        $imagen->setText();
     }
 
     public function register()
     {
         $usuario = App::get('user');
-        if(is_null($usuario)){
-            $usuariosRepository = new UsuariosRepository();
-
-            try{
+        if (is_null($usuario)) {
+            try {
+                $usuariosRepository = new UsuariosRepository();
                 $usuariosRepository->getConnection()->beginTransaction();
                 $nombre = $_POST['nombre'];
                 $apellidos = $_POST['apellidos'];
@@ -91,40 +109,65 @@ class UsuariosController
                 $telefono = $_POST['telefono'];
                 $fecha_nacimiento = $_POST['fechanacimiento'];
                 $passconform = $_POST['passwordconfirm'];
+                $captcha = $_POST['captcha'];
+                if ($pass === $passconform) {
 
-                if($pass === $passconform){
-                    $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'public/images/users');
-                    $imagenBLL->uploadImagen();
-                    $foto = $imagenBLL->getUploadedFileName();
-                    $passEncript = Security::encrypt($pass);
-                    $newArbitro = new Usuarios();
-                    $newArbitro->setFoto($foto);
-                    $newArbitro->setNombre($nombre);
-                    $newArbitro->setApellidos($apellidos);
-                    $newArbitro->setRole('arbitro');
-                    $newArbitro->setPassword($passEncript);
-                    $newArbitro->setEmail($email);
-                    $newArbitro->setTelefono($telefono);
-                    $newArbitro->setFechanacimiento($fecha_nacimiento);
-                    $usuariosRepository->save($newArbitro);
-                    $usuariosRepository->getConnection()->commit();
+                    if ($captcha === $_SESSION['captcha']) {
+                        $passEncript = Security::encrypt($pass);
+                        $newArbitro = new Usuarios();
+                        $newArbitro->setFoto('gg');
+                        $newArbitro->setNombre($nombre);
+                        $newArbitro->setApellidos($apellidos);
+                        $newArbitro->setRole('arbitro');
+                        $newArbitro->setPassword($passEncript);
+                        $newArbitro->setEmail($email);
+                        $newArbitro->setTelefono($telefono);
+                        $newArbitro->setFechanacimiento($fecha_nacimiento);
+                        if (!$usuariosRepository->checkAccount($newArbitro)) {
+                            $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/users');
+                            $imagenBLL->uploadImagen();
+                            $foto = $imagenBLL->getUploadedFileName();
+                            $newArbitro->setFoto($foto);
+                            $usuariosRepository->save($newArbitro);
+                            $usuariosRepository->getConnection()->commit();
+                            App::get('router')->redirect('login');
+                        }
+                        $this->saveInformation();
+                        FlashMessage::set('error-register', "Ya existe una cuenta asociada al correo proporcionado");
+                        App::get('router')->redirect('register');
 
-                    $usuarioNuevo = App::getRepository(UsuariosRepository::class)->findOneBy([
-                        'email'=>$newArbitro->getEmail()
-                    ]);
+                    }else{
+                        FlashMessage::set('error-register', "El captcha no coincide con la imagen");
 
-                    $_SESSION['usuario'] = $usuarioNuevo->getId();
+                        $this->saveInformation();
+                        App::get('router')->redirect('register');
+                    }
 
-                    App::get('router')->redirect('mis-partidos');
-                }else{
-                    FlashMessage::set('error-register',"Las contraseñas intruducidas no coinciden");
+
+                } else {
+                    FlashMessage::set('error-register', "Las contraseñas intruducidas no coinciden");
+                    $this->saveInformation();
                     App::get('router')->redirect('register');
                 }
-            }catch (Exception $exception){
+            } catch (Exception $exception) {
                 $usuariosRepository->getConnection()->rollBack();
             }
         }
 
+    }
 
+    private function saveInformation()
+    {
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $email = $_POST['correo'];
+        $telefono = $_POST['telefono'];
+        $fecha_nacimiento = $_POST['fechanacimiento'];
+
+        FlashMessage::set('nombreuser', $nombre);
+        FlashMessage::set('apellidosuser', $apellidos);
+        FlashMessage::set('emailuser', $email);
+        FlashMessage::set('telefonouser', $telefono);
+        FlashMessage::set('fechanacimientouser', $fecha_nacimiento);
     }
 }

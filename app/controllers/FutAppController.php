@@ -51,12 +51,20 @@ class FutAppController
     {
         $usuario = App::get('user');
         if(is_null($usuario)){
-            $imagen = new GenerateCaptcha();
-            $imagen->generateColors();
-            $imagen->generateTextColor();
-            $imagen->setText();
+            $error = FlashMessage::get('error-register');
+            $nombre = FlashMessage::get('nombreuser');
+            $apellidos = FlashMessage::get('apellidosuser');
+            $email = FlashMessage::get('emailuser');
+            $telefono = FlashMessage::get('telefonouser');
+            $fecha = FlashMessage::get('fechanacimientouser');
 
-            Response::renderView('register', [
+            Response::renderView('register',[
+                'nombre'=>$nombre,
+                'apellidos'=>$apellidos,
+                'email'=>$email,
+                'telefono'=>$telefono,
+                'fecha' =>$fecha,
+                'error'=>$error
 
             ]);
         }else{

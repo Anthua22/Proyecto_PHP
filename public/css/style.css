@@ -3,12 +3,6 @@ h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
-
-.equipo{
-	height: 50px;
-	width: 100px;
-}
-
 html, body{
 	font-family: 'Open Sans', sans-serif;
 	background:#fff;
@@ -26,7 +20,7 @@ body a{
 }
 .header-left{
 	float:left;
-	width: 80%;
+	width: 59%;
 }
 .logo{
 	float:left;
@@ -138,7 +132,7 @@ body a{
  }
 .header_right{
 	float:right;
-	width:100%;
+	width:6%;
 	margin-top: 16px;
 }
 .sb-search {
@@ -1071,13 +1065,6 @@ span.reducedfrom {
 	margin-right: 8%;
 	color: #888;
 }
-
-.menupersonalizado{
-	list-style: none;
-	display: inline-block;
-}
-
-
 span.actual {
 	color: #7DB122;
 	font-size: 1em;
@@ -1093,7 +1080,6 @@ ul.buttons{
 }
 .shop_btn{
 	float:right;
-	font-size: 15px;
 }
 .shop_btn a, .cart a{
 	color: #000;
@@ -1206,8 +1192,8 @@ p.m_7{
 	margin-bottom:5%;
 }
 p.m_8{
-	font-weight: bold;
-	font-size:10px;
+	color:#333;
+	font-size:0.85em;
 	line-height:1.8em;
 	margin-bottom:5%;
 }

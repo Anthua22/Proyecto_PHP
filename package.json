@@ -18,6 +18,11 @@
   "homepage": "https://github.com/Anthua22/Proyecto_PHP#readme",
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "bootstrap-icons": "^1.2.1",
+    "carousel": "0.0.3",
+    "font-awesome": "^4.7.0",
+    "jcarousel": "^0.3.9",
+    "jquery": "^3.5.1",
     "simple-slider": "^1.0.1",
     "sweetalert2": "^10.12.5"
   }

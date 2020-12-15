@@ -20,6 +20,21 @@ class UsuariosRepository extends QueryBuilder
 
     }
 
+    public function checkAccount(Usuarios $usuaricheck):bool{
+        $usuariosRepository = new UsuariosRepository();
+
+        $usuarios = $usuariosRepository->findAll();
+        $existe = false;
+
+        foreach ($usuarios as $usuario){
+            if($usuario->getEmail()===$usuaricheck->getEmail()){
+                $existe = true;
+            }
+        }
+
+        return $existe;
+    }
+
     public function getAllArbitros()
     {
         $sql = "select * from ".$this->getTable()." where role='arbitro';";
