@@ -1,9 +1,12 @@
 <?php
+
 namespace FUTAPP\app\controllers;
 
 use Exception;
 use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Equipo;
+use FUTAPP\app\entity\Partido;
+use FUTAPP\app\helpers\FlashMessage;
 use FUTAPP\app\repository\EquiposRepository;
 use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\core\App;
@@ -29,19 +32,44 @@ class EquiposController
 
     public function deleteJson(string $id)
     {
+        try {
+            $equipoRepository = new EquiposRepository();
 
-        $partid = App::getRepository(PartidoRepository::class)->find($id);
-        $local = App::getRepository(PartidoRepository::class)->getEquipoLocal($partid)->getNombre();
-        $visitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($partid)->getNombre();
+            $equipoRepository->getConnection()->beginTransaction();
 
-        $this->deletePartido($id);
-        header('Content-Type: application/json');
+            $equipo = $equipoRepository->find($id);
 
-        echo json_encode([
-            'error' => false,
-            'mensaje' => "El partido $local vs $visitante   se ha eliminado correctamente"
-        ]);
+            $partidosParticipados = App::getRepository(EquiposRepository::class)->getAllPartidosEquipo($id);
+
+            $this->deleteAllPartidos($partidosParticipados);
+
+            $equipoRepository->delete($equipo);
+            $equipoRepository->getConnection()->commit();
+
+
+            header('Content-Type: application/json');
+
+            echo json_encode([
+                'error' => false,
+                'mensaje' => "El equipo ". $equipo->getNombre().  " se ha eliminado correctamente"
+            ]);
+
+
+        } catch (Exception $exception) {
+            $equipoRepository->getConnection()->rollBack();
+            die('No se ha podido eliminar el equipo');
+        }
+
     }
+
+
+    private function deleteAllPartidos(array $partidos)
+    {
+        foreach ($partidos as $partido) {
+            App::getRepository(PartidoRepository::class)->delete($partido);
+        }
+    }
+
 
     public function showFormUpdate(int $id)
     {
@@ -62,7 +90,7 @@ class EquiposController
             $nombre = trim(htmlspecialchars($_POST['nombreEquipo']));
             $correo = trim(htmlspecialchars($_POST['correoEquipo']));
             $arrayfile = $_FILES['imagen'];
-            $imagenBLL = new ImagenFutappBLL($arrayfile,'public/images/equipos');
+            $imagenBLL = new ImagenFutappBLL($arrayfile, 'public/images/equipos');
             $direccion = trim(htmlspecialchars($_POST['direccion']));
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
@@ -76,10 +104,13 @@ class EquiposController
             $equipoRespository->save($equipo);
             $equipoRespository->getConnection()->commit();
 
-            App::get('router')->redirect('equipos');
+            $message = "El equipo ".$equipo->getNombre() ." se ha guardado correctamente";
+            FlashMessage::set('partidoInsertSuccess',$message);
+
+            App::get('router')->redirect('add-equipo');
         } catch (Exception $exception) {
             $equipoRespository->getConnection()->rollBack();
-            die('No se ha podido insertar el equipo');
+            FlashMessage::set('error_addEquipo', 'No se ha podido insertar el equipo');
         }
     }
 
@@ -93,13 +124,13 @@ class EquiposController
         $correo = $_POST['correo'];
         $equipo = new Equipo();
 
-        if(isset($_FILES['foto'])){
-            $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'public/images/equipos');
+        if (isset($_FILES['foto'])) {
+            $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/equipos');
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $equipo->setFoto($foto);
-            unlink(__DIR__ . '/../../public /images/equipos/' .$equipoantiguo->getFoto());
-        }else{
+            unlink(__DIR__ . '/../../public /images/equipos/' . $equipoantiguo->getFoto());
+        } else {
             $equipo->setFoto($equipoantiguo->getFoto());
         }
 
@@ -110,7 +141,7 @@ class EquiposController
         $equipo->setId($id);
 
         $equipoRespository->update($equipo);
-        App::get('router')->redirect('equipos/'.$id);
+        App::get('router')->redirect('equipos/' . $id);
 
 
     }

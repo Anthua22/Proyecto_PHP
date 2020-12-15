@@ -30,7 +30,12 @@ class FutAppController
 
     public function formAddEquipo()
     {
-        Response::renderView('addEquipo');
+        $message = FlashMessage::get('partidoInsertSuccess');
+        $message_error = FlashMessage::get('error_addEquipo');
+        Response::renderView('addEquipo',[
+            'success_EquipoInsert'=>$message,
+            'error_addEquipo'=>$message_error
+        ]);
     }
 
     public function showEquipos()
@@ -86,7 +91,7 @@ class FutAppController
         $equipolocal = FlashMessage::get('equipolocalSeleccionado');
         $direccion = FlashMessage::get('direccion');
 
-
+        $messagesuccess = FlashMessage::get('partidosuccess');
         $equiposRepository = new EquiposRepository();
         $equipos = $equiposRepository->findAll();
         $arbitrosRepository = new UsuariosRepository();
@@ -100,7 +105,8 @@ class FutAppController
             'minutos' => $minutos,
             'equipolocalSeleccionado' => $equipolocal,
             'arbitroSeleccionado' => $arbitro,
-            'direccion' => $direccion
+            'direccion' => $direccion,
+            'success_partidoInsert'=>$messagesuccess
         ]);
     }
 
@@ -143,7 +149,7 @@ class FutAppController
                 FlashMessage::set('arbitro', $arbitro);
                 FlashMessage::set('direccion', $direccion);
                 FlashMessage::set('equipolocalSeleccionado', $equipoLocal);
-                App::get('router')->redirect('add-partido');
+
             } else {
                 $partido = new Partido();
                 $partido->setDireccionEncuentro($direccion);
@@ -162,12 +168,22 @@ class FutAppController
                 $mailer->sendDesignacion();
 
 
+                $message = "El partido se ha asignado correctamente y se ha confirmado por correo electrónico";
+                FlashMessage::set('partidosuccess',$message);
+
 
             }
+            App::get('router')->redirect('add-partido');
 
         } catch (Exception $exception) {
             $partidoRepository->getConnection()->rollBack();
-            die('No se ha podido asignar el partido');
+            FlashMessage::set('error_addPartido', $exception->getMessage());
+            FlashMessage::set('fecha', $fecha);
+            FlashMessage::set('hora', $hora);
+            FlashMessage::set('minutos', $minutos);
+            FlashMessage::set('arbitro', $arbitro);
+            FlashMessage::set('direccion', $direccion);
+            FlashMessage::set('equipolocalSeleccionado', $equipoLocal);
         }
     }
 

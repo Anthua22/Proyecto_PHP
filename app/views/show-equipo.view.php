@@ -20,11 +20,11 @@
                         <a href="/equipos/<?= $equipo->getId() ?>/update" class="btn btn-info btn-lg">
                            <span class="glyphicon glyphicon-edit" ></span>
                         </a>
-                        <a href="/equipos/<?= $equipo->getId() ?>/delete" class="btn btn-danger btn-lg">
+                        <a href="/equipos/<?= $equipo->getId() ?>" class="btn btn-danger btn-lg">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
 
-                        <script src="/public/js/deleteEquipo.js"></script>
+                        <script src="/public/js/equipoDelete.js"></script>
                     <?php endif; ?>
 
                 </div>

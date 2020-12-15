@@ -8,11 +8,17 @@
                         <div id="loginbox" class="loginbox">
                             <form action="/add-partido" method="post" name="login" id="login-form">
                                 <fieldset class="input">
-                                    <?php if($error_addPartido !==''):?>
-                                        <div class="alert alert-danger" role="alert">
-                                            <?= 'ERROR: '.$error_addPartido . ' '?>
-                                        </div>
-                                    <?php endif;?>
+                                    <?php if ($error_addPartido !== '' || $success_partidoInsert !== ''): ?>
+                                        <?php if ($error_addPartido !== ''): ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                <?= 'ERROR: ' . $error_addPartido . ' ' ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="alert alert-success" role="alert">
+                                                <?= $success_partidoInsert ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                     <p id="login-form-equipolocal">
                                         <label for="modlgn_equipolocal">Equipo Local</label>
                                         <select name="equiposlocales" class="form-control" required>

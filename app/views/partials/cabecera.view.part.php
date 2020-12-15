@@ -14,6 +14,8 @@
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
     <link rel="stylesheet" href="../../../public/css/fwslider.css" media="all">
+
+    <script src="/node_modules/simple-slider/dist/simpleslider.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.css"/>

@@ -58,9 +58,9 @@ class Emails
             $this->server->Body    = $this->body();
 
             $this->server->send();
-            App::get('router')->redirect('add-partido');
+
         } catch (Exception $e) {
-            //echo "Message could not be sent. Mailer Error: {$this->server->ErrorInfo}";
+            echo "Message could not be sent. Mailer Error: {$this->server->ErrorInfo}";
         }
     }
 

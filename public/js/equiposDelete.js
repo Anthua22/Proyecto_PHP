@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', e => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Borrar'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(e.target.href, {method: 'DELETE'})
@@ -24,11 +24,13 @@ document.addEventListener('DOMContentLoaded', e => {
                                 title: 'Borrado!',
                                 text: resp.mensaje,
                                 icon: 'success',});
-                        }).catch(y => swal({
+                            //location.assign('/equipos');
+                        }).catch(y =>  Swal.fire({
                         title: "Error",
                         text: y,
-                        type: "error"
+                        icon: 'error'
                     }));
+
                 }
             })
 
