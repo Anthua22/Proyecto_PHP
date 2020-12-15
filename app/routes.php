@@ -22,11 +22,12 @@ $router->get('register',FutAppController::class,'registerForm');
 $router->get('mis-partidos',UsuariosController::class,'showPartidos','arbitro');
 $router->get('my',UsuariosController::class,'showPerfil','arbitro');
 $router->get('image-generate',UsuariosController::class,'generateCapcha');
-$router->get('mi-bandeja',UsuariosController::class,'showBandejaMensajes');
-
+$router->get('mi-bandeja',UsuariosController::class,'showBandejaMensajes','arbitro');
+$router->get('perfil/:id',UsuariosController::class, 'perfil');
+$router->get('arbitros/:id/update',UsuariosController::class,'showupdate','arbitro');
 
 $router->post('login',UsuariosController::class,'checkLogin');
-
+$router->post('arbitros/:id/update',UsuariosController::class,'updatePerfil','arbitro');
 
 
 $router->post('register',UsuariosController::class,'register');

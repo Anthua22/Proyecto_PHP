@@ -7,6 +7,8 @@ use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Usuarios;
 use FUTAPP\app\helpers\FlashMessage;
 use FUTAPP\app\helpers\GenerateCaptcha;
+use FUTAPP\app\repository\EquiposRepository;
+use FUTAPP\app\repository\MensajeRepository;
 use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\app\repository\UsuariosRepository;
 use FUTAPP\CORE\App;
@@ -28,8 +30,126 @@ class UsuariosController
 
     }
 
-    public function showBandejaMensajes(){
-        Response::renderView('mensajes');
+    public function showupdate(string $id)
+    {
+        $equipoRespository = new UsuariosRepository();
+        $error = FlashMessage::get('error_update_perfil');
+
+        $_usuario = $equipoRespository->find($id);
+
+        Response::renderView(
+            'updateuser', [
+                '_usuario' => $_usuario,
+                'error' => $error
+            ]
+        );
+    }
+
+    public function perfil(string $id)
+    {
+
+        $usarioRepository = new UsuariosRepository();
+        $partidosRepository = new PartidoRepository();
+        $user = $usarioRepository->find($id);
+        $userid = $user->getId();
+        $partidos = $partidosRepository->findOneBy([
+            'arbitro' => $userid
+        ]);
+
+
+        Response::renderView('perfil', [
+            'partidos' => $partidos,
+            '_usuario' => $user
+        ]);
+    }
+
+    public function updatePerfil(string $id)
+    {
+        $usariosREpository = new UsuariosRepository();
+
+        $userantiguo = $usariosREpository->find($id);
+
+        $correo = htmlspecialchars($_POST['correo']);
+        $pass = htmlspecialchars($_POST['password']);
+        $passconfirm = htmlspecialchars($_POST['confirmpassword']);
+        $nombre = htmlspecialchars($_POST['nombre']);
+        $apellidos = htmlspecialchars($_POST['apellidos']);
+        $foto = $_FILES['foto'] ?? '';
+        $telefono = htmlspecialchars($_POST['telefono']);
+        $rol = $_POST['role'] ?? '';
+
+        if ($pass === $passconfirm) {
+            $user = new Usuarios();
+            $user->setNombre($nombre);
+            $user->setApellidos($apellidos);
+            $user->setEmail($correo);
+            $user->setPassword(Security::encrypt($pass));
+            $user->setTelefono($telefono);
+
+            if (!is_null($rol)) {
+                $user->setRole('admin');
+            }
+
+
+            $user->setRole($userantiguo->getRole());
+
+
+
+            $user->setFoto($userantiguo->getFoto());
+
+
+            $usariosREpository->update($user);
+            App::get('router')->redirect('arbitros/' . $user->getId() . '/update');
+        } else {
+            FlashMessage::set('error_update_perfil', 'Las contraseñas no coinciden');
+            App::get('router')->redirect('arbitros/' . $userantiguo->getId() . '/update');
+        }
+
+
+    }
+
+    public function showBandejaMensajes()
+    {
+
+        $mensajeRepository = new MensajeRepository();
+
+        $user = App::get('user');
+        if (!is_null($user)) {
+            $mensajes = $mensajeRepository->getAllMensajeUser($user->getId());
+            $contacts = $this->showOneContact($mensajes);
+
+            Response::renderView('mensajes', [
+                'mensajes' => $mensajes
+            ]);
+        }
+
+    }
+
+    private function showOneContact(array $mensajes)
+    {
+        $contacts = [];
+
+        $usuarios = App::getRepository(UsuariosRepository::class)->findAll();
+        foreach ($mensajes as $mensaje) {
+            foreach ($usuarios as $usuario) {
+                if ($mensaje->getEmisor() === $usuario->getId() || $mensaje->getReceptor() === !$this->checkExist($contacts, $usuario->getId())) {
+                    $contacts .= $usuario;
+                }
+            }
+        }
+
+        return $contacts;
+    }
+
+    private function checkExist(array $mensajes, int $id)
+    {
+        $existe = false;
+        foreach ($mensajes as $mensaje) {
+            if ($mensaje->getId() === $id) {
+                $existe = true;
+            }
+        }
+        return $existe;
     }
 
     public function showPartidos()
@@ -60,7 +180,7 @@ class UsuariosController
         $username = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        if($username!== ''){
+        if ($username !== '') {
             $usuario = App::getRepository(UsuariosRepository::class)->findOneBy([
                 'email' => $username
             ]);
@@ -136,7 +256,7 @@ class UsuariosController
                         FlashMessage::set('error-register', "Ya existe una cuenta asociada al correo proporcionado");
                         App::get('router')->redirect('register');
 
-                    }else{
+                    } else {
                         FlashMessage::set('error-register', "El captcha no coincide con la imagen");
 
                         $this->saveInformation();

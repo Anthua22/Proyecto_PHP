@@ -57,7 +57,7 @@
             </ul>
         <?php else :?>
             <ul class="nav">
-                <li><a href="/mi-bandeja"> <img src="<?=$usuario->getPathFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span style="color: white"><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout" style="color: white">Cerrar Sesión</a></li>
+                <li><a href="/perfil/<?=$usuario->getId()?>"> <img src="<?=$usuario->getPathFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span style="color: white"><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout" style="color: white">Cerrar Sesión</a></li>
             </ul>
 
 

@@ -124,12 +124,12 @@ class EquiposController
         $correo = $_POST['correo'];
         $equipo = new Equipo();
 
-        if (isset($_FILES['foto'])) {
+        if (file_exists($_FILES['foto'])) {
             $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/equipos');
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $equipo->setFoto($foto);
-            unlink(__DIR__ . '/../../public /images/equipos/' . $equipoantiguo->getFoto());
+            unlink(__DIR__ . '/../../public/images/equipos/' . $equipoantiguo->getFoto());
         } else {
             $equipo->setFoto($equipoantiguo->getFoto());
         }

@@ -33,7 +33,6 @@
                                     <label for="modlgn_nombre_equipo">Imagen</label>
                                     <input id="modlgn_nombre_equipo" type="file" name="foto"
                                            class="form-control"
-
                                            autocomplete="off">
                                     <img src="<?= $equipo->getPathFoto() ?>">
                                 </p>

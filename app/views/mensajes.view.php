@@ -15,7 +15,29 @@
                     </div>
                 </div>
                 <div class="inbox_chat">
-                    <div class="chat_list active_chat">
+                    <?php if (isset($mensajes)): ?>
+                        <?php foreach ($contactos as $contacto): ?>
+                            <div class="chat_list">
+                                <a href="">
+                                    <div class="chat_people">
+                                        <div class="chat_img"><img src="<?= $contacto->getPathFoto()?>"
+                                                                   alt="sunil"></div>
+                                        <div class="chat_ib">
+                                            <h5><?= $contacto->getNombre()?> <span class="chat_date"><?= $mensaje->getHora()->format('d/m/Y H:i:s')?></span></h5>
+                                            <p><?= $mensaje->getMensaje()?></p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else :?>
+                        <div class="chat_list">
+                            No tienes ningun mensaje
+                        </div>
+                    <?php endif; ?>
+
+                    <!--<div class="chat_list active_chat">
                         <div class="chat_people">
                             <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
                                                        alt="sunil"></div>
@@ -91,7 +113,7 @@
                                     astrology under one roof.</p>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="mesgs">
@@ -138,13 +160,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="type_msg">
+                <form class="type_msg">
                     <div class="input_msg_write">
                         <input type="text" class="write_msg" placeholder="Type a message"/>
-                        <button class="msg_send_btn" type="button"><i
-                                                                      aria-hidden="true"></i></button>
+
                     </div>
-                </div>
+                    <input class="msg_send_btn" type="submit"><i
+                            aria-hidden="true"></i></input>
+                </form>
             </div>
         </div>
 
