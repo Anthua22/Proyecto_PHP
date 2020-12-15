@@ -42,8 +42,11 @@ class FutAppController
     {
         $equipoRepository = new EquiposRepository();
         $equipos = $equipoRepository->findAll();
+
+        $user = App::get('user');
         Response::renderView('equipos', [
-            'equipos' => $equipos
+            'equipos' => $equipos,
+            '_user'=>$user
         ]);
     }
 
@@ -166,7 +169,7 @@ class FutAppController
                 $fecha_completo = $fecha . ' ' . $hora . ':' . $minutos . ':00';
                 $partido->setFechaEncuentro($fecha_completo);
                 $partido->setArbitro($arbitro);
-                $partido->setResultado('-');
+
                 $partidoRepository->save($partido);
                 $partidoRepository->getConnection()->commit();
 
@@ -202,6 +205,11 @@ class FutAppController
         $local = App::getRepository(PartidoRepository::class)->getEquipoLocal($partid)->getNombre();
         $visitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($partid)->getNombre();
         $this->deletePartido($id);
+
+        $email = new Emails($partid);
+
+        $admins = App::getRepository(UsuariosRepository::class)->getAllAdmins();
+        $email->sendDeteAsignados($admins);
         header('Content-Type: application/json');
 
         echo json_encode([

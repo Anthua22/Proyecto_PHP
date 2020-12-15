@@ -11,7 +11,6 @@ class Partido implements IEntity
     private int $arbitro;
     private int $equipoLocal;
     private int $equipoVisitante;
-    private string $resultado;
 
 
 
@@ -50,21 +49,7 @@ class Partido implements IEntity
     }
 
 
-    /**
-     * @return string
-     */
-    public function getResultado(): string
-    {
-        return $this->resultado;
-    }
 
-    /**
-     * @param string $resultado
-     */
-    public function setResultado(string $resultado): void
-    {
-        $this->resultado = $resultado;
-    }
 
 
     /**
@@ -161,8 +146,7 @@ class Partido implements IEntity
             'fecha_encuentro'=>$this->getFechaEncuentro(),
             'arbitro'=>$this->getArbitro(),
             'equipoLocal'=>$this->getEquipoLocal(),
-            'equipoVisitante'=>$this->getEquipoVisitante(),
-            'resultado'=>$this->getResultado()
+            'equipoVisitante'=>$this->getEquipoVisitante()
         ];
     }
 }

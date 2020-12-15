@@ -27,7 +27,7 @@
                                 </p>
                                 <p id="login-form-foto">
                                     <label for="modlgn_foto">Foto</label>
-                                    <input id="modlgn_foto" type="file" name="imagen">
+                                    <input id="modlgn_foto" type="file" name="imagen" required>
                                 </p>
 
                                 <p id="login-form-email">

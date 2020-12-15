@@ -5,6 +5,7 @@ namespace FUTAPP\app\controllers;
 use Exception;
 use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Usuarios;
+use FUTAPP\app\helpers\Emails;
 use FUTAPP\app\helpers\FlashMessage;
 use FUTAPP\app\helpers\GenerateCaptcha;
 use FUTAPP\app\repository\EquiposRepository;
@@ -93,7 +94,7 @@ class UsuariosController
 
             $user->setRole($userantiguo->getRole());
 
-
+            $user->setId($userantiguo->getId());
 
             $user->setFoto($userantiguo->getFoto());
 
@@ -207,6 +208,41 @@ class UsuariosController
         Response::renderView('403');
     }
 
+
+    public function deleteJson(string $id)
+    {
+
+        $usariosRepository = new UsuariosRepository();
+        $usariosRepository->getConnection()->beginTransaction();
+
+        $usuario = $usariosRepository->find($id)->getNombre();
+        $this->deleteUser($id);
+
+        header('Content-Type: application/json');
+
+        echo json_encode([
+            'error' => false,
+            'mensaje' => "El partido $usuario  se ha eliminado correctamente"
+        ]);
+    }
+
+
+    private function deleteUser(string $id)
+    {
+        try {
+            $usariosRepository = new UsuariosRepository();
+            $usariosRepository->getConnection()->beginTransaction();
+
+            $usuario = $usariosRepository->find($id);
+
+            $usariosRepository->delete($usuario);
+
+            $usariosRepository->getConnection()->commit();
+        } catch (Exception $exception) {
+            $usuario->getConnection()->rollBack();
+            die('No se ha podido eliminar el partido');
+        }
+    }
     public function generateCapcha()
     {
         $imagen = new GenerateCaptcha();

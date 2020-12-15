@@ -43,4 +43,11 @@ class UsuariosRepository extends QueryBuilder
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS, $this->getEntityClass());
     }
 
+    public function getAllAdmins(){
+        $sql = "select * from ".$this->getTable()." where role='admin';";
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, $this->getEntityClass());
+    }
+
 }

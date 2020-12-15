@@ -39,6 +39,16 @@ class Usuarios implements IEntity
        return $this->id;
     }
 
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+
+
     public function getPathFoto():string{
         return self::RUTA_FOTO.$this->getFoto();
     }

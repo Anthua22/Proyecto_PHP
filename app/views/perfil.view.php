@@ -20,9 +20,17 @@
                     <a href="/arbitros/<?= $_usuario->getId() ?>/update" class="btn btn-info btn-lg">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
+
+                    <?php if($usuario->getRole()==='admin' && $usuario->getRole() !== $_usuario->getRole() && $_usuario->getId()!==$usuario->getId()):?>
+
+                            <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger btn-lg"
+                               style="margin-left: 100px;">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                    <?php endif;?>
                     <?php endif;?>
 
-                    <script src="/public/js/equipoDelete.js"></script>
+                    <script src="/public/js/deleteUser.js"></script>
 
 
                 </div>

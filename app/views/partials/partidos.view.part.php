@@ -54,20 +54,25 @@
                     <div class="col">Hora:</div>
                     <div class="col"><?= $partido->getHoraCompleta() ?></div>
                 </div>
-                <div class="row">
-                    <div class="col">Resultado:</div>
-                    <div class="col"><?= $partido->getResultado() ?></div>
-                </div>
-                <?php if(!is_null($usuario)&&$usuario->getRole()==='admin'):?>
+
+                <?php if(!is_null($usuario) && $usuario->getRole() === 'admin' || $usuario->getId() === $partido->getArbitro()): ?>
+                <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
                 <div style="text-align: center; margin-top: 5px;">
-                    <a href="/partidos/<?=$partido->getId()?>" class="btn btn-danger">Borrar</a>
+                    <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
+                </div>
+                <?php else :?>
+                <div style="text-align: center; margin-top: 5px;">
+                    <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">Borrar</a>
                 </div>
                 <?php endif;?>
+                <?php endif;?>
+
+
             </div>
 
         </div>
 
     <?php endforeach; ?>
 
-    <script src="public/js/deletepartido.js"></script>
+    <script src="public/js/asistencia.js"></script>
 </div>

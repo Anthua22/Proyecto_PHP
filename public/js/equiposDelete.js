@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', e => {
                     fetch(e.target.href, {method: 'DELETE'})
                         .then(respuesta => respuesta.json())
                         .then(resp => {
-                            e.target.parentElement.parentElement.parentElement.remove();
+                            e.target.parentElement.parentElement.remove();
                             Swal.fire({
                                 title: 'Borrado!',
                                 text: resp.mensaje,
