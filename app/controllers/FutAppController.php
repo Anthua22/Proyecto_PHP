@@ -30,10 +30,7 @@ class FutAppController
 
     public function formAddEquipo()
     {
-
-        Response::renderView('addEquipo', [
-
-        ]);
+        Response::renderView('addEquipo');
     }
 
     public function showEquipos()
@@ -47,14 +44,26 @@ class FutAppController
 
     public function registerForm()
     {
-        $imagen = new GenerateCaptcha();
-        $imagen->generateColors();
-        $imagen->generateTextColor();
-        $imagen->setText();
+        $usuario = App::get('user');
+        if(is_null($usuario)){
+            $imagen = new GenerateCaptcha();
+            $imagen->generateColors();
+            $imagen->generateTextColor();
+            $imagen->setText();
 
-        Response::renderView('register', [
+            Response::renderView('register', [
 
-        ]);
+            ]);
+        }else{
+            App::get('router')->redirect('');
+        }
+
+    }
+
+    public function notFound()
+    {
+        header ('HTTP/1.1 404 Not Found', true, 404);
+        Response:: renderView ('404');
     }
 
     public function showArbitros()
@@ -95,7 +104,7 @@ class FutAppController
         ]);
     }
 
-    private function deletePartido(int $id)
+    private function deletePartido(string $id)
     {
         try {
             $partidoRespository = new PartidoRepository();
@@ -150,7 +159,7 @@ class FutAppController
 
                 $usuario_ = App::get('user');
                 $mailer = new Emails($partido, $usuario_->getNombre() . ' ' . $usuario_->getApellidos());
-                $mailer->send();
+                $mailer->sendDesignacion();
 
 
 
@@ -162,15 +171,19 @@ class FutAppController
         }
     }
 
-    public function deleteJson(int $id)
+    public function deleteJson(string $id)
     {
-        $this->deletePartido($id);
 
+        $partid = App::getRepository(PartidoRepository::class)->find($id);
+        $local = App::getRepository(PartidoRepository::class)->getEquipoLocal($partid)->getNombre();
+        $visitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($partid)->getNombre();
+
+        $this->deletePartido($id);
         header('Content-Type: application/json');
 
-        echo json_decode([
+        echo json_encode([
             'error' => false,
-            'mensaje' => "El partido con id $id se ha eliminado correctamente"
+            'mensaje' => "El partido $local vs $visitante   se ha eliminado correctamente"
         ]);
     }
 

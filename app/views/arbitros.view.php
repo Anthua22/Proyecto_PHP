@@ -7,9 +7,9 @@
                 <?php foreach ($arbitros as $arbitro): ?>
                     <div class="col-md-4 team1" style="margin-top: 20px;">
                         <div class="img_section magnifier2">
-                            <a class="fancybox" href="../../images/e1.jpg" data-fancybox-group="gallery"
+                            <a class="fancybox" href="../../public/images/e1.jpg" data-fancybox-group="gallery"
                                title="<?= $arbitro->getNombre() . ' ' . $arbitro->getApellidos() ?>"><img
-                                        src="../../images/e1.jpg" class="img-responsive" alt=""><span> </span>
+                                        src="../../public/images/e1.jpg" class="img-responsive" alt=""><span> </span>
                                 <div class="img_section_txt">
                                     <?= $arbitro->getNombre() . ' ' . $arbitro->getApellidos() ?>
                                 </div>

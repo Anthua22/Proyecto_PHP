@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="map">
-                        <img src="/../../images/equipos/<?= $equipo->getFoto() ?>">
+                        <img src="<?= $equipo->getPathFoto() ?>" style="max-width: 500px;">
                     </div>
                 </div>
                 <div class="col-md-5">

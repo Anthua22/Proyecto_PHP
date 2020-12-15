@@ -6,6 +6,7 @@ use FUTAPP\core\database\IEntity;
 
 class Usuarios implements IEntity
 {
+    const RUTA_FOTO='/../public/images/users/';
 
     private int $id;
     private string $password;
@@ -38,7 +39,9 @@ class Usuarios implements IEntity
        return $this->id;
     }
 
-
+    public function getPathFoto():string{
+        return self::RUTA_FOTO.$this->getFoto();
+    }
 
     /**
      * @return string

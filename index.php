@@ -19,6 +19,3 @@ Router::load(__DIR__.'/app/routes.php');
 
 
 App::get('router')->direct(Request::uri(), Request::method());
-/*$uri = trim($_SERVER['REQUEST_URI'],'/');
-
-require $routes[$uri];*/

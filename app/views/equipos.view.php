@@ -9,7 +9,7 @@
                     foreach ($equipos as $equipo):?>
                     <div class="card shadow" >
                         <a href="/equipos/<?=$equipo->getId()?>">
-                            <img src="/../images/equipos/<?= $equipo->getFoto()?>"  class="card-img-top" alt=""/>
+                            <img src="<?= $equipo->getPathFoto()?>"  class="card-img-top" alt=""/>
                                 <div class="card-body">
                                     <h2 class="card-title"><a href="/equipos/<?=$equipo->getId()?>"><?= $equipo->getNombre() ?></a></h2>
                                     <span class="actual" style="font-weight: bold;">Email:</span>

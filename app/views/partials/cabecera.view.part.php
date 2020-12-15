@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link href="../../../css/bootstrap.css" rel='stylesheet' type='text/css'/>
-    <link href="../../../css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="../../../public/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="../../../public/css/style.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--<script src="js/jquery.easydropdown.js"></script>-->
     <!--start slider -->
-    <link rel="stylesheet" href="../../../css/fwslider.css" media="all">
-    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.min.css"/>
+    <link rel="stylesheet" href="../../../public/css/fwslider.css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
     <!--end slider -->
 
 
@@ -24,7 +24,7 @@
 
     <nav class="navbar justify-content-between">
         <div>
-            <a href="/" class="navbar-brand"><img src="../../../images/logofutapp.png" alt=""/></a>
+            <a href="/" class="navbar-brand"><img src="../../../public/images/logofutapp.png" alt=""/></a>
             <a href="/" class="navbar-brand" style="font-size: 40px; font-family: Georgia; color: red;">FutApp</a>
         </div>
 
@@ -51,7 +51,7 @@
             </ul>
         <?php else :?>
             <ul class="nav">
-                <li><a href="/mi-perfil"> <img src="/images/users/<?=$usuario->getFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span style="color: white"><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout" style="color: white">Cerrar Sesión</a></li>
+                <li><a href="/my"> <img src="<?=$usuario->getPathFoto()?>" style="width: 80px; height: 80px; border-radius: 160px; border: 5px solid #666;" alt=""/> <span style="color: white"><?= $usuario->getNombre().' '.$usuario->getApellidos() ?></span></a> <a href="/logout" style="color: white">Cerrar Sesión</a></li>
             </ul>
 
 

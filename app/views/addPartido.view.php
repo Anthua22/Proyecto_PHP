@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <script src="/js/mine/addEquipo.js"></script>
+    <script src="/public/js/mine/addEquipo.js"></script>
 
 
 

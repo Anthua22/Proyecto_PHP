@@ -17,7 +17,7 @@
                 <div class="col">
                     <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>">
                         <img style="height: 150px; width: 120px;"
-                             src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getFoto() ?>"
+                             src="<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getPathFoto() ?>"
                              alt=""/>
 
                     </a>
@@ -27,7 +27,7 @@
                 <div class="col">
                     <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getId() ?>">
                         <img style="height: 150px; width: 120px;" class="equipo"
-                             src="../../images/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getFoto() ?>"
+                             src="<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getPathFoto() ?>"
                              alt=""/>
                     </a>
 
@@ -58,20 +58,16 @@
                     <div class="col">Resultado:</div>
                     <div class="col"><?= $partido->getResultado() ?></div>
                 </div>
+                <?php if(!is_null($usuario)&&$usuario->getRole()==='admin'):?>
+                <div style="text-align: center; margin-top: 5px;">
+                    <a href="/partidos/<?=$partido->getId()?>" class="btn btn-danger">Borrar</a>
+                </div>
+                <?php endif;?>
             </div>
 
         </div>
 
     <?php endforeach; ?>
-    <script>
 
-        function alerta(){
-            swal({
-                title: "¡ERROR!",
-                text: "Esto es un mensaje de error",
-                type: "error",
-            });
-        }
-        alerta();
-    </script>
+    <script src="public/js/deletepartido.js"></script>
 </div>

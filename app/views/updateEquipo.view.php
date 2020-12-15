@@ -1,7 +1,7 @@
 <div class="main">
     <div class="shop_top">
         <div class="container">
-            <h3 class="m_2 title">Asignar Partido</h3>
+            <h3 class="m_2 title">Editar Datos</h3>
             <div>
                 <div class="login-title">
                     <div id="loginbox" class="loginbox">
@@ -35,7 +35,7 @@
                                            class="form-control"
 
                                            autocomplete="off">
-                                    <img src="/images/equipos/<?= $equipo->getFoto() ?>">
+                                    <img src="<?= $equipo->getPathFoto() ?>">
                                 </p>
 
                                 <input type="submit" name="Submit" class="btn btn-primary" value="Editar">
@@ -51,6 +51,6 @@
         </div>
     </div>
 </div>
-<script src="/js/mine/addEquipo.js"></script>
+<script src="/public/js/mine/addEquipo.js"></script>
 
 

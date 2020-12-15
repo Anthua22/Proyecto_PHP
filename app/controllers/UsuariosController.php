@@ -6,6 +6,7 @@ use Exception;
 use FUTAPP\app\BLL\ImagenFutappBLL;
 use FUTAPP\app\entity\Usuarios;
 use FUTAPP\app\helpers\FlashMessage;
+use FUTAPP\app\repository\PartidoRepository;
 use FUTAPP\app\repository\UsuariosRepository;
 use FUTAPP\CORE\App;
 use FUTAPP\core\Response;
@@ -21,11 +22,23 @@ class UsuariosController
             $errorLogin = FlashMessage::get('error_login');
             Response::renderView('login', ['error_login'=>$errorLogin]);
         }else{
-            App::get('router')->redirect('/');
+            App::get('router')->redirect('');
         }
 
     }
 
+    public function showPartidos(){
+
+        $usuario = App::get('user');
+        $partidosRepository = new PartidoRepository();
+
+        $partidos = $partidosRepository->getPartidosArbitro($usuario->getId());
+
+        Response::renderView('mis-partidos',[
+            'partidos'=>$partidos
+        ]);
+
+    }
     public function logout()
     {
         $_SESSION['usuario'] = null;
@@ -80,7 +93,7 @@ class UsuariosController
                 $passconform = $_POST['passwordconfirm'];
 
                 if($pass === $passconform){
-                    $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/users');
+                    $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'public/images/users');
                     $imagenBLL->uploadImagen();
                     $foto = $imagenBLL->getUploadedFileName();
                     $passEncript = Security::encrypt($pass);
@@ -111,9 +124,7 @@ class UsuariosController
                 $usuariosRepository->getConnection()->rollBack();
             }
         }
-        else{
-            App::get('router')->redirect('');
-        }
+
 
     }
 }

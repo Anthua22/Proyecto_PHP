@@ -2,6 +2,7 @@
 
 namespace FUTAPP\core;
 use Exception;
+use FUTAPP\app\controllers\FutAppController;
 use FUTAPP\app\controllers\UsuariosController;
 
 class Router
@@ -31,9 +32,10 @@ class Router
         ];
     }
 
-    public function delete(string $uri, string $controller, string $action) {
+    public function delete(string $uri, string $controller, string $action, string $role='ROLE_ANONIMO') {
         $this->routes['DELETE'][$uri] = [
-            'controller' => $controller . '@' . $action
+            'controller' => $controller . '@' . $action,
+            'role'=>$role
         ];
     }
 
@@ -70,7 +72,7 @@ class Router
             }
         }
 
-
+        return $this->callAction(FutAppController::class,'notFound');
     }
 
 

@@ -5,6 +5,8 @@ use FUTAPP\core\database\IEntity;
 
 class Equipo implements IEntity
 {
+
+    const RUTA_FOTO='/../public/images/equipos/';
     private int $id;
     private string $nombre;
     private string $foto;
@@ -14,6 +16,10 @@ class Equipo implements IEntity
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getPathFoto():string{
+        return self::RUTA_FOTO.$this->getFoto();
     }
 
     /**

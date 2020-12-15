@@ -34,9 +34,8 @@ class Emails
     }
 
 
-    public function send()
+    public function sendDesignacion()
     {
-
         try {
             //Server settings
             $this->server->isSMTP();                                            // Send using SMTP
@@ -54,7 +53,6 @@ class Emails
             $this->server->addAddress(App::getRepository(PartidoRepository::class)->getEquipoVisitante($this->partido)->getCorreo());
 
 
-            $partido = $this->partido;
             $this->server->isHTML(true);                                  // Set email format to HTML
             $this->server->Subject = 'Notificacion de partido';
             $this->server->Body    = $this->body();

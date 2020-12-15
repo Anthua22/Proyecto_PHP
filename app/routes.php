@@ -19,17 +19,18 @@ $router->get('equipos/:id/update',EquiposController::class,'showFormUpdate','adm
 $router->get('login',UsuariosController::class,'login');
 $router->get('logout',UsuariosController::class,'logout');
 $router->get('register',FutAppController::class,'registerForm');
-$router->get('mis-partidos',UsuariosRepository::class,'addPartidoForm','arbitro');
+$router->get('mis-partidos',UsuariosController::class,'showPartidos','arbitro');
+$router->get('my',UsuariosController::class,'showPerfil','arbitro');
+
 
 $router->post('login',UsuariosController::class,'checkLogin');
 
-$router->get(
-    '/:id',
-    FutAppController::class,
-    'deleteJson'
-);
+
 
 $router->post('register',UsuariosController::class,'register');
 $router->post('equipos/:id/update',EquiposController::class,'update');
 $router->post('add-partido',FutAppController::class,'addPartido');
 $router->post('add-equipo',EquiposController::class,'addEquipo');
+
+
+$router->delete('partidos/:id',FutAppController::class,'deleteJson','arbitro');

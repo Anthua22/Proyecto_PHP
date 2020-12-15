@@ -84,7 +84,7 @@ abstract class  QueryBuilder
         return $this->table;
     }
 
-    public function find(int $id) : ?IEntity
+    public function find(string $id) : ?IEntity
     {
         $sql = "select * from $this->table where id=$id;";
         $pdoStatement = $this->connection->prepare($sql);

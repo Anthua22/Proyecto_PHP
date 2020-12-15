@@ -46,7 +46,7 @@ class EquiposController
             $nombre = trim(htmlspecialchars($_POST['nombreEquipo']));
             $correo = trim(htmlspecialchars($_POST['correoEquipo']));
             $arrayfile = $_FILES['imagen'];
-            $imagenBLL = new ImagenFutappBLL($arrayfile,'images/equipos');
+            $imagenBLL = new ImagenFutappBLL($arrayfile,'public/images/equipos');
             $direccion = trim(htmlspecialchars($_POST['direccion']));
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
@@ -77,11 +77,12 @@ class EquiposController
         $correo = $_POST['correo'];
         $equipo = new Equipo();
 
-        if(file_exists($_FILES['foto'])){
-            $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'images/equipos');
+        if(isset($_FILES['foto'])){
+            $imagenBLL = new ImagenFutappBLL($_FILES['foto'],'public/images/equipos');
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $equipo->setFoto($foto);
+            unlink(__DIR__ . '/../../public /images/equipos/' .$equipoantiguo->getFoto());
         }else{
             $equipo->setFoto($equipoantiguo->getFoto());
         }

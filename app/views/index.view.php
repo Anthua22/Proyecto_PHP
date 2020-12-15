@@ -2,11 +2,11 @@
     <div class="content-top">
         <h2>Próximos partidos</h2>
         <ul id="flexiselDemo3">
-            <li><img src="../../images/board1.jpg"/></li>
-            <li><img src="../../images/board2.jpg"/></li>
-            <li><img src="../../images/board3.jpg"/></li>
-            <li><img src="../../images/board4.jpg"/></li>
-            <li><img src="../../images/board5.jpg"/></li>
+            <li><img src="../../public/images/board1.jpg"/></li>
+            <li><img src="../../public/images/board2.jpg"/></li>
+            <li><img src="../../public/images/board3.jpg"/></li>
+            <li><img src="../../public/images/board4.jpg"/></li>
+            <li><img src="../../public/images/board5.jpg"/></li>
         </ul>
         <h3>SnowBoard Extreme Series</h3>
         <script type="text/javascript">
@@ -39,7 +39,7 @@
 
             });
         </script>
-        <script type="text/javascript" src="../../js/jquery.flexisel.js"></script>
+        <script type="text/javascript" src="../../public/js/jquery.flexisel.js"></script>
     </div>
 </div>
 
@@ -51,4 +51,4 @@
     </div>
 </div>
 
-<script src="/js/mine/partidos.js"></script>
+

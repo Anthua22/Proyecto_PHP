@@ -39,4 +39,12 @@ class PartidoRepository extends QueryBuilder
         $usuariosRepository = new UsuariosRepository();
         return $usuariosRepository->find($partido->getArbitro());
     }
+
+    public function getPartidosArbitro(int $id):array{
+        $sql = 'select * from partidos where arbitro = '.$id;
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
+    }
 }
