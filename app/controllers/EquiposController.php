@@ -19,8 +19,6 @@ class EquiposController
     {
         $equipoRespository = new EquiposRepository();
         $partidoRespository = new PartidoRepository();
-
-
         $equipo = $equipoRespository->find($id);
         $partidos = $partidoRespository->getPartidosUnEquipo($id);
         Response::renderView('show-equipo', [
@@ -41,7 +39,9 @@ class EquiposController
 
             $partidosParticipados = App::getRepository(EquiposRepository::class)->getAllPartidosEquipo($id);
 
-            $this->deleteAllPartidos($partidosParticipados);
+            if(isset($partidosParticipados)){
+                $this->deleteAllPartidos($partidosParticipados);
+            }
 
             $equipoRepository->delete($equipo);
             $equipoRepository->getConnection()->commit();
@@ -74,8 +74,6 @@ class EquiposController
     public function showFormUpdate(int $id)
     {
         $equipoRespository = new EquiposRepository();
-
-
         $equipo = $equipoRespository->find($id);
         Response::renderView('updateEquipo', [
             'equipo' => $equipo

@@ -7,7 +7,7 @@
              as $partido): ?>
         <div class="card shadow">
             <h4 class="card-title col" style="text-align: center; "><a
-                        href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
+                    href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
                 VS
                 <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getId() ?>"> <?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?></a>
             </h4>
@@ -56,15 +56,15 @@
                 </div>
 
                 <?php if(!is_null($usuario)): ?>
-                <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
-                <div style="text-align: center; margin-top: 5px;">
-                    <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
-                </div>
-                <?php elseif($usuario->getRole()==='admin'):?>
-                <div style="text-align: center; margin-top: 5px;">
-                    <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">Borrar</a>
-                </div>
-                <?php endif;?>
+                    <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
+                        <div style="text-align: center; margin-top: 5px;">
+                            <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
+                        </div>
+                    <?php elseif($usuario->getRole()==='admin'):?>
+                        <div style="text-align: center; margin-top: 5px;">
+                            <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">Borrar</a>
+                        </div>
+                    <?php endif;?>
                 <?php endif;?>
 
 
@@ -74,5 +74,5 @@
 
     <?php endforeach; ?>
 
-    <script src="public/js/index.js"></script>
+    <script src="public/js/asistencia.js"></script>
 </div>
