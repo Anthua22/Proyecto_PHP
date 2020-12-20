@@ -55,12 +55,12 @@
                     <div class="col"><?= $partido->getHoraCompleta() ?></div>
                 </div>
 
-                <?php if(!is_null($usuario) && $usuario->getRole() === 'admin' || $usuario->getId() === $partido->getArbitro()): ?>
+                <?php if(!is_null($usuario)): ?>
                 <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
                 <div style="text-align: center; margin-top: 5px;">
                     <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
                 </div>
-                <?php else :?>
+                <?php elseif($usuario->getRole()==='admin'):?>
                 <div style="text-align: center; margin-top: 5px;">
                     <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">Borrar</a>
                 </div>

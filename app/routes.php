@@ -25,10 +25,11 @@ $router->get('image-generate',UsuariosController::class,'generateCapcha');
 $router->get('mi-bandeja',UsuariosController::class,'showBandejaMensajes','arbitro');
 $router->get('perfil/:id',UsuariosController::class, 'perfil');
 $router->get('arbitros/:id/update',UsuariosController::class,'showupdate','arbitro');
+$router->get('arbitros/:id/updatepass',UsuariosController::class,'showupdatePass','arbitro');
 
 $router->post('login',UsuariosController::class,'checkLogin');
 $router->post('arbitros/:id/update',UsuariosController::class,'updatePerfil','arbitro');
-
+$router->post('arbitros/:id/updatepass',UsuariosController::class,'updatePass','arbitro');
 
 $router->post('register',UsuariosController::class,'register');
 $router->post('equipos/:id/update',EquiposController::class,'update');

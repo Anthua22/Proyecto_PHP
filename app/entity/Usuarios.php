@@ -182,4 +182,16 @@ class Usuarios implements IEntity
             'telefono'=>$this->getTelefono()
         ];
     }
+
+    public function toArrayInfo():array{
+        return [
+            'nombre'=>$this->getNombre(),
+            'apellidos'=>$this->getApellidos(),
+            'foto'=>$this->getFoto(),
+            'email'=>$this->getEmail(),
+            'role'=>$this->getRole(),
+            'telefono'=>$this->getTelefono()
+        ];
+
+    }
 }

@@ -39,9 +39,22 @@ class UsuariosController
         $_usuario = $equipoRespository->find($id);
 
         Response::renderView(
-            'updateuser', [
+            'updateuserinfo', [
                 '_usuario' => $_usuario,
                 'error' => $error
+            ]
+        );
+    }
+
+    public function showupdatePass()
+    {
+        $error = FlashMessage::get('error_pass');
+        $info = FlashMessage::get('update_userpass_ok');
+        Response::renderView(
+            'updatepass',
+            [
+                'error' => $error,
+                'info'=>$info
             ]
         );
     }
@@ -64,6 +77,34 @@ class UsuariosController
         ]);
     }
 
+    public function updatePass(string $id)
+    {
+        $usariosREpository = new UsuariosRepository();
+
+        $userantiguo = $usariosREpository->find($id);
+
+        $passantigua = htmlspecialchars($_POST['passantigua']);
+        $passnueva = htmlspecialchars($_POST['passnueva']);
+        $passnuevaconfirm = htmlspecialchars($_POST['passnuevaconfirm']);
+
+        if (Security::checkPassword(
+                $passantigua,
+                $userantiguo->getPassword()
+            ) === true) {
+            if ($passnueva === $passnuevaconfirm) {
+                $userantiguo->setPassword(Security::encrypt($passnueva));
+                $usariosREpository->update($userantiguo);
+                FlashMessage::set('update_userpass_ok', 'La contraseña se ha actuizado correctamente');
+
+            } else {
+                FlashMessage::set('error_pass', 'La contraseña nueva no coincide con la contraseña nueva de confirmación');
+            }
+        } else {
+            FlashMessage::set('error_pass', 'La contraseña introducida no coincide con la original');
+        }
+        App::get('router')->redirect("arbitros/$id/updatepass");
+    }
+
     public function updatePerfil(string $id)
     {
         $usariosREpository = new UsuariosRepository();
@@ -71,40 +112,44 @@ class UsuariosController
         $userantiguo = $usariosREpository->find($id);
 
         $correo = htmlspecialchars($_POST['correo']);
-        $pass = htmlspecialchars($_POST['password']);
-        $passconfirm = htmlspecialchars($_POST['confirmpassword']);
         $nombre = htmlspecialchars($_POST['nombre']);
         $apellidos = htmlspecialchars($_POST['apellidos']);
-        $foto = $_FILES['foto'] ?? '';
         $telefono = htmlspecialchars($_POST['telefono']);
         $rol = $_POST['role'] ?? '';
 
-        if ($pass === $passconfirm) {
-            $user = new Usuarios();
-            $user->setNombre($nombre);
-            $user->setApellidos($apellidos);
-            $user->setEmail($correo);
-            $user->setPassword(Security::encrypt($pass));
-            $user->setTelefono($telefono);
 
-            if (!is_null($rol)) {
-                $user->setRole('admin');
-            }
+        $user = new Usuarios();
+        $user->setNombre($nombre);
+        $user->setApellidos($apellidos);
+        $user->setEmail($correo);
+        $user->setPassword($userantiguo->getPassword());
+        $user->setTelefono($telefono);
 
-
-            $user->setRole($userantiguo->getRole());
-
-            $user->setId($userantiguo->getId());
-
-            $user->setFoto($userantiguo->getFoto());
-
-
-            $usariosREpository->update($user);
-            App::get('router')->redirect('arbitros/' . $user->getId() . '/update');
-        } else {
-            FlashMessage::set('error_update_perfil', 'Las contraseñas no coinciden');
-            App::get('router')->redirect('arbitros/' . $userantiguo->getId() . '/update');
+        if (!is_null($rol) || $rol !== '') {
+            $user->setRole('admin');
         }
+
+
+        $user->setRole($userantiguo->getRole());
+
+        $user->setId($userantiguo->getId());
+
+
+        if ($_FILES['foto']['name'] !== '') {
+            $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/users');
+            $imagenBLL->uploadImagen();
+            $foto = $imagenBLL->getUploadedFileName();
+            $user->setFoto($foto);
+            unlink(__DIR__ . '/../../public/images/equipos/' . $user->getFoto());
+        } else {
+            $user->setFoto($userantiguo->getFoto());
+        }
+
+        $usariosREpository->update($user);
+
+        FlashMessage::set('update_user_ok', 'Se ha actualizado correctamente');
+
+        App::get('router')->redirect('arbitros/' . $user->getId() . '/update');
 
 
     }
@@ -189,7 +234,7 @@ class UsuariosController
             if (Security::checkPassword(
                     $password,
                     $usuario->getPassword()
-                ) === true) {
+                ) === true && !is_null($usuario)) {
                 $_SESSION['usuario'] = $usuario->getId();
                 App::get('router')->redirect('');
             }
@@ -243,6 +288,7 @@ class UsuariosController
             die('No se ha podido eliminar el partido');
         }
     }
+
     public function generateCapcha()
     {
         $imagen = new GenerateCaptcha();

@@ -36,7 +36,6 @@
 
         <ul class="nav" id="nav">
 
-            <li><a href="/">Partidos</a></li>
             <li><a href="/equipos">Equipos</a></li>
             <li><a href="/arbitros">Arbitros</a></li>
             <?php if(!is_null($usuario) && $usuario->getRole()==='arbitro'):?>

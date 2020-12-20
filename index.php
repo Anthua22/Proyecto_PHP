@@ -5,7 +5,7 @@ use FUTAPP\CORE\App;
 use FUTAPP\core\Request;
 use FUTAPP\core\Router;
 
-require __DIR__.'/../core/bootstrap.php';
+require __DIR__ . '/core/bootstrap.php';
 
 
 if(isset($_SESSION['usuario'])){
@@ -15,7 +15,7 @@ if(isset($_SESSION['usuario'])){
 }
 App::bind('user',$usuario);
 
-Router::load(__DIR__.'/../app/routes.php');
+Router::load(__DIR__ . '/app/routes.php');
 
 
 App::get('router')->direct(Request::uri(), Request::method());

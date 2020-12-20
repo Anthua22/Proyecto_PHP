@@ -35,6 +35,32 @@ class UsuariosRepository extends QueryBuilder
         return $existe;
     }
 
+    public function updateInfo(Usuarios  $usuarios){
+
+        $parametros = $usuarios->toArrayInfo();
+
+        $campos = '';
+        foreach ($parametros as $nombre => $valor)
+            $campos .= "$nombre=:$nombre, ";
+        $campos = rtrim($campos, ', ');
+
+        $sql = sprintf(
+            "UPDATE %s set %s WHERE id = %s;",
+            $this->getTable(),
+            $campos,
+            $usuarios->getId()
+        );
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        return $pdoStatement->execute($parametros);
+    }
+
+    public function updatePass(Usuarios $usuarios){
+        $sql = "UPDATE ".$this->getTable()." set password = '".$usuarios->getPassword()."' where id = ".$usuarios->getId().';';
+
+        $pdostatement = $this->getConnection()->prepare($sql);
+        return $pdostatement->execute();
+    }
+
     public function getAllArbitros()
     {
         $sql = "select * from ".$this->getTable()." where role='arbitro';";

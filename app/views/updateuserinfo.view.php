@@ -56,20 +56,14 @@
                                         </select>
                                     <?php endif;?>
                                 </p>
+
                                 <p>
-                                    <label for="modlgn_nombre_equipo">Password</label>
-                                    <input id="modlgn_nombre_equipo" type="password" name="password"
+                                    <label for="modlgn_nombre_equipo">Imagen</label>
+                                    <input id="modlgn_nombre_equipo" type="file" name="foto"
                                            class="form-control"
                                            autocomplete="off">
+                                    <img style="margin-top: 20px;" src="<?= $usuario->getPathFoto() ?>">
                                 </p>
-                                <p>
-                                    <label for="modlgn_nombre_equipo">Confirmar password</label>
-                                    <input id="modlgn_nombre_equipo" type="password" name="confirmpassword"
-                                           class="form-control"
-                                           autocomplete="off">
-
-                                </p>
-
 
                                 <input type="submit" name="Submit" class="btn btn-primary" value="Editar">
                                 <div class="clear"></div>

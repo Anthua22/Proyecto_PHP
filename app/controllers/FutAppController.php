@@ -198,6 +198,8 @@ class FutAppController
         }
     }
 
+
+
     public function deleteJson(string $id)
     {
 
@@ -211,6 +213,7 @@ class FutAppController
         $admins = App::getRepository(UsuariosRepository::class)->getAllAdmins();
         $email->sendDeteAsignados($admins);
         header('Content-Type: application/json');
+
 
         echo json_encode([
             'error' => false,
