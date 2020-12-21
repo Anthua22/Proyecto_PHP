@@ -14,12 +14,15 @@ $router->get('equipos',FutAppController::class,'showEquipos');
 $router->get('arbitros',FutAppController::class,'showArbitros');
 $router->get('add-equipo',FutAppController::class,'formAddEquipo','admin');
 $router->get('add-partido',FutAppController::class,'addPartidoForm','admin');
+$router->get('mis-partidos/:id/terminado',FutAppController::class,'formResultObser','arbitro');
 $router->get('equipos/:id',EquiposController::class,'showEquipo');
 $router->get('equipos/:id/update',EquiposController::class,'showFormUpdate','admin');
 $router->get('login',UsuariosController::class,'login');
 $router->get('logout',UsuariosController::class,'logout');
 $router->get('register',FutAppController::class,'registerForm');
 $router->get('mis-partidos',UsuariosController::class,'showPartidos','arbitro');
+$router->get('mis-partidos/asc',UsuariosController::class,'filtroAsc','arbitro');
+$router->get('mis-partidos/desc',UsuariosController::class,'filtroDesc','arbitro');
 $router->get('my',UsuariosController::class,'showPerfil','arbitro');
 $router->get('image-generate',UsuariosController::class,'generateCapcha');
 $router->get('mi-bandeja',UsuariosController::class,'showBandejaMensajes','arbitro');
@@ -35,7 +38,7 @@ $router->post('register',UsuariosController::class,'register');
 $router->post('equipos/:id/update',EquiposController::class,'update');
 $router->post('add-partido',FutAppController::class,'addPartido');
 $router->post('add-equipo',EquiposController::class,'addEquipo');
-
+$router->post('mis-partidos/:id/terminado',FutAppController::class,'setResultObser','arbitro');
 $router->delete('perfil/:id',UsuariosController::class,'deleteJson','admin');
 $router->delete('partidos/:id',FutAppController::class,'deleteJson','arbitro');
 

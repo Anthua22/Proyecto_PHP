@@ -47,4 +47,20 @@ class PartidoRepository extends QueryBuilder
 
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
     }
+
+    public function getPartidosAsc(int $id):array{
+        $sql = 'select * from partidos where arbitro = '.$id.' order by fecha_encuentro asc;';
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
+    }
+
+    public function getPartidosDesc(int $id):array{
+        $sql = 'select * from partidos where arbitro = '.$id.' order by fecha_encuentro desc;';
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
+    }
 }

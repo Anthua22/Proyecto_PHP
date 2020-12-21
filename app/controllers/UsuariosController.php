@@ -37,11 +37,14 @@ class UsuariosController
         $error = FlashMessage::get('error_update_perfil');
 
         $_usuario = $equipoRespository->find($id);
+        $info = FlashMessage::get('update_user_ok');
+
 
         Response::renderView(
             'updateuserinfo', [
                 '_usuario' => $_usuario,
-                'error' => $error
+                'error' => $error,
+                'info'=>$info
             ]
         );
     }
@@ -147,7 +150,7 @@ class UsuariosController
 
         $usariosREpository->update($user);
 
-        FlashMessage::set('update_user_ok', 'Se ha actualizado correctamente');
+        FlashMessage::set('update_user_ok', 'Se ha actualizado la información correctamente');
 
         App::get('router')->redirect('arbitros/' . $user->getId() . '/update');
 
@@ -211,6 +214,25 @@ class UsuariosController
         ]);
 
     }
+
+    public function filtroAsc(){
+        $partidosRepository = new PartidoRepository();
+        $usuario = App::get('user');
+        $partidos = $partidosRepository->getPartidosAsc($usuario->getId());
+        Response::renderView('mis-partidos', [
+            'partidos' => $partidos
+        ]);
+    }
+
+    public function filtroDesc(){
+        $partidosRepository = new PartidoRepository();
+        $usuario = App::get('user');
+        $partidos = $partidosRepository->getPartidosDesc($usuario->getId());
+        Response::renderView('mis-partidos', [
+            'partidos' => $partidos
+        ]);
+    }
+
 
     public function logout()
     {

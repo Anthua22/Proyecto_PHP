@@ -48,15 +48,27 @@
                 </div>
                 <div class="row">
                     <div class="col">Fecha:</div>
-                    <div class="col"><?= $partido->getFecha() ?></div>
+                    <div class="col"><?= $partido->getFechaBD() ?></div>
                 </div>
                 <div class="row">
                     <div class="col">Hora:</div>
-                    <div class="col"><?= $partido->getHoraCompleta() ?></div>
+                    <div class="col"><?= $partido->getHoraCompletaBD() ?></div>
                 </div>
 
+                <div class="row">
+                    <div class="col">Resultado:</div>
+                    <div class="col"><?= $partido->getResultado() ?></div>
+                </div>
+
+                <?php if($partido->getObservaciones()!=='NAN'):?>
+                    <div class="row">
+                        <div class="col">Observaciones:</div>
+                        <div class="col"><?= $partido->getObservaciones() ?></div>
+                    </div>
+                <?php endif;?>
+
                 <?php if(!is_null($usuario)): ?>
-                <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
+                <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro() && $partido->getResultado()==='NAN'):?>
                 <div style="text-align: center; margin-top: 5px;">
                     <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
                 </div>

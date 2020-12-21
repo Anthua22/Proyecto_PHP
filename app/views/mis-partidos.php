@@ -7,7 +7,7 @@
              as $partido): ?>
         <div class="card shadow">
             <h4 class="card-title col" style="text-align: center; "><a
-                    href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
+                        href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getId() ?>"><?= App::getRepository(PartidoRepository::class)->getEquipoLocal($partido)->getNombre() ?></a>
                 VS
                 <a href="/equipos/<?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getId() ?>"> <?= App::getRepository(PartidoRepository::class)->getEquipoVisitante($partido)->getNombre() ?></a>
             </h4>
@@ -48,25 +48,38 @@
                 </div>
                 <div class="row">
                     <div class="col">Fecha:</div>
-                    <div class="col"><?= $partido->getFecha() ?></div>
+                    <div class="col"><?= $partido->getFechaBD() ?></div>
                 </div>
                 <div class="row">
                     <div class="col">Hora:</div>
-                    <div class="col"><?= $partido->getHoraCompleta() ?></div>
+                    <div class="col"><?= $partido->getHoraCompletaBD() ?></div>
                 </div>
 
-                <?php if(!is_null($usuario)): ?>
-                    <?php if($usuario->getRole() !== 'admin' && $usuario->getId() === $partido->getArbitro()):?>
-                        <div style="text-align: center; margin-top: 5px;">
-                            <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
-                        </div>
-                    <?php elseif($usuario->getRole()==='admin'):?>
-                        <div style="text-align: center; margin-top: 5px;">
-                            <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">Borrar</a>
-                        </div>
-                    <?php endif;?>
+                <?php if($partido->getResultado()!== 'NAN'):?>
+
+                <div class="row">
+                    <div class="col">Resultado:</div>
+                    <div class="col"><?= $partido->getResultado() ?></div>
+                </div>
                 <?php endif;?>
 
+                <?php if($partido->getObservaciones()!== 'NAN'):?>
+
+                    <div class="row">
+                        <div class="col">Observaciones:</div>
+                        <div class="col"><?= $partido->getObservaciones() ?></div>
+                    </div>
+                <?php endif;?>
+
+                <?php if($partido->getResultado()=== 'NAN'):?>
+                <div style="text-align: center; margin-top: 5px;">
+                    <a href="/partidos/<?= $partido->getId() ?>" class="btn btn-danger">No asistir</a>
+
+                </div>
+                <?php endif;?>
+                <div style="text-align: center; margin-top: 5px;">
+                    <a href="/mis-partidos/<?= $partido->getId() ?>/terminado" class="btn btn-success">Editar Partido</a>
+                </div>
 
             </div>
 
@@ -74,5 +87,5 @@
 
     <?php endforeach; ?>
 
-    <script src="public/js/asistencia.js"></script>
+    <script src="public/js/index.js"></script>
 </div>

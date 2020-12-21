@@ -16,8 +16,10 @@
                     <p style="font-weight: bold; font-size: 30px">Email:</p>
                     <p style="font-size: 20px"><?= $_usuario->getEmail() ?></p>
 
-                    <?php if ($_usuario->getId() === $usuario->getId() || $usuario->getRole() === 'admin'): ?>
+                    <?php if(!is_null($usuario)):?>
+                        <?php if ($_usuario->getId() === $usuario->getId() || $usuario->getRole() === 'admin'): ?>
                         <p style="font-weight: bold; font-size: 30px">Editar Perfil:</p>
+
                         <a href="/arbitros/<?= $_usuario->getId() ?>/update" class="btn btn-info">
                             Cambiar Datos
                         </a>
@@ -28,12 +30,12 @@
 
                         <?php if ($usuario->getRole() === 'admin' && $usuario->getRole() !== $_usuario->getRole() && $_usuario->getId() !== $usuario->getId()): ?>
 
-                            <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger btn-lg"
-                               style="margin-left: 100px;">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger">
+                                Borrar
                             </a>
                         <?php endif; ?>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endif;?>
 
                     <script src="/public/js/deleteUser.js"></script>
 

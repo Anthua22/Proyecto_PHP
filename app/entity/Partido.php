@@ -11,6 +11,42 @@ class Partido implements IEntity
     private int $arbitro;
     private int $equipoLocal;
     private int $equipoVisitante;
+    private string $resultado;
+    private  string $observaciones;
+
+    /**
+     * @return string
+     */
+    public function getResultado(): string
+    {
+        return $this->resultado;
+    }
+
+    /**
+     * @param string $resultado
+     */
+    public function setResultado(string $resultado): void
+    {
+        $this->resultado = $resultado;
+    }
+
+    /**
+     * @return string
+     */
+    public function getObservaciones(): string
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * @param string $observaciones
+     */
+    public function setObservaciones(string $observaciones): void
+    {
+        $this->observaciones = $observaciones;
+    }
+
+
 
 
 
@@ -19,15 +55,26 @@ class Partido implements IEntity
      */
     public function getFecha(): string
     {
-        $fecha = explode(' ',$this->getFechaEncuentro());
+        $fecha = explode('T',$this->getFechaEncuentro());
         return $fecha[0];
     }
 
+
+    public function getFechaBD(): string
+    {
+        $fecha = explode(' ',$this->getFechaEncuentro());
+        return $fecha[0];
+    }
     /**
      * @return string
      */
     public function getHoraCompleta(): string
     {
+        $fecha = explode('T',$this->getFechaEncuentro());
+        return $fecha[1];
+    }
+
+    public function getHoraCompletaBD():string{
         $fecha = explode(' ',$this->getFechaEncuentro());
         return $fecha[1];
     }
@@ -146,7 +193,9 @@ class Partido implements IEntity
             'fecha_encuentro'=>$this->getFechaEncuentro(),
             'arbitro'=>$this->getArbitro(),
             'equipoLocal'=>$this->getEquipoLocal(),
-            'equipoVisitante'=>$this->getEquipoVisitante()
+            'equipoVisitante'=>$this->getEquipoVisitante(),
+            'resultado'=>$this->getResultado(),
+            'observaciones'=>$this->getObservaciones()
         ];
     }
 }

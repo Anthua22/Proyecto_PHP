@@ -64,25 +64,12 @@
                                                autocomplete="off">
                                     </p>
                                     <p id="login-form-fecha">
-                                        <label for="modlgn_fecha">Fecha del encuentro</label>
-                                        <input id="modlgn_fecha" type="date" name="fecha" size="18"
+                                        <label for="modlgn_fecha">Fecha y hora del encuentro</label>
+                                        <input id="modlgn_fecha" type="datetime-local" name="fecha" size="18"
                                                value="<?=$fecha?>"
                                                autocomplete="off" required>
                                     </p>
-                                    <p id="login-form-hora">
-                                        <label for="modlgn_hora">Hora del encuentro</label>
 
-                                    <div>
-                                        <input id="modlgn_hora" type="number" name="hora" placeholder="00" size="18"
-                                               value="<?=$hora?>"
-                                               autocomplete="off" required>
-                                        <span>:</span>
-                                        <input id="modlgn_minuto" type="number" placeholder="00" name="minuto" size="18"
-                                               autocomplete="off"  value="<?=$minutos?>"
-                                               required>
-                                    </div>
-
-                                    </p>
                                     <input type="submit" name="Submit" class="button" value="Asignar">
                                     <div class="clear"></div>
 

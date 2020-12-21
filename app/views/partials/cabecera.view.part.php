@@ -1,3 +1,8 @@
+<?php
+
+use FUTAPP\app\helpers\Utils;
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -35,15 +40,15 @@
         </div>
 
         <ul class="nav" id="nav">
-
-            <li><a href="/equipos">Equipos</a></li>
-            <li><a href="/arbitros">Arbitros</a></li>
+            <li style="<?= Utils::isOpcionMenuActiva('index') ? 'background-color: yellow;':''?>"><a href="/">Partidos</a></li>
+            <li style="<?= Utils::isOpcionMenuActiva('equipos') ? 'background-color: yellow;':''?>"><a href="/equipos">Equipos</a></li>
+            <li style="<?= Utils::isOpcionMenuActivaInArray(['arbitros','perfil']) ? 'background-color: yellow;':''?>"><a href="/arbitros">Arbitros</a></li>
             <?php if(!is_null($usuario) && $usuario->getRole()==='arbitro'):?>
-            <li><a href="/mis-partidos">Mis Partidos</a></li>
+            <li style="<?= Utils::isOpcionMenuActiva('mis-partidos') ? 'background-color: yellow;':''?>"><a href="/mis-partidos">Mis Partidos</a></li>
             <?php endif;?>
             <?php if(!is_null($usuario)&&$usuario->getRole()==='admin'):?>
-            <li><a href="/add-equipo">Añadir Equipo</a></li>
-            <li><a href="/add-partido">Asignar Partido</a></li>
+            <li style="<?= Utils::isOpcionMenuActiva('add-equipo') ? 'background-color: yellow;':''?>"><a href="/add-equipo">Añadir Equipo</a></li>
+            <li style="<?= Utils::isOpcionMenuActiva('add-partido') ? 'background-color: yellow;':''?>"><a href="/add-partido">Asignar Partido</a></li>
 
             <?php endif;?>
         </ul>

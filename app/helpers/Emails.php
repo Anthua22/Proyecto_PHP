@@ -84,9 +84,7 @@ class Emails
 
             $this->server->isHTML(true);                                  // Set email format to HTML
             $this->server->Subject = 'Notificacion de eliminacion partido';
-
-
-
+            
 
             $this->server->Body    = $this->bodyEliminate();
 
@@ -102,8 +100,8 @@ class Emails
         $nombrelocal= App::getRepository(PartidoRepository::class)->getEquipoLocal($this->partido)->getNombre();
         $nombrevisitante = App::getRepository(PartidoRepository::class)->getEquipoVisitante($this->partido)->getNombre();
         $arbitro = App::getRepository(PartidoRepository::class)->getArbitro($this->partido)->getNombre().' '.App::getRepository(PartidoRepository::class)->getArbitro($this->partido)->getApellidos();
-        $fecha =$this->partido->getFecha();
-        $hora =$this->partido->getHoraCompleta();
+        $fecha =$this->partido->getFechaBD();
+        $hora =$this->partido->getHoraCompletaBD();
         $direccion = $this->partido->getDireccionEncuentro();
 
         $body ="<h1 style='align-content: center;'><b>Partido Elimindo</b></h1>

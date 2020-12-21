@@ -27,14 +27,13 @@ class FutAppController
         ]);
     }
 
-
     public function formAddEquipo()
     {
         $message = FlashMessage::get('partidoInsertSuccess');
         $message_error = FlashMessage::get('error_addEquipo');
-        Response::renderView('addEquipo',[
-            'success_EquipoInsert'=>$message,
-            'error_addEquipo'=>$message_error
+        Response::renderView('addEquipo', [
+            'success_EquipoInsert' => $message,
+            'error_addEquipo' => $message_error
         ]);
     }
 
@@ -46,14 +45,14 @@ class FutAppController
         $user = App::get('user');
         Response::renderView('equipos', [
             'equipos' => $equipos,
-            '_user'=>$user
+            '_user' => $user
         ]);
     }
 
     public function registerForm()
     {
         $usuario = App::get('user');
-        if(is_null($usuario)){
+        if (is_null($usuario)) {
             $error = FlashMessage::get('error-register');
             $nombre = FlashMessage::get('nombreuser');
             $apellidos = FlashMessage::get('apellidosuser');
@@ -61,16 +60,16 @@ class FutAppController
             $telefono = FlashMessage::get('telefonouser');
             $fecha = FlashMessage::get('fechanacimientouser');
 
-            Response::renderView('register',[
-                'nombre'=>$nombre,
-                'apellidos'=>$apellidos,
-                'email'=>$email,
-                'telefono'=>$telefono,
-                'fecha' =>$fecha,
-                'error'=>$error
+            Response::renderView('register', [
+                'nombre' => $nombre,
+                'apellidos' => $apellidos,
+                'email' => $email,
+                'telefono' => $telefono,
+                'fecha' => $fecha,
+                'error' => $error
 
             ]);
-        }else{
+        } else {
             App::get('router')->redirect('');
         }
 
@@ -78,8 +77,8 @@ class FutAppController
 
     public function notFound()
     {
-        header ('HTTP/1.1 404 Not Found', true, 404);
-        Response:: renderView ('404');
+        header('HTTP/1.1 404 Not Found', true, 404);
+        Response:: renderView('404');
     }
 
     public function showArbitros()
@@ -95,8 +94,6 @@ class FutAppController
     {
 
         $errorAddPartido = FlashMessage::get('error_addPartido');
-        $hora = FlashMessage::get('hora');
-        $minutos = FlashMessage::get('minutos');
         $fecha = FlashMessage::get('fecha');
         $arbitro = FlashMessage::get('arbitro');
         $equipolocal = FlashMessage::get('equipolocalSeleccionado');
@@ -111,13 +108,11 @@ class FutAppController
             'arbitros' => $arbitros,
             'equipos' => $equipos,
             'error_addPartido' => $errorAddPartido,
-            'hora' => $hora,
             'fecha' => $fecha,
-            'minutos' => $minutos,
             'equipolocalSeleccionado' => $equipolocal,
             'arbitroSeleccionado' => $arbitro,
             'direccion' => $direccion,
-            'success_partidoInsert'=>$messagesuccess
+            'success_partidoInsert' => $messagesuccess
         ]);
     }
 
@@ -148,15 +143,12 @@ class FutAppController
             $arbitro = trim(htmlspecialchars($_POST['arbitros']));
             $direccion = trim(htmlspecialchars($_POST['direccion']));
             $fecha = $_POST['fecha'];
-            $hora = $_POST['hora'];
-            $minutos = $_POST['minuto'];
+
 
             if ($equipoLocal === $equipoVisitante) {
                 $error_addPartido = 'El equipo local no puede ser el mismo que el equipo visitante!!';
                 FlashMessage::set('error_addPartido', $error_addPartido);
                 FlashMessage::set('fecha', $fecha);
-                FlashMessage::set('hora', $hora);
-                FlashMessage::set('minutos', $minutos);
                 FlashMessage::set('arbitro', $arbitro);
                 FlashMessage::set('direccion', $direccion);
                 FlashMessage::set('equipolocalSeleccionado', $equipoLocal);
@@ -166,10 +158,10 @@ class FutAppController
                 $partido->setDireccionEncuentro($direccion);
                 $partido->setEquipoLocal($equipoLocal);
                 $partido->setEquipoVisitante($equipoVisitante);
-                $fecha_completo = $fecha . ' ' . $hora . ':' . $minutos . ':00';
-                $partido->setFechaEncuentro($fecha_completo);
+                $partido->setFechaEncuentro($fecha);
                 $partido->setArbitro($arbitro);
-
+                $partido->setResultado('NAN');
+                $partido->setObservaciones('NAN');
                 $partidoRepository->save($partido);
                 $partidoRepository->getConnection()->commit();
 
@@ -180,7 +172,7 @@ class FutAppController
 
 
                 $message = "El partido se ha asignado correctamente y se ha confirmado por correo electrónico";
-                FlashMessage::set('partidosuccess',$message);
+                FlashMessage::set('partidosuccess', $message);
 
 
             }
@@ -190,15 +182,19 @@ class FutAppController
             $partidoRepository->getConnection()->rollBack();
             FlashMessage::set('error_addPartido', $exception->getMessage());
             FlashMessage::set('fecha', $fecha);
-            FlashMessage::set('hora', $hora);
-            FlashMessage::set('minutos', $minutos);
             FlashMessage::set('arbitro', $arbitro);
             FlashMessage::set('direccion', $direccion);
             FlashMessage::set('equipolocalSeleccionado', $equipoLocal);
         }
     }
 
-
+    public function formResultObser(string $id){
+        $partidoRepository = new PartidoRepository();
+        $partido = $partidoRepository->find($id);
+        Response::renderView('setResultObservacione',[
+            'partido'=>$partido
+        ]);
+    }
 
     public function deleteJson(string $id)
     {
@@ -220,5 +216,30 @@ class FutAppController
             'mensaje' => "El partido $local vs $visitante   se ha eliminado correctamente"
         ]);
     }
+
+    public function setResultObser(string $id){
+        $partidoRepository = new PartidoRepository();
+        $partido = $partidoRepository->find($id);
+
+        $goleslocales = $_POST['goleslocales'] ?? 0;
+        $golesvisitantes = $_POST['golesvisitantes'] ?? 0;
+
+        $observaciones = $_POST['observaciones'] ?? 'NAN';
+
+        if($observaciones===''){
+            $observaciones='NAN';
+        }
+
+        $partido->setResultado($goleslocales.'-'.$golesvisitantes);
+        $partido->setObservaciones($observaciones);
+
+        $partidoRepository->update($partido);
+
+        App::get('router')->redirect('mis-partidos');
+
+
+
+    }
+
 
 }

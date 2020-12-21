@@ -10,6 +10,12 @@
                                 <?= 'ERROR: ' . $error . ' ' ?>
                             </div>
                         <?php endif;?>
+
+                        <?php if($info!==''&&!is_null($info)):?>
+                            <div class="alert alert-success" role="alert">
+                                <?= 'INFO: ' . $info . ' ' ?>
+                            </div>
+                        <?php endif;?>
                         <form action="" method="post" name="login" id="login-form" enctype="multipart/form-data">
                             <fieldset class="input">
 
@@ -62,7 +68,7 @@
                                     <input id="modlgn_nombre_equipo" type="file" name="foto"
                                            class="form-control"
                                            autocomplete="off">
-                                    <img style="margin-top: 20px;" src="<?= $usuario->getPathFoto() ?>">
+                                    <img style="margin-top: 20px;" src="<?= $_usuario->getPathFoto() ?>">
                                 </p>
 
                                 <input type="submit" name="Submit" class="btn btn-primary" value="Editar">
