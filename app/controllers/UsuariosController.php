@@ -17,7 +17,7 @@ use FUTAPP\core\Response;
 use FUTAPP\CORE\Security;
 
 
-class UsuariosController
+class   UsuariosController
 {
     public function login()
     {
@@ -157,49 +157,8 @@ class UsuariosController
 
     }
 
-    public function showBandejaMensajes()
-    {
 
-        $mensajeRepository = new MensajeRepository();
 
-        $user = App::get('user');
-        if (!is_null($user)) {
-            $mensajes = $mensajeRepository->getAllMensajeUser($user->getId());
-            $contacts = $this->showOneContact($mensajes);
-
-            Response::renderView('mensajes', [
-                'mensajes' => $mensajes
-            ]);
-        }
-
-    }
-
-    private function showOneContact(array $mensajes)
-    {
-        $contacts = [];
-
-        $usuarios = App::getRepository(UsuariosRepository::class)->findAll();
-        foreach ($mensajes as $mensaje) {
-            foreach ($usuarios as $usuario) {
-                if ($mensaje->getEmisor() === $usuario->getId() || $mensaje->getReceptor() === !$this->checkExist($contacts, $usuario->getId())) {
-                    $contacts .= $usuario;
-                }
-            }
-        }
-
-        return $contacts;
-    }
-
-    private function checkExist(array $mensajes, int $id)
-    {
-        $existe = false;
-        foreach ($mensajes as $mensaje) {
-            if ($mensaje->getId() === $id) {
-                $existe = true;
-            }
-        }
-        return $existe;
-    }
 
     public function showPartidos()
     {
@@ -275,41 +234,50 @@ class UsuariosController
         Response::renderView('403');
     }
 
-
-    public function deleteJson(string $id)
+    private function deletePartidos(array $partidos)
     {
-
-        $usariosRepository = new UsuariosRepository();
-        $usariosRepository->getConnection()->beginTransaction();
-
-        $usuario = $usariosRepository->find($id)->getNombre();
-        $this->deleteUser($id);
-
-        header('Content-Type: application/json');
-
-        echo json_encode([
-            'error' => false,
-            'mensaje' => "El partido $usuario  se ha eliminado correctamente"
-        ]);
+        foreach ($partidos as $partido) {
+            App::getRepository(PartidoRepository::class)->delete($partido);
+        }
     }
 
 
-    private function deleteUser(string $id)
+    private function deleteMensajes(array $mensajes)
     {
-        try {
+        foreach ($mensajes as $mensaje) {
+            App::getRepository(MensajeRepository::class)->delete($mensaje);
+        }
+    }
+    public function deleteJson(string $id)
+    {
+        try{
             $usariosRepository = new UsuariosRepository();
             $usariosRepository->getConnection()->beginTransaction();
 
             $usuario = $usariosRepository->find($id);
 
-            $usariosRepository->delete($usuario);
+            $partidos = App::getRepository(PartidoRepository::class)->getAllPartidosArbitro($usuario->getId());
+            $mensajes = App::getRepository(MensajeRepository::class)->getMensajesUser($usuario->getId());
 
+            $this->deletePartidos($partidos);
+            $this->deleteMensajes($mensajes);
+            $rs=$usariosRepository->delete($usuario);
             $usariosRepository->getConnection()->commit();
-        } catch (Exception $exception) {
-            $usuario->getConnection()->rollBack();
-            die('No se ha podido eliminar el partido');
+            $nombre = $usuario->getNombre().' '.$usuario->getApellidos();
+            header('Content-Type: application/json');
+
+            echo json_encode([
+                'error' => false,
+                'mensaje' => "El arbitro $nombre se ha eliminado correctamente"
+            ]);
+        }catch (Exception $ex){
+            $usariosRepository->getConnection()->rollBack();
+            die('No se ha podido eliminar el equipo');
         }
+
     }
+
+
 
     public function generateCapcha()
     {

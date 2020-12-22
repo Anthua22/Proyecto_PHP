@@ -16,6 +16,15 @@ class PartidoRepository extends QueryBuilder
         parent::__construct('partidos',Partido::class);
     }
 
+    public function getAllPartidosArbitro(string $id)
+    {
+        $sql = "select * from partidos where arbitro = ".$id;
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
+
+    }
+
     public function getPartidosUnEquipo(int $id):array
     {
         $sql = 'select * from partidos where equipoLocal = '.$id.' or equipoVisitante = '.$id;

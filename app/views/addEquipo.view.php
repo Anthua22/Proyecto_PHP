@@ -5,7 +5,7 @@
                 <div class="login-title">
                     <h3 class="m_2 title">Añadir un Equipo a la competición</h3>
                     <div id="loginbox" class="loginbox">
-                        <form action="/add-equipo" method="post" enctype="multipart/form-data">
+                        <form action="/add-equipo" method="post" id="form" enctype="multipart/form-data">
                             <fieldset class="input">
                                 <?php if ($error_addEquipo !== '' || $success_EquipoInsert !== ''): ?>
                                     <?php if ($error_addEquipo !== ''): ?>
@@ -27,9 +27,11 @@
                                 </p>
                                 <p id="login-form-foto">
                                     <label for="modlgn_foto">Foto</label>
-                                    <input id="modlgn_foto" type="file" name="imagen" required>
+                                    <input id="modlgn_foto" type="file" name="image" required>
                                 </p>
-
+                                <p>
+                                    <img src="" id="imgPreview" style="display: none;"/>
+                                </p>
                                 <p id="login-form-email">
                                     <label for="modlgn_email">Email</label>
                                     <input id="modlgn_username" type="email" name="correoEquipo" class="inputbox"

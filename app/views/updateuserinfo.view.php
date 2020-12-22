@@ -16,7 +16,7 @@
                                 <?= 'INFO: ' . $info . ' ' ?>
                             </div>
                         <?php endif;?>
-                        <form action="" method="post" name="login" id="login-form" enctype="multipart/form-data">
+                        <form action="" method="post" name="login" id="form" enctype="multipart/form-data">
                             <fieldset class="input">
 
                                 <p id="login-form-username">
@@ -65,10 +65,10 @@
 
                                 <p>
                                     <label for="modlgn_nombre_equipo">Imagen</label>
-                                    <input id="modlgn_nombre_equipo" type="file" name="foto"
+                                    <input id="modlgn_nombre_equipo" type="file" name="image"
                                            class="form-control"
                                            autocomplete="off">
-                                    <img style="margin-top: 20px;" src="<?= $_usuario->getPathFoto() ?>">
+                                    <img id="imgPreview" style="margin-top: 20px;" src="<?= $_usuario->getPathFoto() ?>">
                                 </p>
 
                                 <input type="submit" name="Submit" class="btn btn-primary" value="Editar">

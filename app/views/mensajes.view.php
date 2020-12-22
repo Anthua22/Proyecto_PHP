@@ -2,173 +2,117 @@
     <div class="messaging">
         <div class="inbox_msg">
             <div class="inbox_people">
-                <div class="headind_srch">
-                    <div class="recent_heading">
-                        <h4>Recientes</h4>
-                    </div>
-                    <div class="srch_bar">
-                        <div class="stylish-input-group">
-                            <input type="text" class="search-bar" placeholder="Search">
-                            <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span></div>
-                    </div>
-                </div>
-                <div class="inbox_chat">
-                    <?php if (isset($mensajes)): ?>
-                        <?php foreach ($contactos as $contacto): ?>
-                            <div class="chat_list">
-                                <a href="">
-                                    <div class="chat_people">
-                                        <div class="chat_img"><img src="<?= $contacto->getPathFoto()?>"
-                                                                   alt="sunil"></div>
-                                        <div class="chat_ib">
-                                            <h5><?= $contacto->getNombre()?> <span class="chat_date"><?= $mensaje->getHora()->format('d/m/Y H:i:s')?></span></h5>
-                                            <p><?= $mensaje->getMensaje()?></p>
-                                        </div>
-                                    </div>
-                                </a>
 
-                            </div>
+                <div class="inbox_chat">
+                    <?php use FUTAPP\app\repository\UsuariosRepository;
+                    use FUTAPP\core\App;
+
+                        if (!is_null($emisores)&& count($emisores) >= 1): ?>
+                        <?php foreach ($emisores as $emisore): ?>
+
+                            <?php if ($emisore->getEmisor() !== $usuario->getId()): ?>
+                                <div class="chat_list <?= \FUTAPP\app\helpers\Utils::isOpcionMenuActiva($emisore->getEmisor() . '') ? 'active_chat' : '' ?>">
+                                    <a href="/mensajes/mis-mensajes/<?= App::getRepository(\FUTAPP\app\repository\UsuariosRepository::class)->find($emisore->getEmisor())->getId() ?>">
+                                        <div class="chat_people">
+                                            <div class="chat_img">
+                                                <img src="<?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getPathFoto() ?>"
+                                                     alt="sunil">
+                                            </div>
+                                            <div class="chat_ib">
+                                                <h5><?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getNombre() ?>
+
+                                                </h5>
+
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                            <?php elseif($emisore->getReceptor() !== $usuario->getId()):?>
+                                <div class="chat_list <?= \FUTAPP\app\helpers\Utils::isOpcionMenuActiva($emisore->getReceptor() . '') ? 'active_chat' : '' ?>">
+                                    <a href="/mensajes/mis-mensajes/<?= App::getRepository(\FUTAPP\app\repository\UsuariosRepository::class)->find($emisore->getReceptor())->getId() ?>">
+                                        <div class="chat_people">
+                                            <div class="chat_img">
+                                                <img src="<?= App::getRepository(UsuariosRepository::class)->find($emisore->getReceptor())->getPathFoto() ?>"
+                                                     alt="sunil">
+                                            </div>
+                                            <div class="chat_ib">
+                                                <h5><?= App::getRepository(UsuariosRepository::class)->find($emisore->getReceptor())->getNombre() ?>
+
+                                                </h5>
+
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            <?php endif; ?>
+
                         <?php endforeach; ?>
-                    <?php else :?>
+                    <?php else : ?>
                         <div class="chat_list">
                             No tienes ningun mensaje
                         </div>
                     <?php endif; ?>
 
-                    <!--<div class="chat_list active_chat">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                       alt="sunil"></div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
-            <div class="mesgs">
-                <div class="msg_history">
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                           alt="sunil"></div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                        </div>
-                    </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Test which is a new approach to have all
-                                solutions</p>
-                            <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                           alt="sunil"></div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test, which is a new approach to have</p>
-                                <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-                        </div>
-                    </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Apollo University, Delhi, India Test</p>
-                            <span class="time_date"> 11:01 AM    |    Today</span></div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png"
-                                                           alt="sunil"></div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>We work directly with our designers and suppliers,
-                                    and sell direct to you, which means quality, exclusive
-                                    products, at a price anyone can afford.</p>
-                                <span class="time_date"> 11:01 AM    |    Today</span></div>
-                        </div>
-                    </div>
-                </div>
-                <form class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="text" class="write_msg" placeholder="Type a message"/>
+            <?php if (!is_null($mensajesChat)): ?>
+                <?php if (count($mensajesChat) >= 1): ?>
 
+                    <div class="mesgs">
+
+                        <div class="msg_history">
+                            <?php foreach ($mensajesChat as $item): ?>
+                                <?php if ($item->getEmisor() === $usuario->getId() || $item->getReceptor() === $usuario->getId()): ?>
+                                    <div class="outgoing_msg">
+                                        <div class="sent_msg">
+                                            <p><?= $item->getMensaje() ?></p>
+                                            <span class="time_date"> <?= $item->getHora() ?></span></div>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($item->getReceptor() === $usuario->getId()): ?>
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"><img
+                                                    src="<?= App::getRepository(UsuariosRepository::class)->find($item->getEmisor())->getPathFoto() ?>"
+                                                    alt="sunil"></div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p><?= $item->getMensaje() ?></p>
+                                                <span class="time_date"> <?= $item->getHora() ?></span></div>
+                                        </div>
+
+
+                                    </div>
+
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+
+                        </div>
+
+                        <form class="type_msg" method="post">
+                            <div class="input_msg_write">
+                                    <input type="text" class="write_msg" name="mensaje" required
+                                       placeholder="Type a message"/>
+
+                            </div>
+                            <input class="msg_send_btn" type="submit" value="→">
+
+                        </form>
                     </div>
-                    <input class="msg_send_btn" type="submit"><i
-                            aria-hidden="true"></i></input>
-                </form>
-            </div>
+
+                <?php endif; ?>
+            <?php else: ?>
+                <div class="mesgs">
+                    <div class="msg_history">
+                        Selecciona un chat
+                    </div>
+                </div>
+            <?php endif; ?>
+
+
         </div>
 
     </div>

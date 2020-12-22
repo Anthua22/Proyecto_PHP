@@ -22,4 +22,6 @@ class EquiposRepository extends QueryBuilder
         $pdoStatement->execute();
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Partido::class);
     }
+
+
 }

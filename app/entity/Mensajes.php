@@ -20,11 +20,7 @@ class Mensajes implements IEntity
      */
     public function __construct()
     {
-        if (is_null($this->hora)){
-            $this->hora = new DateTime();
-        }else{
-            $this->hora = new DateTime($this->hora);
-        }
+
 
     }
 
@@ -87,7 +83,7 @@ class Mensajes implements IEntity
     /**
      * @return mixed
      */
-    public function getHora():DateTime
+    public function getHora():string
     {
         return $this->hora;
     }

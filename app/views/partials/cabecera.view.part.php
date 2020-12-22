@@ -25,6 +25,7 @@ use FUTAPP\app\helpers\Utils;
     <script src="/public/css/partidos.css"></script>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/public/js/comun.js"></script>
     <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.css"/>
     <!--end slider -->
 

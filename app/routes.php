@@ -3,8 +3,8 @@
 
 use FUTAPP\app\controllers\EquiposController;
 use FUTAPP\app\controllers\FutAppController;
+use FUTAPP\app\controllers\MensajesController;
 use FUTAPP\app\controllers\UsuariosController;
-use FUTAPP\app\repository\UsuariosRepository;
 use FUTAPP\core\App;
 
 $router = App::get('router');
@@ -29,17 +29,21 @@ $router->get('mi-bandeja',UsuariosController::class,'showBandejaMensajes','arbit
 $router->get('perfil/:id',UsuariosController::class, 'perfil');
 $router->get('arbitros/:id/update',UsuariosController::class,'showupdate','arbitro');
 $router->get('arbitros/:id/updatepass',UsuariosController::class,'showupdatePass','arbitro');
+$router->get('mensajes/:id/mis-mensajes',MensajesController::class,'showMensajes','arbitro');
+$router->get('mensajes/mis-mensajes/:id',MensajesController::class,'showChat','arbitro');
+$router->get('mensajes/:id',MensajesController::class,'sendOneMessageForm','arbitro');
 
+$router->post('mensajes/:id',MensajesController::class,'sendOneMessage','arbitro');
 $router->post('login',UsuariosController::class,'checkLogin');
 $router->post('arbitros/:id/update',UsuariosController::class,'updatePerfil','arbitro');
 $router->post('arbitros/:id/updatepass',UsuariosController::class,'updatePass','arbitro');
-
+$router->post('mensajes/mis-mensajes/:id',MensajesController::class,'send','arbitro');
 $router->post('register',UsuariosController::class,'register');
 $router->post('equipos/:id/update',EquiposController::class,'update');
 $router->post('add-partido',FutAppController::class,'addPartido');
 $router->post('add-equipo',EquiposController::class,'addEquipo');
 $router->post('mis-partidos/:id/terminado',FutAppController::class,'setResultObser','arbitro');
-$router->delete('perfil/:id',UsuariosController::class,'deleteJson','admin');
+$router->delete('arbitros/:id',UsuariosController::class,'deleteJson','admin');
 $router->delete('partidos/:id',FutAppController::class,'deleteJson','arbitro');
 
 $router->delete('equipos/:id',EquiposController::class,'deleteJson','admin');

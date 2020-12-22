@@ -9,7 +9,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/register" method="post" enctype="multipart/form-data">
+            <form action="/register" method="post" id="form" enctype="multipart/form-data">
                 <div style="margin: 10px;">
                     <h3>Información Personal</h3>
 
@@ -35,7 +35,8 @@
                         </div>
                         <div class="col">
                             <span>Foto<label>*</label></span>
-                            <input type="file"  name="foto" required>
+                            <input type="file"  name="image" required>
+                            <img src="" id="imgPreview" style="display: none;"/>
                         </div>
                     </div>
                     <div class="row">

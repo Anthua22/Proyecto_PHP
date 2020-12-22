@@ -16,28 +16,31 @@
                     <p style="font-weight: bold; font-size: 30px">Email:</p>
                     <p style="font-size: 20px"><?= $_usuario->getEmail() ?></p>
 
-                    <?php if(!is_null($usuario)):?>
+                    <?php if (!is_null($usuario)): ?>
                         <?php if ($_usuario->getId() === $usuario->getId() || $usuario->getRole() === 'admin'): ?>
-                        <p style="font-weight: bold; font-size: 30px">Editar Perfil:</p>
+                            <p style="font-weight: bold; font-size: 30px">Editar Perfil:</p>
 
-                        <a href="/arbitros/<?= $_usuario->getId() ?>/update" class="btn btn-info">
-                            Cambiar Datos
-                        </a>
-
-                        <a href="/arbitros/<?= $_usuario->getId() ?>/updatepass" class="btn btn-info">
-                            Cambir Contraseña
-                        </a>
-
-                        <?php if ($usuario->getRole() === 'admin' && $usuario->getRole() !== $_usuario->getRole() && $_usuario->getId() !== $usuario->getId()): ?>
-
-                            <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger">
-                                Borrar
+                            <a href="/arbitros/<?= $_usuario->getId() ?>/update" class="btn btn-info">
+                                Cambiar Datos
                             </a>
-                        <?php endif; ?>
-                        <?php endif; ?>
-                    <?php endif;?>
+              <?php if ($usuario->getId() == $_usuario->getId()):?>
+                            <a href="/arbitros/<?= $_usuario->getId() ?>/updatepass" class="btn btn-warning">
+                                Cambir Contraseña
+                            </a>
+                            <?php endif;?>
+                           
+                            <?php if ($usuario->getRole() === 'admin' && $usuario->getRole() !== $_usuario->getRole() && $_usuario->getId() !== $usuario->getId()): ?>
 
-                    <script src="/public/js/deleteUser.js"></script>
+                                <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger">
+                                    Borrar
+                                </a>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+
+                    <?php endif; ?>
+
+                    <script src="/public/js/userDelete.js"></script>
 
 
                 </div>
