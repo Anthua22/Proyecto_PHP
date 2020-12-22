@@ -6,7 +6,7 @@ use FUTAPP\core\database\IEntity;
 class Equipo implements IEntity
 {
 
-    const RUTA_FOTO='/../public/images/equipos/';
+    const RUTA_FOTO='/images/equipos/';
     private int $id;
     private string $nombre;
     private string $foto;

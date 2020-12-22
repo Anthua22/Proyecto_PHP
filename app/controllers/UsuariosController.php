@@ -69,13 +69,11 @@ class   UsuariosController
         $partidosRepository = new PartidoRepository();
         $user = $usarioRepository->find($id);
         $userid = $user->getId();
-        $partidos = $partidosRepository->findOneBy([
-            'arbitro' => $userid
-        ]);
+
 
 
         Response::renderView('perfil', [
-            'partidos' => $partidos,
+
             '_usuario' => $user
         ]);
     }

@@ -6,7 +6,7 @@ use FUTAPP\core\database\IEntity;
 
 class Usuarios implements IEntity
 {
-    const RUTA_FOTO='/../public/images/users/';
+    const RUTA_FOTO='/images/users/';
 
     private int $id;
     private string $password;
