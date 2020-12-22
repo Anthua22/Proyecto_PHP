@@ -23,8 +23,8 @@ class MensajesController
         $user = App::get('user');
         if (!is_null($user)) {
 
-            $emisores = $mensajeRepository->getMensajeReceptor();
-            $mensajes = $mensajeRepository->getAllMensajeUser($emisores);
+            $emisores = $mensajeRepository->getMensajes('-1');
+            $mensajes = $mensajeRepository->getAllMensajeUser($emisores,'-1','0');
 
             $mff = null;
             Response::renderView('mensajes', [
@@ -57,16 +57,9 @@ class MensajesController
         $mensaje = $mensajeRepository->find($id);
 
         $user = App::get('user');
-        $idemisor=0;
-        if($mensaje->getEmisor()!==$user->getId()){
-            $idemisor = $mensaje->getEmisor();
-        }else{
-            $idemisor = $mensaje->getReceptor();
-        }
 
 
-        $emisores = $mensajeRepository->getMensajes($mensaje);
-        $emisoresReales = $mensajeRepository->getEmisores($idemisor);
+        $emisores = $mensajeRepository->getMensajes(DistinctEmisor::class,$mensaje);
         $mensajesss = $mensajeRepository->getAllMensajeUser($emisores,$mensaje->getEmisor().'',$mensaje->getReceptor().'');
         $mensajes = $mensajeRepository->getMensajeChat($mensaje);
         $mg = '';
@@ -75,7 +68,7 @@ class MensajesController
             'mensajesChat' => $mensajes,
             'mensajes' => $mensajesss,
             'mensajeSelecionado' => $mg,
-            "emisores" => $emisoresReales
+            "emisores" => $emisores
         ]);
     }
 

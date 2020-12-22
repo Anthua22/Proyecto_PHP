@@ -87,7 +87,7 @@ class EquiposController
             $equipoRespository->getConnection()->beginTransaction();
             $nombre = trim(htmlspecialchars($_POST['nombreEquipo']));
             $correo = trim(htmlspecialchars($_POST['correoEquipo']));
-            $arrayfile = $_FILES['imagen'];
+            $arrayfile = $_FILES['image'];
             $imagenBLL = new ImagenFutappBLL($arrayfile, 'public/images/equipos');
             $direccion = trim(htmlspecialchars($_POST['direccion']));
             $imagenBLL->uploadImagen();

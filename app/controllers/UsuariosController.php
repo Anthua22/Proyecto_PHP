@@ -138,8 +138,8 @@ class   UsuariosController
         $user->setId($userantiguo->getId());
 
 
-        if ($_FILES['foto']['name'] !== '') {
-            $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/users');
+        if ($_FILES['image']['name'] !== '') {
+            $imagenBLL = new ImagenFutappBLL($_FILES['image'], 'public/images/users');
             $imagenBLL->uploadImagen();
             $foto = $imagenBLL->getUploadedFileName();
             $user->setFoto($foto);
@@ -316,7 +316,7 @@ class   UsuariosController
                         $newArbitro->setTelefono($telefono);
                         $newArbitro->setFechanacimiento($fecha_nacimiento);
                         if (!$usuariosRepository->checkAccount($newArbitro)) {
-                            $imagenBLL = new ImagenFutappBLL($_FILES['foto'], 'public/images/users');
+                            $imagenBLL = new ImagenFutappBLL($_FILES['image'], 'public/images/users');
                             $imagenBLL->uploadImagen();
                             $foto = $imagenBLL->getUploadedFileName();
                             $newArbitro->setFoto($foto);

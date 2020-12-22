@@ -7,47 +7,28 @@
                     <?php use FUTAPP\app\repository\UsuariosRepository;
                     use FUTAPP\core\App;
 
-                        if (!is_null($emisores)&& count($emisores) >= 1): ?>
-                        <?php foreach ($emisores as $emisore): ?>
+                    if (!is_null($mensajes) && count($mensajes) >= 1): ?>
+                        <?php foreach ($mensajes as $emisore): ?>
 
-                            <?php if ($emisore->getEmisor() !== $usuario->getId()): ?>
-                                <div class="chat_list <?= \FUTAPP\app\helpers\Utils::isOpcionMenuActiva($emisore->getEmisor() . '') ? 'active_chat' : '' ?>">
-                                    <a href="/mensajes/mis-mensajes/<?= App::getRepository(\FUTAPP\app\repository\UsuariosRepository::class)->find($emisore->getEmisor())->getId() ?>">
-                                        <div class="chat_people">
-                                            <div class="chat_img">
-                                                <img src="<?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getPathFoto() ?>"
-                                                     alt="sunil">
-                                            </div>
-                                            <div class="chat_ib">
-                                                <h5><?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getNombre() ?>
 
-                                                </h5>
-
-                                            </div>
+                            <div class="chat_list <?= \FUTAPP\app\helpers\Utils::isOpcionMenuActiva($emisore->getEmisor() . '') ? 'active_chat' : '' ?>">
+                                <a href="/mensajes/mis-mensajes/<?= App::getRepository(\FUTAPP\app\repository\UsuariosRepository::class)->find($emisore->getEmisor())->getId() ?>">
+                                    <div class="chat_people">
+                                        <div class="chat_img">
+                                            <img src="<?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getPathFoto() ?>"
+                                                 alt="sunil">
                                         </div>
-                                    </a>
+                                        <div class="chat_ib">
+                                            <h5><?= App::getRepository(UsuariosRepository::class)->find($emisore->getEmisor())->getNombre() ?>
 
-                                </div>
+                                            </h5>
 
-                            <?php elseif($emisore->getReceptor() !== $usuario->getId()):?>
-                                <div class="chat_list <?= \FUTAPP\app\helpers\Utils::isOpcionMenuActiva($emisore->getReceptor() . '') ? 'active_chat' : '' ?>">
-                                    <a href="/mensajes/mis-mensajes/<?= App::getRepository(\FUTAPP\app\repository\UsuariosRepository::class)->find($emisore->getReceptor())->getId() ?>">
-                                        <div class="chat_people">
-                                            <div class="chat_img">
-                                                <img src="<?= App::getRepository(UsuariosRepository::class)->find($emisore->getReceptor())->getPathFoto() ?>"
-                                                     alt="sunil">
-                                            </div>
-                                            <div class="chat_ib">
-                                                <h5><?= App::getRepository(UsuariosRepository::class)->find($emisore->getReceptor())->getNombre() ?>
-
-                                                </h5>
-
-                                            </div>
                                         </div>
-                                    </a>
+                                    </div>
+                                </a>
 
-                                </div>
-                            <?php endif; ?>
+                            </div>
+
 
                         <?php endforeach; ?>
                     <?php else : ?>
@@ -94,7 +75,7 @@
 
                         <form class="type_msg" method="post">
                             <div class="input_msg_write">
-                                    <input type="text" class="write_msg" name="mensaje" required
+                                <input type="text" class="write_msg" name="mensaje" required
                                        placeholder="Type a message"/>
 
                             </div>

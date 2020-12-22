@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer" style="height: 30vh;">
     <div class="container">
         <div class="row" style="margin-left: 40%;">
 

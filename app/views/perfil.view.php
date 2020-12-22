@@ -28,7 +28,9 @@
                                 Cambir Contraseña
                             </a>
                             <?php endif;?>
-                           
+                        
+
+
                             <?php if ($usuario->getRole() === 'admin' && $usuario->getRole() !== $_usuario->getRole() && $_usuario->getId() !== $usuario->getId()): ?>
 
                                 <a href="/arbitros/<?= $_usuario->getId() ?>" class="btn btn-danger">

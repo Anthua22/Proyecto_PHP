@@ -35,7 +35,7 @@
                         </div>
                         <div class="col">
                             <span>Foto<label>*</label></span>
-                            <input type="file"  name="image" required>
+                            <input type="file" name="image" required>
                             <img src="" id="imgPreview" style="display: none;"/>
                         </div>
                     </div>
